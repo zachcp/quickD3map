@@ -22,7 +22,7 @@ from pkg_resources import resource_string, resource_filename
 
 class PointMap(object):
     def __init__(self, df, location=None , width=960, height=500, scale=100000, geojson="", attr=None,
-                 map="world_map"):
+                 map="world_map", distance_df=None):
 
         # Check DataFrame for Lat/Lon columns
         assert isinstance(df, pd.core.frame.DataFrame)
@@ -45,22 +45,50 @@ class PointMap(object):
         self.lon = has_lon(df)
         self.df  = df
         self.map = map
-
+        self.distdf = distance_df #pandas object
 
         #Templates
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
         self.template_vars = {'width': width, 'height': height, 'scale': scale}
 
 
-    def _convert_to_geojson(self, df, lat, lon):
+    def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
+        
+        
         def feature_from_row(row):
-            if pd.notnull(row[1][lat]) and pd.notnull(row[1][lon]):
-                return Feature(geometry=Point(( row[1][lon], row[1][lat] )))
+            if pd.notnull(row[lat]) and pd.notnull(row[lon]):
+                return Feature(geometry=Point(( row[lon], row[lat] )))
 
-        featurelist= [ feature_from_row(row) for row in df.iterrows() ]
+        ###
+        ###
+        ###
+        ###
+        ###
+        ###
+        ###
+        
+        def create_lines_from_distances(row,df, index_col):
+            """
+            create a geojson feature collection of lines from a dataframe with three columns: source/dest/weight
+            """
+            ##  pseudocode:
+              # for each row lookup the lat/long of from the original DF
+              # make a linestring feature
+            
+            df2 = df2.set_index(index_col)
+            
+            
+            
+            pass
+            
+        featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
+        line_featurelist =  [ create_lines_from_distances(row, df, index_col) for row in distance_df.iterrows() ]
+        
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
+        self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
 
-
+        
+        
 
     def _build_map(self, html_templ=None):
         '''Build HTML/JS/CSS from Templates given current map type'''
@@ -77,15 +105,11 @@ class PointMap(object):
             #map background
             map =  self.env.get_template(map_types[self.map]['json'])
             self.template_vars['map_data'] = map.render()
-            #main CSS
-            #css =  self.env.get_template('bostocks.css')
-            #self.template_vars['css'] = css.render()
             #generate html
             html_templ = self.env.get_template(map_types[self.map]['template'])
             self.HTML = html_templ.render(self.template_vars)
         else:
             raise ValueError("Currently Supported Maps are: {}".format(','.join(map_types.keys())))
-
 
     def create_map(self, path='map.html', plugin_data_out=True, template=None):
         '''Write Map output to HTML and data output to JSON if available
@@ -99,9 +123,7 @@ class PointMap(object):
             data such as JS/CSS/images to path
         template: string, default None
             Custom template to render
-
         '''
-
         self._build_map(template)
 
         with open(path, 'w') as f:

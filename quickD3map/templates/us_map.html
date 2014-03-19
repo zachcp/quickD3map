@@ -42,6 +42,7 @@
         var scale = {{scale}};
         var samples = {{geojson|string|safe}};
         var geojson = {{map_data|string|safe}};
+		var lines = {{lines_geojson|string|safe}};
 
         var radius = d3.scale.sqrt()
             .domain([0, 1e6])
