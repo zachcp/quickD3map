@@ -15,7 +15,7 @@ import pandas as pd
 import geojson
 from geojson import Polygon, Point, Feature, FeatureCollection
 from jinja2 import Environment, PackageLoader
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from flask_frozen import Freezer
 from pkg_resources import resource_string, resource_filename
 
@@ -78,8 +78,8 @@ class PointMap(object):
             map =  self.env.get_template(map_types[self.map]['json'])
             self.template_vars['map_data'] = map.render()
             #main CSS
-            css =  self.env.get_template('bostocks.css')
-            self.template_vars['css'] = css.render()
+            #css =  self.env.get_template('bostocks.css')
+            #self.template_vars['css'] = css.render()
             #generate html
             html_templ = self.env.get_template(map_types[self.map]['template'])
             self.HTML = html_templ.render(self.template_vars)
@@ -106,30 +106,16 @@ class PointMap(object):
 
         with open(path, 'w') as f:
             f.write(self.HTML)
+            
+    def display_map(self, path='map.html', template=None):
+        app = Flask(__name__)
+        
+        self.create_map(path=path,template=template)
+        @app.route('/', methods=['GET'])
+        def index():
+            #print path, open(path,'r').read()
+            return Response( open(path,'r').read() , mimetype="text/html")
 
-
-def symbol_map(df, lat_col,lon_col, outdir='',
-                title ='', height=600, width=960, scalefactor=500):
-    """
-    return a map of the USA with symbols at a radius  of a certain size.
-    """
-
-    import pandas as pd
-    import json
-    from jinja2 import Template
-
-    propertieslist = list(df.columns)
-    propertieslist.remove(lat_col)
-    propertieslist.remove(lon_col)
-
-    app = Flask(__name__)
-    freezer = Freezer(app)
-    topo_json = topoJSON_from_pandas_df(df, lat=lat_col, lon=lon_col)
-    @app.route('/')
-    def index():
-        return render_template('us_states_symol_map.html', height=height, width=width,
-                               properties = propertieslist, title=title, topo_json = topo_json, scalefactor=scalefactor)
-
-    #config output directory
-    #freezer.freeze()
-    app.run()
+        #config output directory
+        #freezer.freeze()
+        app.run()
