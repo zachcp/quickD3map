@@ -71,6 +71,16 @@
               .attr("class", "states")
               .datum(topojson.feature(geojson, geojson.objects.states))
               .attr("d", path);
+
+	  svg.append("g")
+	      .attr("class", "lines")
+	    .selectAll("path")
+	      .data(lines.features)
+	    .enter().append("path")
+	      .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
+
+  
+
          svg.selectAll(".symbol")
                 .data(samples.features)
                 .enter().append("path")

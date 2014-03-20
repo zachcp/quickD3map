@@ -47,6 +47,7 @@
         var scale = {{scale}};
         var samples = {{geojson|string|safe}};
         var geojson = {{map_data|string|safe}};
+		var lines = {{lines_geojson|string|safe}};
 
         var radius = d3.scale.sqrt()
             .domain([0, 1e6])
@@ -65,49 +66,47 @@
         var path = d3.geo.path()
           .projection(projection);
 
-        var svg = d3.select("#map")
-          .append("svg")
-          .append("g")
-          .attr("width", width)
-          .attr("height", height);
+          var svg = d3.select("#map")
+            .append("svg")
+            .append("g")
+            .attr("width", width)
+            .attr("height", height);
 
-        svg.append("path")
-            .datum(graticule)
-            .attr("class", "graticule")
-            .attr("d", path);
+          svg.append("path")
+              .datum(graticule)
+              .attr("class", "graticule")
+              .attr("d", path);
 
+          svg.append("path")
+              .datum(graticule.outline)
+              .attr("class", "graticule outline")
+              .attr("d", path);
 
-         svg.insert("path", ".graticule")
-              .datum(topojson.feature(countries, countries.objects.land))
-              .attr("class", "land")
+           svg.selectAll(".country")
+              .data(countries)
+              .enter().insert("path", ".graticule")
+              .attr("class", "lines")
               .attr("d", path);
 
          svg.selectAll(".country")
             .data(countries)
-            .enter().insert("path", ".graticule")
+          .enter().insert("path", ".graticule")
             .attr("class", "country")
             .attr("d", path);
 
-         svg.selectAll(".symbol")
-                .data(samples.features)
-                .enter().append("path")
-                .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
+  	  svg.append("g")
+  	      .attr("class", "lines")
+  	    .selectAll("path")
+  	      .data(lines.features)
+  	    .enter().append("path")
+  	      .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
+		
+        svg.selectAll(".symbol")
+               .data(samples.features)
+               .enter().append("path")
+               .attr("class", "symbol")
+               .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
 
-
-
-  svg.insert("path", ".graticule")
-      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
-      .attr("class", "boundary")
-      .attr("d", path);
-});
-
-
-       svg.selectAll(".country")
-          .data(countries)
-        .enter().insert("path", ".graticule")
-          .attr("class", "country")
-          .attr("d", path);
 
         //this is where the update size code goes
         function updateSize(value) {

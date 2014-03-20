@@ -35,6 +35,13 @@
           stroke-opacity: 1;
           stroke-width: 1.5px;
         }
+		
+        .lines {
+		  fill: none;
+          stroke: #333;
+          stroke-opacity: 1;
+          stroke-width: 1.5px;
+        }
     </style>
 
 </head>
@@ -47,7 +54,9 @@
         var height = {{ height }};
         var scale = {{scale}};
         var samples = {{geojson|string|safe}};
+		
         var geojson = {{map_data|string|safe}};
+		
 		var lines = {{lines_geojson|string|safe}};
 
         var radius = d3.scale.sqrt()
@@ -81,25 +90,30 @@
             .attr("class", "graticule outline")
             .attr("d", path);
 
-
          svg.selectAll(".country")
             .data(countries)
             .enter().insert("path", ".graticule")
-            .attr("class", "country")
+            .attr("class", "lines")
             .attr("d", path);
-
-         svg.selectAll(".symbol")
-                .data(samples.features)
-                .enter().append("path")
-                .attr("class", "symbol")
-                .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
-
 
        svg.selectAll(".country")
           .data(countries)
         .enter().insert("path", ".graticule")
           .attr("class", "country")
           .attr("d", path);
+
+	  svg.append("g")
+	      .attr("class", "lines")
+	    .selectAll("path")
+	      .data(lines.features)
+	    .enter().append("path")
+	      .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
+		
+      svg.selectAll(".symbol")
+             .data(samples.features)
+             .enter().append("path")
+             .attr("class", "symbol")
+             .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
 
         //this is where the update size code goes
         function updateSize(value) {
