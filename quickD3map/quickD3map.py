@@ -10,7 +10,7 @@ Created on Tue Apr 30
 from __future__ import print_function
 from __future__ import division
 
-
+import json
 import pandas as pd
 import geojson
 from geojson import Polygon, Point, Feature, FeatureCollection, LineString
@@ -35,7 +35,7 @@ class PointMap(object):
             raise ValueError("No Latitude Column Found")
 
         def has_lon(df):
-            longitude = ['lon', 'longitude']
+            longitude = ['lon','long', 'longitude']
             for col in df.columns:
                 if col.strip().lower() in longitude:
                     return col
@@ -171,6 +171,7 @@ class PointMap(object):
             #generate html
             html_templ = self.env.get_template(map_types[self.map]['template'])
             self.HTML = html_templ.render(self.template_vars)
+            print(self.template_vars.keys())
         else:
             raise ValueError("Currently Supported Maps are: {}".format(','.join(map_types.keys())))
 
