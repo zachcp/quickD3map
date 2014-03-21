@@ -1,6 +1,9 @@
 #History
 
 
+0.1.2 (2014-03-21)
+++++++++++++++++++
+* Updated README with some rudimentary Documentation
 
 0.1.1 (2014-03-19)
 ++++++++++++++++++

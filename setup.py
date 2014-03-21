@@ -19,7 +19,7 @@ history = open('HISTORY.md').read()
 
 setup(
     name='quickD3map',
-    version='0.1.1',
+    version='0.1.2',
     description='Generate quick d3 maps from location data in pandas',
     long_description=readme + '\n\n' + history,
     author='zach powers',
