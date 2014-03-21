@@ -159,7 +159,9 @@ class PointMap(object):
                      'world_map': {'json': 'world-50m.json',
                                    'template':'world_map.html'},
                      'world_map_mercator': {'json': 'world-50m.json',
-                                 'template':'world_map_mercator.html'}}
+                                 'template':'world_map_mercator.html'},
+                     'world_map_zoom': {'json': 'world-50m.json',
+                                 'template':'world_map_zoom.html'}}
 
         self._convert_to_geojson( self.df, self.lat, self.lon)
 

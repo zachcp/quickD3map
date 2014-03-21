@@ -42,8 +42,11 @@
         var scale = {{scale}};
         var samples = {{geojson|string|safe}};
         var geojson = {{map_data|string|safe}};
-		var lines = {{lines_geojson|string|safe}};
-
+		
+		{%- if lines_geojson -%}
+			var lines = {{lines_geojson|string|safe}};
+		{%- endif -%}
+		
         var radius = d3.scale.sqrt()
             .domain([0, 1e6])
             .range([0, 10]);
@@ -72,13 +75,14 @@
               .datum(topojson.feature(geojson, geojson.objects.states))
               .attr("d", path);
 
-	  svg.append("g")
-	      .attr("class", "lines")
-	    .selectAll("path")
-	      .data(lines.features)
-	    .enter().append("path")
-	      .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
-
+  		{%- if lines_geojson -%}
+	  	  svg.append("g")
+	  	      .attr("class", "lines")
+	  	    .selectAll("path")
+	  	      .data(lines.features)
+	  	    .enter().append("path")
+	  	      .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
+  		{%- endif -%}
   
 
          svg.selectAll(".symbol")
