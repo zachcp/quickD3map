@@ -66,7 +66,12 @@ var projection = d3.geo.mercator()
     .scale((1 << 12) / 2 / Math.PI)
     .translate([width / 2, height / 2]);
 
-var center = projection([-100, 40]);
+{%- if center is not none -%}
+	 var center = projection( {{ center }});
+{% else %}
+     var center = projection([-100, 40]);
+{%- endif -%}
+
 
 var path = d3.geo.path()
     .projection(projection);

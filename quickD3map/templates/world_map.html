@@ -76,6 +76,19 @@
         var path = d3.geo.path()
           .projection(projection);
 
+	  {%- if center is not none -%}
+	  	 var center = projection( {{ center }});
+	  {% else %}
+	       var center = projection([-100, 40]);
+	  {%- endif -%}
+	  
+		var zoom = d3.behavior.zoom()
+		    .scale(projection.scale() * 2 * Math.PI)
+		    .scaleExtent([1 << 11, 1 << 14])
+		    .translate([width - center[0], height - center[1]])
+		    .on("zoom", zoomed);
+		
+
         var svg = d3.select("#map")
           .append("svg")
           .append("g")
@@ -118,7 +131,16 @@
              .enter().append("path")
              .attr("class", "symbol")
              .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
+	   
 
+		 svg.call(zoom)
+
+		 function zoomed() {
+		    projection
+		       .scale(zoom.scale() / 2 / Math.PI)
+		       .translate(zoom.translate());
+		 }
+		 
         //this is where the update size code goes
         function updateSize(value) {
             // join new data with old elements

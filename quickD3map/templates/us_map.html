@@ -55,6 +55,9 @@
         //{{ svg }}
 
         var projection = d3.geo.albers()
+			{%+ if center is not none +%}
+				 .center( {{center}} )
+			{%+ endif +%}
           .rotate([98,0])
           .parallels([29.5, 45.5])
           .center([8, 40])
@@ -91,7 +94,36 @@
                   .attr("class", "symbol")
          .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
 
+		 function zoomed() {
+		   var tiles = tile
+		       .scale(zoom.scale())
+		       .translate(zoom.translate())
+		       ();
 
+		   projection
+		       .scale(zoom.scale() / 2 / Math.PI)
+		       .translate(zoom.translate());
+
+		   vector
+		       .attr("d", path);
+
+		   var image = raster
+		       .attr("transform", "scale(" + tiles.scale + ")translate(" + tiles.translate + ")")
+		     .selectAll("image")
+		       .data(tiles, function(d) { return d; });
+
+		   image.exit()
+		       .remove();
+
+		   image.enter().append("image")
+		       .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/examples.map-vyofok3q/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+		       .attr("width", 1)
+		       .attr("height", 1)
+		       .attr("x", function(d) { return d[0]; })
+		       .attr("y", function(d) { return d[1]; });
+		 }
+        
+		
         //this is where the update size code goes
         function updateSize(value) {
             // join new data with old elements

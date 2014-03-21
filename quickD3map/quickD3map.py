@@ -16,13 +16,13 @@ import geojson
 from geojson import Polygon, Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
 from flask import Flask, render_template, Response
-from flask_frozen import Freezer
+#from flask_frozen import Freezer
 from pkg_resources import resource_string, resource_filename
 
 
 class PointMap(object):
     def __init__(self, df, location=None , width=960, height=500, scale=100000, geojson="", attr=None,
-                 map="world_map", distance_df=None, samplecolumn= None):
+                 map="world_map", distance_df=None, samplecolumn= None, center=None):
 
         # Check DataFrame for Lat/Lon columns
         assert isinstance(df, pd.core.frame.DataFrame)
@@ -77,7 +77,14 @@ class PointMap(object):
                                       Check indices of both dataframes. ")
                 
                 return distance_df
-        
+        def check_center(center):
+            try:
+                if isinstance(center, tuple):
+                    return center
+            except:
+                print("Center Must be a Tuple")
+                return None
+            
         def check_samplecolumn(samplecolumn):
             if samplecolumn in self.df.columns:
                 return samplecolumn
@@ -92,11 +99,12 @@ class PointMap(object):
         self.map = map
         self.distdf = load_distance_df(distance_df, df) 
         self.samplecolumn = check_samplecolumn(samplecolumn)
+        self.center= check_center(center)
     
         
         #Templates
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-        self.template_vars = {'width': width, 'height': height, 'scale': scale}
+        self.template_vars = {'width': width, 'height': height, 'scale': scale, 'center': self.center}
 
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
