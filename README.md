@@ -6,7 +6,7 @@ quickD3map allows you to rapidly generate D3.js maps from data from within
 the pandas/ipython ecosystem by converting Latitude/Longitude Data in to points
 
 
-##Note: this is an experimental repo and not ready for use.
+####Note: this is an experimental repo and not ready for use.
 With that said, basic maps can be generated and below are a few examples of how they are made.
 
 quickD3map creates a template file and then runs Flask App to display it.
@@ -26,7 +26,7 @@ PointMap(qdf).display_map()
 PointMap(omdf).display_map()
 ````
 
-##Project Goals
+###Project Goals
 The goal of this project is rather limited in scope: 
   - be able to rapidly plot location data from Pandas dataframes
   - be able to color by another column
