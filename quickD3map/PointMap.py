@@ -3,13 +3,12 @@
 
 from __future__ import (absolute_import, division, print_function )
 
-import json
+#import json
 import pandas as pd
 import geojson
-from geojson import Polygon, Point, Feature, FeatureCollection, LineString
+from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
-from flask import Flask, render_template, Response
-from pkg_resources import resource_string, resource_filename
+from flask import Flask, Response
 from .projections import projections
 
 
@@ -207,7 +206,6 @@ class PointMap(object):
             f.write(self.HTML)
             
     def display_map(self, path='map.html', template=None):
-        print( projections)
         app = Flask(__name__)
         
         self.create_map(path=path,template=template)
