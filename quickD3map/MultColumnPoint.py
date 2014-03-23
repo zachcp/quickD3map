@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Mar 23 19:40:24 2014
+
+@author: zachpowers
+"""
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -13,10 +20,10 @@ from .projections import projections
 
 
 
-class PointMap(object): 
+class MultiColumnMap(object): 
     ''' Create a PointMap with quickD3map '''
-    def __init__(self, df, width=960, height=500, scale=100000, 
-                 geojson="", attr=None, map="world_map", distance_df=None, 
+    def __init__(self, df, columns = None,width=960, height=500, scale=100000, 
+                 geojson="", attr=None, map="world_map_multiplesamples", distance_df=None, 
                  samplecolumn= None, center=None, projection="mercator"):
                     
         '''
@@ -28,6 +35,9 @@ class PointMap(object):
         ----------
         df: pandas dataframe, required.
             dataframe with latitude and longitude columns.
+        columns: list, (default=None)
+            list of columns required for the addiotn of the checkbox
+            
         width: int, default 960
             Width of the map.
         height: int, default 500
@@ -221,6 +231,8 @@ class PointMap(object):
         map_types = {'us_states': {'json': 'us_states.json',
                                    'template':'us_map.html'},
                      'world_map': {'json': 'world-50m.json',
+                                   'template':'world_map.html'},
+                     'world_map_multiple_samples': {'json': 'world-50m.json',
                                    'template':'world_map.html'}}
 
         self._convert_to_geojson( self.df, self.lat, self.lon)
