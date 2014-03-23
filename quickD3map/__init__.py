@@ -3,6 +3,7 @@
 
 __author__ = 'zach powers'
 __email__ = 'zcharlop@rockefeller.edu'
-__version__ = '0.1.0'
+__version__ = '0.1.2'
 
-from quickD3map import PointMap
+
+from .PointMap  import PointMap
