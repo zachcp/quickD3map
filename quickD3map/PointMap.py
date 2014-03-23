@@ -13,9 +13,62 @@ from .projections import projections
 
 
 
-class PointMap(object):
-    def __init__(self, df, location=None , width=960, height=500, scale=100000, geojson="", attr=None,
-                 map="world_map", distance_df=None, samplecolumn= None, center=None, projection="mercator"):
+class PointMap(object): 
+    ''' Create a PointMap with quickD3map '''
+    def __init__(self, df, width=960, height=500, scale=100000, 
+                 geojson="", attr=None, map="world_map", distance_df=None, 
+                 samplecolumn= None, center=None, projection="mercator"):
+                    
+        '''
+        PointMap is a class that takes a dataframe and returns an html webpage that
+        can optionally be viewed as a Flask Webapp. Pointmap requires a pandas dataframe
+        with latitude and longitude options.
+        
+         Parameters
+        ----------
+        df: pandas dataframe, required.
+            dataframe with latitude and longitude columns.
+        width: int, default 960
+            Width of the map.
+        height: int, default 500
+            Height of the map.
+        scale: int, default 100000.
+            scale factor for the size plotted points
+        map: str, default "world_map".
+           template to be used for mapping.
+
+        For Future Implementation:
+        distance_df: pandas dataframe, optional (default = None)
+           dataframe with infomraiton about the linkages between points.
+           Line features not yet implemented!
+        samplecolumn: str, optional but required for distance-based map. (default=None)
+           sample column is the name of the column in df that contians the names of
+           the features to be plotted. All members of the first two columns of
+           distance_df must be in this column
+        center: list of legth two: lat/long (default=[-100, 0])
+           provides a new center for the map
+        projection: str, default="mercator"
+           a projection that is one of the projecions recognized by d3.js
+        
+        Returns
+        -------
+        D3.js Webpage using create_map() or a display of that map 
+        using display_map() 
+        
+        
+        Examples
+        --------
+        >>>from quickD3map import PointMap
+        >>>import statsmodels.api as sm
+        >>>import pandas as pd
+        >>>#import some data
+        >>>quakes = sm.datasets.get_rdataset('quakes','datasets')
+        >>>qdf = pd.DataFrame( quakes.data )
+        >>>#make a map
+        >>>PointMap(qdf).display_map()
+
+        '''
+
 
         # Check DataFrame for Lat/Lon columns
         assert isinstance(df, pd.core.frame.DataFrame)
@@ -167,11 +220,7 @@ class PointMap(object):
         map_types = {'us_states': {'json': 'us_states.json',
                                    'template':'us_map.html'},
                      'world_map': {'json': 'world-50m.json',
-                                   'template':'world_map.html'},
-                     'world_map_mercator': {'json': 'world-50m.json',
-                                 'template':'world_map_mercator.html'},
-                     'world_map_zoom': {'json': 'world-50m.json',
-                                 'template':'world_map_zoom.html'}}
+                                   'template':'world_map.html'}}
 
         self._convert_to_geojson( self.df, self.lat, self.lon)
 
@@ -206,6 +255,9 @@ class PointMap(object):
             f.write(self.HTML)
             
     def display_map(self, path='map.html', template=None):
+        """
+        Create A Flask App to Serve the HTML file created from create_map()
+        """
         app = Flask(__name__)
         
         self.create_map(path=path,template=template)
