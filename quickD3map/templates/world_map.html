@@ -80,7 +80,7 @@
 
        // Projection-Related Settings
        /////////////////////////////////////////////
-        var projection = d3.geo.{{projection}}()
+        var projection = d3.geo.{{projection|string|safe}}()
             .scale((1 << 10) / 2 / Math.PI)
             .translate([width / 2, height / 2]);
 

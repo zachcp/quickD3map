@@ -7,8 +7,7 @@ Created on Tue Apr 30
 @description: quick way to make maps from tables with Lat/Long columns
 """
 
-from __future__ import print_function
-from __future__ import division
+from __future__ import (absolute_import, division, print_function )
 
 import json
 import pandas as pd
@@ -17,12 +16,12 @@ from geojson import Polygon, Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
 from flask import Flask, render_template, Response
 from pkg_resources import resource_string, resource_filename
-from projections import projections
+from .projections import projections
 
 
 class PointMap(object):
     def __init__(self, df, location=None , width=960, height=500, scale=100000, geojson="", attr=None,
-                 map="world_map", distance_df=None, samplecolumn= None, center=None, projection="Mercator"):
+                 map="world_map", distance_df=None, samplecolumn= None, center=None, projection="mercator"):
 
         # Check DataFrame for Lat/Lon columns
         assert isinstance(df, pd.core.frame.DataFrame)
@@ -97,8 +96,8 @@ class PointMap(object):
             if projection in projections:
                 return projection
             else:
-                print('This is not a valid projection, using default=Mercator')
-                return "Mercator"
+                print('This is not a valid projection, using default=mercator')
+                return "mercator"
                         
         self.lat = has_lat(df)
         self.lon = has_lon(df)
@@ -112,7 +111,8 @@ class PointMap(object):
         
         #Templates
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-        self.template_vars = {'width': width, 'height': height, 'scale': scale, 'center': self.center}
+        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
+                              'center': self.center, 'projection':self.projection}
 
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
@@ -212,6 +212,7 @@ class PointMap(object):
             f.write(self.HTML)
             
     def display_map(self, path='map.html', template=None):
+        print( projections)
         app = Flask(__name__)
         
         self.create_map(path=path,template=template)
