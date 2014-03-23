@@ -16,13 +16,13 @@ import geojson
 from geojson import Polygon, Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
 from flask import Flask, render_template, Response
-#from flask_frozen import Freezer
 from pkg_resources import resource_string, resource_filename
+from projections import projections
 
 
 class PointMap(object):
     def __init__(self, df, location=None , width=960, height=500, scale=100000, geojson="", attr=None,
-                 map="world_map", distance_df=None, samplecolumn= None, center=None):
+                 map="world_map", distance_df=None, samplecolumn= None, center=None, projection="Mercator"):
 
         # Check DataFrame for Lat/Lon columns
         assert isinstance(df, pd.core.frame.DataFrame)
@@ -92,7 +92,14 @@ class PointMap(object):
                 print('In the absence of an explicit sample column we are setting Samplecolumn to "None"')
                 return None
                 
-                
+        
+        def check_projection(projection):
+            if projection in projections:
+                return projection
+            else:
+                print('This is not a valid projection, using default=Mercator')
+                return "Mercator"
+                        
         self.lat = has_lat(df)
         self.lon = has_lon(df)
         self.df  = df
@@ -100,7 +107,8 @@ class PointMap(object):
         self.distdf = load_distance_df(distance_df, df) 
         self.samplecolumn = check_samplecolumn(samplecolumn)
         self.center= check_center(center)
-    
+        self.projection = check_projection(projection)
+        
         
         #Templates
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
