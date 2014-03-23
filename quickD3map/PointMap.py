@@ -68,11 +68,10 @@ class PointMap(object):
         >>>PointMap(qdf).display_map()
 
         '''
-
-
-        # Check DataFrame for Lat/Lon columns
-        assert isinstance(df, pd.core.frame.DataFrame)
-
+        
+        ##  Support Functions to Verify Data
+        ################################################################################
+        
         def has_lat(df):
             latitude = ['lat', 'lattitude', 'latitude']
             for col in df.columns:
@@ -123,6 +122,7 @@ class PointMap(object):
                                       Check indices of both dataframes. ")
                 
                 return distance_df
+                
         def check_center(center):
             try:
                 if isinstance(center, tuple):
@@ -135,17 +135,19 @@ class PointMap(object):
             if samplecolumn in self.df.columns:
                 return samplecolumn
             else:
+                ### To do check this only when using distance df
                 print('In the absence of an explicit sample column we are setting Samplecolumn to "None"')
                 return None
                 
-        
         def check_projection(projection):
             if projection in projections:
                 return projection
             else:
                 print('This is not a valid projection, using default=mercator')
                 return "mercator"
-                        
+        
+        # Check Inputs and make assignemtns of data
+        assert isinstance(df, pd.core.frame.DataFrame)
         self.lat = has_lat(df)
         self.lon = has_lon(df)
         self.df  = df
@@ -163,8 +165,12 @@ class PointMap(object):
 
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
+        ''' Dataconversion happens here. Process Dataframes and get 
+            necessary information into geojson which is put into the template 
+            var dictionary for later'''
         
-        
+        ## Support Functions For processing to geojson
+        ################################################################################
         def feature_from_row(row):
             if pd.notnull(row[lat]) and pd.notnull(row[lon]):
                 return Feature(geometry=Point(( row[lon], row[lat] )))
@@ -214,7 +220,7 @@ class PointMap(object):
             line_featurelist = line_feature_from_distance_df() 
             self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
 
-    def _build_map(self, html_templ=None):
+    def _build_map(self):
         '''Build HTML/JS/CSS from Templates given current map type'''
 
         map_types = {'us_states': {'json': 'us_states.json',
@@ -236,31 +242,29 @@ class PointMap(object):
         else:
             raise ValueError("Currently Supported Maps are: {}".format(','.join(map_types.keys())))
 
-    def create_map(self, path='map.html', lines=False, plugin_data_out=True, template=None):
+    def create_map(self, path='map.html', lines=False):
         '''Write Map output to HTML and data output to JSON if available
 
         Parameters:
         -----------
         path: string, default 'map.html'
             Path for HTML output for map
-        plugin_data_out: boolean, default True
-            If using plugins such as awesome markers, write all plugin
-            data such as JS/CSS/images to path
-        template: string, default None
-            Custom template to render
+        
+        #not implemented yet
+        line: default=False
+            whether to plot lines on the plot
         '''
-        self._build_map(template)
-
+        self._build_map()
         with open(path, 'w') as f:
             f.write(self.HTML)
             
-    def display_map(self, path='map.html', template=None):
+    def display_map(self, path='map.html'):
         """
         Create A Flask App to Serve the HTML file created from create_map()
         """
         app = Flask(__name__)
         
-        self.create_map(path=path,template=template)
+        self.create_map(path=path)
         @app.route('/', methods=['GET'])
         def index():
             return Response( open(path,'r').read() , mimetype="text/html")
