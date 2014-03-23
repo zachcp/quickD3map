@@ -9,7 +9,6 @@
    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
    <script src="http://d3js.org/topojson.v1.min.js"></script>
 
-
     <style>
 
         svg {
@@ -64,17 +63,11 @@
          var width = {{ width }};
          var height = {{ height }};
         
-        // var width = Math.max( {{ width }}, window.innerWidth),
-//             height = Math.max( {{ height }}, window.innerHeight);
-        
         var scale = {{scale}};
         
         var samples = {{geojson|string|safe}};
 		
         var geojson = {{map_data|string|safe}};
-
-
-        var countries = topojson.feature(geojson, geojson.objects.countries).features;
 
         {%- if lines_geojson -%}
             var lines = {{lines_geojson|string|safe}};
@@ -87,11 +80,6 @@
 
        // Projection-Related Settings
        /////////////////////////////////////////////
-        // var projection = d3.geo.kavrayskiy7(),
-        //     graticule = d3.geo.graticule();
-        // 
-        // var path = d3.geo.path()
-        //   .projection(projection);
         var projection = d3.geo.mercator()
             .scale((1 << 10) / 2 / Math.PI)
             .translate([width / 2, height / 2]);
@@ -117,90 +105,26 @@
                       .attr("width", width)
                       .attr("height", height);
 
-       // Selection Shorthands
-       var points    = svg.append("path").attr("class","symbol");
-       var map       = svg.append("path").attr("class", "country");
-       
-       //var vector = svg.append("path");
-       //var states = svg.append("path").attr("class", "states");
-       //var world = svg.append("path").attr("class", "country");
+    // Selection Shorthands
+    var points    = svg.append("path").attr("class","symbol");
+    var map       = svg.append("path").attr("class", "country");
+   
+     function zoomed() {
+        projection
+           .scale(zoom.scale() / 2 / Math.PI)
+           .translate(zoom.translate());
+      map
+        .attr("d", path);
+      points
+       .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
+     }
 
-       
-       
-       //var map = svg.selecAll(".country")
-       
-       //  svg.append("path")
-       //      .datum(graticule)
-       //      .attr("class", "graticule")
-       //      .attr("d", path);
-       // 
-       //  svg.append("path")
-       //      .datum(graticule.outline)
-       //      .attr("class", "graticule outline")
-       //      .attr("d", path);
-       // 
-       //   svg.selectAll(".country")
-       //      .data(countries)
-       //      .enter().insert("path", ".graticule")
-       //      .attr("class", "lines")
-       //      .attr("d", path);
-       // 
-       // svg.selectAll(".country")
-       //    .data(countries)
-       //  .enter().insert("path", ".graticule")
-       //    .attr("class", "country")
-       //    .attr("d", path);
-
-          // {%- if lines_geojson -%}
-          //             svg.append("g")
-          //                 .attr("class", "lines")
-          //               .selectAll("path")
-          //                 .data(lines.features)
-          //               .enter().append("path")
-          //                 .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
-          // {%- endif -%}
-
-      // svg.selectAll(".symbol")
-    //          .data(samples.features)
-    //          .enter().append("path")
-    //          .attr("class", "symbol")
-    //          .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
-	   
-         function zoomed() {
-		    projection
-		       .scale(zoom.scale() / 2 / Math.PI)
-               .translate(zoom.translate());
-          map
-            .attr("d", path);
-          points
-           .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
-    	 }
-		
-         
-         // svg.selectAll(".country")
-         //    .data(countries)
-         //  .enter().insert("path", ".graticule")
-         //    .attr("class", "country")
-         //    .attr("d", path);
-         
-         
-		 svg.call(zoom);
-         // map.datum(geojson).attr("d", path);
-         map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
-         points.datum(samples).attr("d", path);
-        
-         zoomed();
-		 
-         
-        //this is where the update size code goes
-        function updateSize(value) {
-            // join new data with old elements
-            var symbol = svg.selectAll(".symbol")
-                  .data(samples.features);
-            // UPDATE
-            symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]*scale); }))
-
-          }
+     // Initialize Zoom and Assign Data
+     svg.call(zoom);
+     map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+     points.datum(samples).attr("d", path);
+     zoomed();
+     
     </script>
 
 </body>
