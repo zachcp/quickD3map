@@ -50,97 +50,140 @@
 	<div id="map">	</div>
 
     <script>
-        var width = {{ width }};
-        var height = {{ height }};
+    
+    // Basic Map Settings and Data
+    /////////////////////////////////////////////
+         // var width = {{ width }};
+         // var height = {{ height }};
+        
+        var width = Math.max( {{ width }}, window.innerWidth),
+            height = Math.max( {{ height }}, window.innerHeight);
+        
         var scale = {{scale}};
+        
         var samples = {{geojson|string|safe}};
 		
         var geojson = {{map_data|string|safe}};
-		
-		{%- if lines_geojson -%}
-			var lines = {{lines_geojson|string|safe}};
-		{%- endif -%}
-		
+
+
+        var countries = topojson.feature(geojson, geojson.objects.countries).features;
+
+        {%- if lines_geojson -%}
+            var lines = {{lines_geojson|string|safe}};
+        {%- endif -%}
+
+
         var radius = d3.scale.sqrt()
             .domain([0, 1e6])
             .range([0, 10]);
 
-        //{{ projection }}
-        //{{ svg }}
+       // Projection-Related Settings
+       /////////////////////////////////////////////
+        // var projection = d3.geo.kavrayskiy7(),
+        //     graticule = d3.geo.graticule();
+        // 
+        // var path = d3.geo.path()
+        //   .projection(projection);
+        var projection = d3.geo.mercator()
+            .scale((1 << 12) / 2 / Math.PI)
+            .translate([width / 2, height / 2]);
 
-        var countries = topojson.feature(geojson, geojson.objects.countries).features;
-
-        var projection = d3.geo.kavrayskiy7(),
-            graticule = d3.geo.graticule();
+      	  {%- if center is not none -%}
+      	  	 var center = projection( {{ center }});
+      	  {% else %}
+      	       var center = projection([-100, 40]);
+      	  {%- endif -%}
 
         var path = d3.geo.path()
-          .projection(projection);
+            .projection(projection);
 
-	  {%- if center is not none -%}
-	  	 var center = projection( {{ center }});
-	  {% else %}
-	       var center = projection([-100, 40]);
-	  {%- endif -%}
-	  
-		var zoom = d3.behavior.zoom()
-		    .scale(projection.scale() * 2 * Math.PI)
-		    .scaleExtent([1 << 11, 1 << 14])
-		    .translate([width - center[0], height - center[1]])
-		    .on("zoom", zoomed);
-		
+        var zoom = d3.behavior.zoom()
+            .scale(projection.scale() * 2 * Math.PI)
+            .scaleExtent([1 << 11, 1 << 14])
+            .translate([width - center[0], height - center[1]])
+            .on("zoom", zoomed);
+
 
         var svg = d3.select("#map")
-          .append("svg")
-          .append("g")
-          .attr("width", width)
-          .attr("height", height);
+                      .append("svg")
+                      .attr("width", width)
+                      .attr("height", height);
 
-        svg.append("path")
-            .datum(graticule)
-            .attr("class", "graticule")
-            .attr("d", path);
+       // Selection Shorthands
+       var points    = svg.append("path").attr("class","symbol");
+       var map       = svg.append("path").attr("class", "country");
+       
+       //var vector = svg.append("path");
+       //var states = svg.append("path").attr("class", "states");
+       //var world = svg.append("path").attr("class", "country");
 
-        svg.append("path")
-            .datum(graticule.outline)
-            .attr("class", "graticule outline")
-            .attr("d", path);
+       
+       
+       //var map = svg.selecAll(".country")
+       
+       //  svg.append("path")
+       //      .datum(graticule)
+       //      .attr("class", "graticule")
+       //      .attr("d", path);
+       // 
+       //  svg.append("path")
+       //      .datum(graticule.outline)
+       //      .attr("class", "graticule outline")
+       //      .attr("d", path);
+       // 
+       //   svg.selectAll(".country")
+       //      .data(countries)
+       //      .enter().insert("path", ".graticule")
+       //      .attr("class", "lines")
+       //      .attr("d", path);
+       // 
+       // svg.selectAll(".country")
+       //    .data(countries)
+       //  .enter().insert("path", ".graticule")
+       //    .attr("class", "country")
+       //    .attr("d", path);
 
-         svg.selectAll(".country")
-            .data(countries)
-            .enter().insert("path", ".graticule")
-            .attr("class", "lines")
-            .attr("d", path);
+          // {%- if lines_geojson -%}
+          //             svg.append("g")
+          //                 .attr("class", "lines")
+          //               .selectAll("path")
+          //                 .data(lines.features)
+          //               .enter().append("path")
+          //                 .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
+          // {%- endif -%}
 
-       svg.selectAll(".country")
-          .data(countries)
-        .enter().insert("path", ".graticule")
-          .attr("class", "country")
-          .attr("d", path);
-
-  		{%- if lines_geojson -%}
-	  	  svg.append("g")
-	  	      .attr("class", "lines")
-	  	    .selectAll("path")
-	  	      .data(lines.features)
-	  	    .enter().append("path")
-	  	      .attr("d", function(d) { return path({ type: d.geometry.type, coordinates: d.geometry.coordinates}); });
-  		{%- endif -%}
-
-      svg.selectAll(".symbol")
-             .data(samples.features)
-             .enter().append("path")
-             .attr("class", "symbol")
-             .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
+      // svg.selectAll(".symbol")
+    //          .data(samples.features)
+    //          .enter().append("path")
+    //          .attr("class", "symbol")
+    //          .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
 	   
-
-		 svg.call(zoom)
-
-		 function zoomed() {
+         function zoomed() {
 		    projection
 		       .scale(zoom.scale() / 2 / Math.PI)
-		       .translate(zoom.translate());
-		 }
+               .translate(zoom.translate());
+          map
+            .attr("d", path);
+          points
+           .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
+    	 }
+		
+         
+         // svg.selectAll(".country")
+         //    .data(countries)
+         //  .enter().insert("path", ".graticule")
+         //    .attr("class", "country")
+         //    .attr("d", path);
+         
+         
+		 svg.call(zoom);
+         // map.datum(geojson).attr("d", path);
+         map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+         points.datum(samples).attr("d", path);
+        
+         zoomed();
 		 
+         
         //this is where the update size code goes
         function updateSize(value) {
             // join new data with old elements
