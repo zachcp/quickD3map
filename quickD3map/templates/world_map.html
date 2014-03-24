@@ -22,7 +22,7 @@
         .country {
           fill: #ccc;
           stroke: #fff;
-        }
+         }
 
         .symbol {
           fill: steelblue;
@@ -106,9 +106,9 @@
                       .attr("height", height);
 
     // Selection Shorthands
-    var points    = svg.append("path").attr("class","symbol");
     var map       = svg.append("path").attr("class", "country");
-   
+    var points    = svg.append("path").attr("class","symbol");
+    
      function zoomed() {
         projection
            .scale(zoom.scale() / 2 / Math.PI)
