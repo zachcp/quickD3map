@@ -3,10 +3,7 @@
 ### D3 Point Maps from Pandas DataFrames
 
 quickD3map allows you to rapidly generate D3.js maps from data from within 
-the pandas/ipython ecosystem by converting Latitude/Longitude Data in to points
-
-
-####Note: this is an experimental repo and not ready for use.
+the pandas/ipython ecosystem by converting Latitude/Longitude Data in to points **Note: this is an experimental repo and not ready for use.**
 With that said, basic maps can be generated and below are a few examples of how they are made.
 
 
@@ -24,22 +21,6 @@ stations = pd.read_csv('data/weatherstations.csv')
 MultiColumnMap(stations, columns = ['LAT','LON','ELEV']).display_map()
 ````
  
-quickD3map creates a template file and then runs Flask App to display it.
-```python
-from quickD3map import PointMap
-import statsmodels.api as sm
-import pandas as pd
-
-#import some data
-quakes = sm.datasets.get_rdataset('quakes','datasets')
-qdf = pd.DataFrame( quakes.data )
-oldmaps = sm.datasets.get_rdataset('OldMaps','HistData')
-omdf = pd.DataFrame(oldmaps.data)
-
-#make a map
-PointMap(qdf).display_map()
-PointMap(omdf).display_map()
-````
 
 ###Project Goals
 The goal of this project is rather limited in scope: 
