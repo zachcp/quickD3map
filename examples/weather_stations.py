@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import pandas as pd
-from quickD3map import PointMap
+from quickD3map import PointMap, MultiColumnMap
  
 #load data and rename incompatible columns
 # you could also rename axis using rename_axis(lambda x: x.split(' ')[0,axis = 1])
@@ -13,6 +13,8 @@ df = pd.merge(stations, station_data, left_on="USAF", right_on="STN---")
 
 #points are too small try:
 #PointMap(df).display_map() \
-PointMap(df, scale = 1000000).display_map()
+#PointMap(df, scale = 1000000).display_map()
+
+MultiColumnMap(df, scale = 1000000).display_map()
 
 #too many points. and too big. more on that later

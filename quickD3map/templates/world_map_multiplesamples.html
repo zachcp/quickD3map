@@ -18,6 +18,11 @@
           border-width:1px;  
         }
         
+
+        aside  {
+          float: right;
+          margin: 15px;
+        }
         
         .country {
           fill: #ccc;
@@ -56,15 +61,16 @@
 <h1> {{ title }}</h1>
 
 
-<div id="map"></div>
 
 <aside style="margin-top:80px;">
     <div><select> 
         {% for col in columns %}
-            <option value="{{col}}">{{}}</option>
+            <option value="{{col}}">{{col}}</option>
         {% endfor%}
     </select></div>
 </aside>
+
+<div id="map"></div>
 
     <script>
     
@@ -116,8 +122,8 @@
                       .attr("height", height);
 
     // Selection Shorthands
-    var points    = svg.append("path").attr("class","symbol");
     var map       = svg.append("path").attr("class", "country");
+    var points    = svg.append("path").attr("class","symbol");
    
      function zoomed() {
         projection
@@ -144,10 +150,9 @@
 		var symbol = svg.selectAll(".symbol")
 		      .datum(samples);
 	    // UPDATE
-	    symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]*500); }))
+	    symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]* {{ scale }} ) }));
   		//window.alert(value);
-		
-     				  })};
+     };
     </script>
 
 </body>
