@@ -13,16 +13,17 @@ from __future__ import (absolute_import, division, print_function )
 #import json
 import pandas as pd
 import geojson
+import codecs
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
-from flask import Flask, Response
+from flask import Flask, Response, render_template, render_template_string
 from .projections import projections
 
 
 
 class MultiColumnMap(object): 
     ''' Create a PointMap with quickD3map '''
-    def __init__(self, df, columns = None,width=900, height=500, scale=500000, 
+    def __init__(self, df, columns = None,width=900, height=500, scale_exp=3, 
                  geojson="", attr=None, map="world_map_multiple_samples", distance_df=None, 
                  samplecolumn= None, center=None, projection="mercator"):
                     
@@ -162,13 +163,22 @@ class MultiColumnMap(object):
         self.center= check_center(center)
         self.projection = check_projection(projection)
         self.columns = columns
+        self.scale_exp = scale_exp 
         
         
         #Templates
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
+        self.template_vars = {'width': width, 'height': height, 
                               'center': self.center, 'projection':self.projection,
-                              'columns': self.columns}
+                              'columns': self.columns, 'scale_exp': self.scale_exp}
+        
+        #JS Libraries and CSS Styling
+        self.template_vars['d3_projection'] =  self.env.get_template('d3.geo.projection.v0.min.js').render()
+        self.template_vars['topojson'] =  self.env.get_template('topojson.v1.min.js').render()
+        self.template_vars['d3js'] =  self.env.get_template('d3.v3.min.js').render()
+        self.template_vars['style'] =  self.env.get_template('style.css').render()
+        
+        
 
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
@@ -266,7 +276,7 @@ class MultiColumnMap(object):
             whether to plot lines on the plot
         '''
         self._build_map()
-        with open(path, 'w') as f:
+        with codecs.open(path, 'w', 'utf-8') as f:
             f.write(self.HTML)
             
     def display_map(self, path='map.html'):

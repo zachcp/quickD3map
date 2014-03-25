@@ -4,57 +4,11 @@
 
 <head>
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-   <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-   <script src="http://d3js.org/topojson.v1.min.js"></script>
+   <script> {{ d3js          |string|safe }} </script>
+   <script> {{ d3_projection |string|safe }} </script>
+   <script> {{ topojson      |string|safe }} </script>
 
-    <style>
-
-        svg {
-          margin: 30px;
-          padding: 5px;
-          border-style:solid;
-          border-width:1px;  
-        }
-        
-
-        aside  {
-          float: right;
-          margin: 15px;
-        }
-        
-        .country {
-          fill: #ccc;
-          stroke: #fff;
-        }
-
-        .symbol {
-          fill: steelblue;
-          fill-opacity: .8;
-          stroke: #fff;
-        }
-
-        .graticule {
-          fill: none;
-          stroke: #000;
-          stroke-opacity: .3;
-          stroke-width: .5px;
-        }
-
-        .graticule.outline {
-          stroke: #333;
-          stroke-opacity: 1;
-          stroke-width: 1.5px;
-        }
-		
-        .lines {
-		  fill: none;
-          stroke: #333;
-          stroke-opacity: 1;
-          stroke-width: 1.5px;
-        }
-    </style>
+    <style> {{ style }}    </style>
 
 </head>
 <body>
@@ -79,7 +33,7 @@
          var width = {{ width }};
          var height = {{ height }};
         
-        var scale = {{scale}};
+        // var scale = {{scale}};
         
         var samples = {{geojson|string|safe}};
 		
@@ -91,8 +45,8 @@
 
 
         var radius = d3.scale.sqrt()
-            .domain([0, 1e6])
-            .range([0, 10]);
+            .domain([0, 1e{{scale_exp|string|safe}}])
+            .range([0, 20]);
 
        // Projection-Related Settings
        /////////////////////////////////////////////
@@ -109,12 +63,12 @@
         var path = d3.geo.path()
             .projection(projection);
 
-        var zoom = d3.behavior.zoom()
-            .scale(projection.scale() * 2 * Math.PI)
-            .scaleExtent([1 << 10, 1 << 16])
-            .translate([width - center[0], height - center[1]])
-            .on("zoom", zoomed);
-
+        // var zoom = d3.behavior.zoom()
+        //     .scale(projection.scale() * 2 * Math.PI)
+        //     .scaleExtent([1 << 10, 1 << 16])
+        //     .translate([width - center[0], height - center[1]])
+        //     .on("zoom", zoomed);
+        // 
 
         var svg = d3.select("#map")
                       .append("svg")
@@ -123,23 +77,34 @@
 
     // Selection Shorthands
     var map       = svg.append("path").attr("class", "country");
-    var points    = svg.append("path").attr("class","symbol");
-   
-     function zoomed() {
-        projection
-           .scale(zoom.scale() / 2 / Math.PI)
-           .translate(zoom.translate());
-      map
-        .attr("d", path);
-      points
-       .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
-     }
+    // var points    = svg.append("path").attr("class","symbol");
+    var p = svg.selectAll(".symbol")
+	          .data(samples.features)
+			  .enter().append("path")
+	      		.attr("class", "symbol");
+ //     function zoomed() {
+//         projection
+//            .scale(zoom.scale() / 2 / Math.PI)
+//            .translate(zoom.translate());
+//       map
+//         .attr("d", path);
+//       // points
+// //        .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
+//  	
+// 	  // p.data(samples.features).enter().append("path")
+// 	  //         .attr("class", "symbol")
+// 	  //         .attr("d", path).pointRadius(function(d) { return d.properties[value] }));
+// 	 }
 
      // Initialize Zoom and Assign Data
-     svg.call(zoom);
+     // svg.call(zoom);
      map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
-     points.datum(samples).attr("d", path);
-     zoomed();
+     // points.datum(samples).attr("d", path);
+
+     p.data(samples.features)
+	   .attr("class", "symbol")
+	   .attr("d", path.pointRadius( function(d){return radius( 100 ) } ));
+	 // zoomed();
      
      // Update By-Column Code
      ///////////////////////////////////////////////////////////////////////////////////////
@@ -147,12 +112,14 @@
 
 	//this is where the update size code goes
 	function updateSize(value) {
-		var symbol = svg.selectAll(".symbol")
-		      .datum(samples);
-	    // UPDATE
-	    symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]* {{ scale }} ) }));
-  		//window.alert(value);
-     };
+        // points.attr("d", path.pointRadius(function(d)  { return radius(d.properties[value]* {{ scale }} ) }));
+// 		points.attr("d", path.pointRadius(function(d)  { return 10 ) }));
+// 		points.datum().forEach() attr("d", path.pointRadius(function(d)  { return 10 ) }));
+//   		//window.alert(value);
+     p.data(samples.features)
+	     .attr("class", "symbol")
+	     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
+	 };
     </script>
 
 </body>

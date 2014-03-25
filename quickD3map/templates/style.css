@@ -1,0 +1,43 @@
+        svg {
+          margin: 30px;
+          padding: 5px;
+          border-style:solid;
+          border-width:1px;  
+        }
+        
+
+        aside  {
+          float: right;
+          margin: 15px;
+        }
+        
+        .country {
+          fill: #ccc;
+          stroke: #fff;
+        }
+
+        .symbol {
+          fill: steelblue;
+          fill-opacity: .8;
+          stroke: #fff;
+        }
+
+        .graticule {
+          fill: none;
+          stroke: #000;
+          stroke-opacity: .3;
+          stroke-width: .5px;
+        }
+
+        .graticule.outline {
+          stroke: #333;
+          stroke-opacity: 1;
+          stroke-width: 1.5px;
+        }
+		
+        .lines {
+		  fill: none;
+          stroke: #333;
+          stroke-opacity: 1;
+          stroke-width: 1.5px;
+        }
