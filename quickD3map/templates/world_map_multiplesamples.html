@@ -9,12 +9,10 @@
    <script> {{ topojson      |string|safe }} </script>
 
     <style> {{ style }}    </style>
-
 </head>
 <body>
+	
 <h1> {{ title }}</h1>
-
-
 
 <aside style="margin-top:80px;">
     <div><select> 
@@ -32,18 +30,11 @@
     /////////////////////////////////////////////
          var width = {{ width }};
          var height = {{ height }};
-        
-        // var scale = {{scale}};
-        
-        var samples = {{geojson|string|safe}};
-		
-        var geojson = {{map_data|string|safe}};
-
+		 var samples = {{geojson|string|safe}};
+		 var geojson = {{map_data|string|safe}};
         {%- if lines_geojson -%}
             var lines = {{lines_geojson|string|safe}};
         {%- endif -%}
-
-
         var radius = d3.scale.sqrt()
             .domain([0, 1e{{scale_exp|string|safe}}])
             .range([0, 20]);
@@ -63,13 +54,6 @@
         var path = d3.geo.path()
             .projection(projection);
 
-        // var zoom = d3.behavior.zoom()
-        //     .scale(projection.scale() * 2 * Math.PI)
-        //     .scaleExtent([1 << 10, 1 << 16])
-        //     .translate([width - center[0], height - center[1]])
-        //     .on("zoom", zoomed);
-        // 
-
         var svg = d3.select("#map")
                       .append("svg")
                       .attr("width", width)
@@ -77,50 +61,28 @@
 
     // Selection Shorthands
     var map       = svg.append("path").attr("class", "country");
-    // var points    = svg.append("path").attr("class","symbol");
-    var p = svg.selectAll(".symbol")
+    var points = svg.selectAll(".symbol")
 	          .data(samples.features)
 			  .enter().append("path")
 	      		.attr("class", "symbol");
- //     function zoomed() {
-//         projection
-//            .scale(zoom.scale() / 2 / Math.PI)
-//            .translate(zoom.translate());
-//       map
-//         .attr("d", path);
-//       // points
-// //        .attr("d", path.pointRadius(function(d) { return radius( {{scale}}) }));
-//  	
-// 	  // p.data(samples.features).enter().append("path")
-// 	  //         .attr("class", "symbol")
-// 	  //         .attr("d", path).pointRadius(function(d) { return d.properties[value] }));
-// 	 }
 
-     // Initialize Zoom and Assign Data
-     // svg.call(zoom);
      map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
-     // points.datum(samples).attr("d", path);
-
-     p.data(samples.features)
+     points.data(samples.features)
 	   .attr("class", "symbol")
 	   .attr("d", path.pointRadius( function(d){return radius( 100 ) } ));
-	 // zoomed();
-     
+
      // Update By-Column Code
      ///////////////////////////////////////////////////////////////////////////////////////
      d3.selectAll("select").on("change", function () {updateSize(this.value) });
 
 	//this is where the update size code goes
 	function updateSize(value) {
-        // points.attr("d", path.pointRadius(function(d)  { return radius(d.properties[value]* {{ scale }} ) }));
-// 		points.attr("d", path.pointRadius(function(d)  { return 10 ) }));
-// 		points.datum().forEach() attr("d", path.pointRadius(function(d)  { return 10 ) }));
-//   		//window.alert(value);
      p.data(samples.features)
 	     .attr("class", "symbol")
 	     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
 	 };
     </script>
+
 
 </body>
 </html>
