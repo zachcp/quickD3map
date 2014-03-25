@@ -1,0 +1,1071 @@
+city,country,population_2010,continent_name,latitude,longitude
+Aba,Nigeria,835653.0,Africa,5.1066,7.3667
+Abidjan,Côte d'Ivoire,4151417.0,Africa,5.3097,-4.0127
+Abu Dhabi,UAE,869320.0,Asia,24.4667,54.3667
+Abuja,Nigeria,2010282.0,Africa,9.0833,7.5333
+Accra,Ghana,2469264.0,Africa,5.55,-0.2167
+Adana,Turkey,1423161.0,Asia,37.0017,35.3289
+Addis Ababa,Ethiopia,2918669.0,Africa,9.0243,38.7492
+Adelaide,Australia,1181206.0,Oceania,-34.9287,138.5986
+Aden,Yemen,746150.0,Asia,12.7794,45.0367
+Agadir,Morocco,785618.0,Africa,30.4207,-9.5932
+Agra,India,1714339.0,North America,35.8839,-96.8707
+Agra,India,1714339.0,Asia,27.1833,78.0167
+Aguascalientes,Mexico,934272.0,North America,21.8833,-102.3
+Ahvaz,Iran,1060936.0,Asia,31.3203,48.6693
+Aleppo,Syria,3067966.0,North America,39.7848,-80.4884
+Alexandria,Egypt,4400104.0,Africa,31.1981,29.9192
+Alexandria,Egypt,4400104.0,North America,38.9191,-84.3943
+Alexandria,Egypt,4400104.0,North America,40.0925,-82.6064
+Alexandria,Egypt,4400104.0,Europe,55.9833,-4.6
+Alexandria,Egypt,4400104.0,North America,45.3132,-74.6338
+Alexandria,Egypt,4400104.0,North America,40.55,-78.1019
+Alexandria,Egypt,4400104.0,Oceania,-33.9167,151.2
+Alexandria,Egypt,4400104.0,North America,40.2494,-85.6708
+Alexandria,Egypt,4400104.0,North America,33.7752,-85.9045
+Alexandria,Egypt,4400104.0,North America,31.2815,-92.4693
+Alexandria,Egypt,4400104.0,Europe,43.9833,25.3333
+Alexandria,Egypt,4400104.0,North America,36.0572,-86.0072
+Alexandria,Egypt,4400104.0,North America,45.8934,-95.3971
+Alexandria,Egypt,4400104.0,South America,-6.4167,-38.0167
+Alexandria,Egypt,4400104.0,North America,43.6746,-97.7466
+Alexandria,Egypt,4400104.0,North America,38.8156,-77.0453
+Algiers,Algeria,2850907.0,Africa,36.7631,3.0506
+Aligarh,India,891035.0,Asia,27.8833,78.0833
+Allahabad,India,1204808.0,Asia,25.45,81.85
+Almaty,Kazakhstan,1400451.0,Asia,43.25,76.95
+Amman,Jordan,1149854.0,Asia,31.95,35.9333
+Amritsar,India,1171367.0,Asia,31.6331,74.8656
+Amsterdam,Netherlands,1049258.0,North America,40.4742,-80.9509
+Amsterdam,Netherlands,1049258.0,Europe,52.35,4.9167
+Amsterdam,Netherlands,1049258.0,North America,42.9694,-74.1224
+Amsterdam,Netherlands,1049258.0,North America,38.3553,-94.5444
+Ankara,Turkey,4073828.0,Asia,39.9117,32.8403
+Anshan,China,1662410.0,Asia,41.1236,122.99
+Antalya,Turkey,877489.0,Asia,36.9081,30.6956
+Antananarivo,Madagascar,1900107.0,Africa,-18.9167,47.5167
+Anyang,China,1129385.0,Asia,36.0994,114.3289
+Aracaju,Brazil,748088.0,South America,-10.9167,-37.0667
+Arequipa,Peru,790521.0,South America,-16.3989,-71.535
+Asansol,India,1232198.0,Asia,23.6833,86.9833
+Athens,Greece,3381828.0,Europe,37.9833,23.7333
+Athens,Greece,3381828.0,North America,41.9273,-76.4396
+Athens,Greece,3381828.0,North America,37.4684,-80.9974
+Athens,Greece,3381828.0,North America,44.9878,-69.6738
+Athens,Greece,3381828.0,North America,34.8201,-86.8771
+Athens,Greece,3381828.0,North America,42.0939,-85.2332
+Athens,Greece,3381828.0,North America,32.6421,-93.0325
+Athens,Greece,3381828.0,North America,42.2823,-73.8294
+Athens,Greece,3381828.0,North America,32.1223,-95.9227
+Athens,Greece,3381828.0,North America,45.0671,-89.9834
+Athens,Greece,3381828.0,North America,44.628,-75.9489
+Athens,Greece,3381828.0,North America,39.9857,-89.6559
+Athens,Greece,3381828.0,North America,33.941,-83.4341
+Athens,Greece,3381828.0,North America,35.4239,-84.6681
+Athens,Greece,3381828.0,North America,39.3031,-82.0828
+Atlanta,USA,4874502.0,North America,33.8444,-84.4741
+Atlanta,USA,4874502.0,North America,40.2554,-89.2761
+Atlanta,USA,4874502.0,North America,39.9017,-92.4576
+Atlanta,USA,4874502.0,North America,45.0288,-84.1722
+Atlanta,USA,4874502.0,North America,40.2043,-86.0237
+Atlanta,USA,4874502.0,North America,33.127,-94.1992
+Auckland,New Zealand,1406758.0,Oceania,-36.8667,174.7667
+Aurangabad,India,1166797.0,Asia,19.8833,75.3333
+Austin,USA,1266477.0,North America,34.9921,-91.982
+Austin,USA,1266477.0,North America,41.606,-78.0811
+Austin,USA,1266477.0,North America,30.366,-97.6437
+Austin,USA,1266477.0,North America,49.95,-98.9333
+Austin,USA,1266477.0,South America,-22.721,-43.5275
+Austin,USA,1266477.0,North America,38.7697,-85.8029
+Austin,USA,1266477.0,North America,43.673,-92.9592
+Baghdad,Iraq,5890677.0,Asia,33.3386,44.3939
+Baku,Azerbaijan,2061843.0,Asia,40.3953,49.8822
+Baltimore,USA,2414711.0,North America,44.0223,-78.1483
+Baltimore,USA,2414711.0,North America,39.8619,-82.6109
+Baltimore,USA,2414711.0,North America,39.2904,-76.6122
+Bamako,Mali,1931996.0,Africa,12.65,-8.0
+Bandung,Indonesia,2399494.0,Asia,-6.9039,107.6186
+Bangalore,India,8275032.0,Asia,12.9833,77.5833
+Bangkok,Thailand,8213366.0,Asia,13.754,100.5014
+Baoding,China,1148209.0,Asia,38.8511,115.4903
+Baotou,China,1931030.0,Asia,40.6522,109.8222
+Baotou,China,1931030.0,Asia,18.3221,109.5265
+Barcelona,Spain,5487878.0,South America,10.1333,-64.7
+Barcelona,Spain,5487878.0,Europe,41.3984,2.1741
+Bareilly,India,960893.0,Asia,28.35,79.4167
+Barquisimeto,Venezuela,1215001.0,South America,10.0739,-69.3228
+Barranquilla,Colombia,1867337.0,South America,10.9639,-74.7964
+Basra,Iraq,923237.0,Asia,30.4942,47.8192
+Beijing,China,14999554.0,Asia,39.9289,116.3883
+Beirut,Lebanon,1983381.0,Asia,33.8719,35.5097
+Belgrade,Serbia,1133399.0,North America,45.4742,-94.9677
+Belgrade,Serbia,1133399.0,Europe,44.8186,20.4681
+Belgrade,Serbia,1133399.0,North America,41.4413,-98.1283
+Belgrade,Serbia,1133399.0,North America,45.9666,-111.1124
+Belgrade,Serbia,1133399.0,North America,44.4876,-69.838
+Belgrade,Serbia,1133399.0,Europe,50.4667,4.8333
+Belo Horizonte,Brazil,5406833.0,South America,-19.9167,-43.9333
+Belo Horizonte,Brazil,5406833.0,South America,-20.7333,-40.6167
+Belém,Brazil,2038227.0,South America,-1.45,-48.4833
+Bengbu,China,914280.0,Asia,32.9408,117.3608
+Benin City,Nigeria,1311012.0,Africa,6.335,5.6275
+Bergamo,Italy,773736.0,Europe,45.6833,9.7167
+Berlin,Germany,3450076.0,Europe,54.0333,10.45
+Berlin,Germany,3450076.0,North America,40.5612,-81.7943
+Berlin,Germany,3450076.0,North America,46.37,-98.4839
+Berlin,Germany,3450076.0,North America,44.4338,-71.2707
+Berlin,Germany,3450076.0,North America,39.7581,-74.9256
+Berlin,Germany,3450076.0,Europe,52.5167,13.4
+Berlin,Germany,3450076.0,North America,39.9441,-78.9065
+Berlin,Germany,3450076.0,North America,41.6034,-72.7763
+Berlin,Germany,3450076.0,North America,38.3081,-75.2409
+Berlin,Germany,3450076.0,North America,31.0682,-83.6238
+Berlin,Germany,3450076.0,North America,42.3844,-71.6294
+Berlin,Germany,3450076.0,North America,44.0079,-88.9666
+Berlin,Germany,3450076.0,North America,42.6679,-73.3281
+Bhopal,India,1851285.0,Asia,23.2667,77.4
+Bhubaneswar,India,864906.0,Asia,20.2333,85.8333
+Birmingham,USA,759306.0,North America,39.9759,-74.7102
+Birmingham,UK,2273095.0,North America,42.5457,-83.2165
+Birmingham,UK,2273095.0,North America,39.9759,-74.7102
+Birmingham,UK,2273095.0,Europe,52.4957,-1.7515
+Birmingham,UK,2273095.0,North America,33.5207,-86.8025
+Birmingham,UK,2273095.0,North America,40.8657,-91.9654
+Birmingham,USA,759306.0,Europe,52.4957,-1.7515
+Birmingham,USA,759306.0,North America,33.5207,-86.8025
+Birmingham,USA,759306.0,North America,42.5457,-83.2165
+Birmingham,USA,759306.0,North America,40.8657,-91.9654
+Bishkek,Kyrgyzstan,830839.0,Asia,42.8731,74.6003
+Bogor,Indonesia,954139.0,Asia,-6.5944,106.7892
+Bogotá,Colombia,8502405.0,South America,4.6492,-74.0628
+Bordeaux,France,840715.0,Europe,44.8404,-0.5805
+Boston,USA,4772358.0,North America,38.5443,-78.1301
+Boston,USA,4772358.0,Europe,52.9833,-0.0167
+Boston,USA,4772358.0,North America,42.3492,-71.0592
+Boston,USA,4772358.0,North America,37.7674,-85.6768
+Boston,USA,4772358.0,North America,42.6207,-78.7213
+Boston,USA,4772358.0,North America,30.7848,-83.817
+Brasília,Brazil,3701173.0,South America,-15.7833,-47.9167
+Brazzaville,Congo,1557139.0,Africa,-4.2592,15.2847
+Brisbane,Australia,1993012.0,Oceania,-27.471,153.0243
+Brisbane,Australia,1993012.0,North America,37.6861,-122.4107
+Bucaramanga,Colombia,1092197.0,South America,7.1254,-73.1198
+Bucharest,Romania,1934641.0,Europe,44.4333,26.1
+Budapest,Hungary,1730602.0,Europe,47.5,19.0833
+Buenos Aires,Argentina,13369921.0,North America,8.8596,-83.5022
+Buenos Aires,Argentina,13369921.0,South America,-34.5875,-58.6725
+Buffalo,USA,1089978.0,North America,31.4701,-96.0149
+Buffalo,USA,1089978.0,North America,36.8333,-99.5711
+Buffalo,USA,1089978.0,North America,42.9864,-78.7279
+Buffalo,USA,1089978.0,North America,44.2195,-106.6002
+Buffalo,USA,1089978.0,North America,37.6146,-93.085
+Buffalo,USA,1089978.0,North America,37.4431,-85.5724
+Buffalo,USA,1089978.0,North America,45.1845,-93.8397
+Buffalo,USA,1089978.0,North America,41.4564,-90.7235
+Buffalo,USA,1089978.0,North America,38.6095,-81.9264
+Buffalo,USA,1089978.0,North America,39.9159,-81.5201
+Buffalo,USA,1089978.0,North America,34.7202,-81.736
+Buffalo,USA,1089978.0,Africa,-33.0311,27.9099
+Bursa,Turkey,1659420.0,Asia,40.1917,29.0611
+Busan,"Korea, South",3398435.0,Asia,35.1028,129.0403
+Cairo,Egypt,11031494.0,North America,42.309,-74.0326
+Cairo,Egypt,11031494.0,North America,39.2402,-81.1585
+Cairo,Egypt,11031494.0,Africa,30.05,31.25
+Cairo,Egypt,11031494.0,North America,30.8774,-84.2013
+Cairo,Egypt,11031494.0,North America,41.0004,-98.5884
+Cairo,Egypt,11031494.0,North America,37.0404,-89.2008
+Cairo,Egypt,11031494.0,North America,39.5302,-92.4327
+Calgary,Canada,1190830.0,North America,50.9604,-114.1001
+Campinas,Brazil,2794150.0,South America,-22.9,-47.0833
+Campo Grande,Brazil,775132.0,South America,-22.9067,-43.5529
+Campo Grande,Brazil,775132.0,South America,-20.45,-54.6167
+Can Tho,Viet Nam,902366.0,Asia,10.0333,105.7833
+Cape Town,South Africa,3491778.0,Africa,-33.8167,18.4833
+Caracas,Venezuela,3176446.0,South America,10.5,-66.9167
+Cartagena,Colombia,962657.0,South America,10.3997,-75.5144
+Cartagena,Colombia,962657.0,Europe,37.6458,-0.7917
+Casablanca,Morocco,3009217.0,Africa,33.5928,-7.6192
+Casablanca,Morocco,3009217.0,South America,-33.3167,-71.4167
+Chandigarh,India,1009587.0,Asia,30.7343,76.7933
+Changchun,China,3597815.0,Asia,43.88,125.3228
+Changde,China,923666.0,Asia,29.0464,111.6783
+Changsha,China,3212091.0,Asia,28.1792,113.1136
+Changzhou,China,2322650.0,Asia,31.7833,119.9667
+Charlotte,USA,1087977.0,North America,35.3284,-80.7459
+Charlotte,USA,1087977.0,North America,42.5689,-84.8361
+Charlotte,USA,1087977.0,North America,44.3111,-73.2251
+Charlotte,USA,1087977.0,North America,28.8237,-98.6945
+Charlotte,USA,1087977.0,North America,36.2496,-87.273
+Charlotte,USA,1087977.0,North America,41.966,-90.4759
+Chelyabinsk,Russia,1128391.0,Europe,55.154,61.4291
+Chengdu,China,6397335.0,Asia,30.6667,104.0667
+Chicago,USA,9544691.0,North America,41.8998,-87.6368
+Chihuahua,Mexico,854233.0,North America,16.025,-91.975
+Chihuahua,Mexico,854233.0,North America,25.1833,-99.75
+Chihuahua,Mexico,854233.0,North America,28.6333,-106.0833
+Chittagong,Bangladesh,5069181.0,Asia,22.3636,91.8033
+Chongqing,China,9732286.0,Asia,29.5628,106.5528
+Cincinnati,USA,1756287.0,North America,39.2831,-84.5162
+Cincinnati,USA,1756287.0,North America,40.6279,-92.9314
+Ciudad Guayana,Venezuela,779197.0,South America,8.3533,-62.6528
+Ciudad Juárez,Mexico,1332479.0,North America,31.7333,-106.4833
+Cleveland,USA,2022462.0,North America,44.3194,-93.8503
+Cleveland,USA,2022462.0,North America,35.4332,-92.6692
+Cleveland,USA,2022462.0,North America,33.7568,-90.7297
+Cleveland,USA,2022462.0,North America,33.9707,-86.6
+Cleveland,USA,2022462.0,North America,35.0978,-84.9115
+Cleveland,USA,2022462.0,North America,30.408,-95.1856
+Cleveland,USA,2022462.0,North America,36.252,-96.4183
+Cleveland,USA,2022462.0,North America,36.9997,-82.1478
+Cleveland,USA,2022462.0,North America,39.3489,-110.8516
+Cleveland,USA,2022462.0,North America,35.0837,-82.6475
+Cleveland,USA,2022462.0,North America,46.8848,-99.1017
+Cleveland,USA,2022462.0,North America,35.7639,-80.7058
+Cleveland,USA,2022462.0,North America,43.2742,-75.8521
+Cleveland,USA,2022462.0,North America,41.4817,-81.6934
+Cleveland,USA,2022462.0,North America,43.914,-87.753
+Cleveland,USA,2022462.0,Oceania,-27.5333,153.2667
+Cleveland,USA,2022462.0,North America,34.6222,-83.7901
+Cleveland,USA,2022462.0,North America,38.6542,-94.5622
+Cleveland,USA,2022462.0,North America,45.6895,-61.1981
+Coimbatore,India,2095301.0,Asia,10.9925,76.9614
+Cologne,Germany,1001590.0,North America,44.7707,-93.7858
+Cologne,Germany,1001590.0,Europe,50.9333,6.95
+Cologne,Germany,1001590.0,North America,39.5048,-74.6132
+Cologne,Germany,1001590.0,Europe,45.5833,9.9333
+Cologne,Germany,1001590.0,Europe,43.7221,0.9775
+Conakry,Guinea,1715207.0,Africa,9.5092,-13.7122
+Concepción,Chile,757600.0,South America,-36.8333,-73.05
+Copenhagen,Denmark,1192357.0,Europe,55.6667,12.5833
+Cotonou,Benin,881890.0,Africa,6.3654,2.4183
+Cuernavaca,Mexico,878136.0,North America,18.9167,-99.25
+Cuiabá,Brazil,788594.0,South America,-15.5833,-56.0833
+Culiacán,Mexico,836057.0,North America,24.7994,-107.3897
+Curitiba,Brazil,3118137.0,South America,-25.4167,-49.25
+Córdoba,Argentina,1532246.0,South America,-31.4135,-64.1811
+Córdoba,Argentina,1532246.0,North America,18.8833,-96.9333
+Cúcuta,Colombia,774617.0,South America,7.8939,-72.5078
+Da Nang,Viet Nam,805376.0,Asia,16.0678,108.2208
+Daegu,"Korea, South",2449690.0,Asia,35.8703,128.5911
+Dakar,Senegal,2925953.0,Africa,14.6708,-17.4381
+Dalian,China,3305435.0,Asia,38.9122,121.6022
+Damascus,Syria,2581546.0,North America,35.3395,-92.3895
+Damascus,Syria,2581546.0,North America,39.2891,-77.22
+Damascus,Syria,2581546.0,North America,36.6514,-81.747
+Damascus,Syria,2581546.0,Asia,33.5,36.3
+Damascus,Syria,2581546.0,North America,45.4176,-122.459
+Dandong,China,795083.0,Asia,40.1292,124.3947
+Daqing,China,1547119.0,Asia,41.7239,123.2017
+Dar es Salaam,Tanzania,3414656.0,Africa,-6.8,39.2833
+Dayton,USA,834520.0,North America,40.3723,-74.4962
+Dayton,USA,834520.0,North America,39.6869,-84.1641
+Dayton,USA,834520.0,North America,30.0454,-94.9058
+Dayton,USA,834520.0,North America,39.0996,-84.4397
+Dayton,USA,834520.0,North America,44.7805,-107.5545
+Dayton,USA,834520.0,North America,39.2375,-77.0069
+Dayton,USA,834520.0,North America,42.2667,-94.0387
+Dayton,USA,834520.0,North America,38.4628,-79.0704
+Dayton,USA,834520.0,North America,45.2007,-93.4748
+Dayton,USA,834520.0,North America,40.872,-79.2561
+Dayton,USA,834520.0,North America,35.5003,-85.0031
+Dayton,USA,834520.0,North America,46.3109,-117.9004
+Dayton,USA,834520.0,North America,40.3742,-86.7689
+Dayton,USA,834520.0,North America,39.2643,-119.4804
+Dayton,USA,834520.0,North America,45.1953,-123.0774
+Delhi,India,21935142.0,North America,42.3179,-74.9308
+Delhi,India,21935142.0,North America,32.3929,-91.4714
+Delhi,India,21935142.0,North America,37.4249,-120.7764
+Delhi,India,21935142.0,North America,42.8551,-80.4918
+Delhi,India,21935142.0,North America,42.4082,-91.3103
+Delhi,India,21935142.0,Asia,28.6,77.2
+Denpasar,Indonesia,797315.0,Asia,-8.65,115.2167
+Detroit,USA,4364429.0,North America,42.4257,-83.0437
+Detroit,USA,4364429.0,North America,44.7613,-69.3165
+Detroit,USA,4364429.0,North America,33.73,-95.1989
+Dhaka,Bangladesh,14929647.0,Asia,23.7231,90.4086
+Dhanbad,India,1186101.0,Asia,23.8,86.45
+Dnipropetrovsk,Ukraine,1003320.0,Europe,48.463,35.039
+Donetsk,Ukraine,965282.0,Europe,47.9917,37.7759
+Dongguan,China,7159504.0,Asia,23.0333,113.7167
+Dongying,China,949290.0,Asia,37.4564,118.4856
+Douala,Cameroon,2348046.0,Africa,4.0503,9.7
+Dubai,UAE,1834882.0,Asia,25.2582,55.3047
+Dublin,Ireland,1102405.0,North America,32.0918,-98.3096
+Dublin,Ireland,1102405.0,North America,34.6568,-78.7264
+Dublin,Ireland,1102405.0,North America,40.3743,-75.2042
+Dublin,Ireland,1102405.0,North America,42.8948,-72.0927
+Dublin,Ireland,1102405.0,North America,32.4643,-82.9495
+Dublin,Ireland,1102405.0,North America,37.7186,-121.9164
+Dublin,Ireland,1102405.0,North America,40.1176,-83.1265
+Dublin,Ireland,1102405.0,Europe,53.3331,-6.2489
+Dublin,Ireland,1102405.0,North America,37.1283,-80.5935
+Durban,South Africa,2953589.0,Africa,-29.8579,31.0292
+Edmonton,Canada,1120754.0,Oceania,-17.0167,145.75
+Edmonton,Canada,1120754.0,North America,36.9965,-85.5985
+Edmonton,Canada,1120754.0,Europe,51.6144,-0.05
+Edmonton,Canada,1120754.0,North America,53.4782,-113.5873
+El Paso,USA,813255.0,North America,35.1245,-92.0041
+El Paso,USA,813255.0,North America,40.7467,-89.0254
+El Paso,USA,813255.0,North America,31.7958,-106.3762
+Enugu,Nigeria,775975.0,Africa,6.4402,7.4943
+Erbil,Iraq,1009204.0,Asia,36.19,44.0089
+Faisalabad,Pakistan,2947029.0,Asia,31.4167,73.0833
+Florianópolis,Brazil,1010091.0,South America,-27.5833,-48.5667
+Fortaleza,Brazil,3519526.0,South America,-3.7167,-38.5
+Fortaleza,Brazil,3519526.0,South America,-24.3,-50.3
+Foshan,China,6207756.0,Asia,23.0268,113.1315
+Freetown,Sierra Leone,909773.0,Africa,8.49,-13.2342
+Freetown,Sierra Leone,909773.0,North America,38.9831,-86.1419
+Freetown,Sierra Leone,909773.0,North America,46.3753,-63.611
+Fuxin,China,821488.0,Asia,42.0156,121.6589
+Fuyang,China,874054.0,Asia,32.9,115.8167
+Fuzhou,China,2799438.0,Asia,26.0614,119.3061
+Fuzhou,China,2799438.0,Asia,28.0167,116.3333
+Gaziantep,Turkey,1159732.0,Asia,37.0594,37.3825
+Glasgow,UK,1140326.0,North America,48.182,-106.8976
+Glasgow,UK,1140326.0,North America,37.6717,-79.4804
+Glasgow,UK,1140326.0,Europe,55.8333,-4.25
+Glasgow,UK,1140326.0,North America,38.2154,-81.4246
+Glasgow,UK,1140326.0,North America,36.9959,-85.9119
+Goiânia,Brazil,2048878.0,South America,-16.6667,-49.2667
+Guadalajara,Mexico,4441836.0,North America,20.6667,-103.3333
+Guadalajara,Mexico,4441836.0,Europe,40.6293,-3.1639
+Guangzhou,China,10485570.0,Asia,23.1167,113.25
+Guatemala City,Guatemala,1128009.0,North America,14.6211,-90.5269
+Guayaquil,Ecuador,2273133.0,South America,-2.1667,-79.9
+Guilin,China,967652.0,Asia,25.2819,110.2864
+Guiyang,China,2457594.0,Asia,26.5833,106.7167
+Gujranwala,Pakistan,1712483.0,Asia,32.1617,74.1883
+Guwahati,India,957449.0,Asia,26.1833,91.7333
+Gwalior,India,1084426.0,Asia,26.2236,78.1792
+Gwangju,"Korea, South",1486014.0,Asia,35.1547,126.9156
+Haifa,Israel,1043860.0,Asia,32.8156,34.9892
+Haikou,China,1586663.0,Asia,20.0458,110.3417
+Hamburg,Germany,1786468.0,North America,40.5505,-75.9867
+Hamburg,Germany,1786468.0,North America,41.1502,-74.5714
+Hamburg,Germany,1786468.0,North America,44.7283,-93.9495
+Hamburg,Germany,1786468.0,North America,42.7091,-78.8301
+Hamburg,Germany,1786468.0,North America,42.4487,-83.8016
+Hamburg,Germany,1786468.0,North America,39.2187,-90.7002
+Hamburg,Germany,1786468.0,North America,33.2265,-91.7912
+Hamburg,Germany,1786468.0,Europe,53.5884,10.0896
+Hamburg,Germany,1786468.0,North America,40.6256,-95.6874
+Hamburg,Germany,1786468.0,Africa,-33.2841,27.4527
+Handan,China,1250308.0,Asia,36.5667,114.5333
+Hangzhou,China,5189275.0,Asia,30.2936,120.1614
+Harare,Zimbabwe,1525853.0,Africa,-17.8178,31.0447
+Hartford,USA,982316.0,North America,41.4557,-93.3853
+Hartford,USA,982316.0,North America,31.0954,-85.7324
+Hartford,USA,982316.0,North America,37.521,-86.8648
+Hartford,USA,982316.0,North America,38.8259,-90.1022
+Hartford,USA,982316.0,North America,41.7686,-72.6745
+Hartford,USA,982316.0,North America,43.3176,-88.3662
+Hartford,USA,982316.0,North America,43.6306,-96.9601
+Hartford,USA,982316.0,Europe,53.2333,-2.55
+Hartford,USA,982316.0,North America,38.2605,-95.9689
+Hartford,USA,982316.0,North America,42.1719,-86.1633
+Havana,Cuba,2127877.0,North America,35.1172,-93.5746
+Havana,Cuba,2127877.0,North America,40.2931,-90.0222
+Havana,Cuba,2127877.0,North America,30.5946,-84.399
+Havana,Cuba,2127877.0,North America,37.134,-95.9557
+Havana,Cuba,2127877.0,North America,23.1319,-82.3642
+Hefei,China,2829545.0,Asia,31.8639,117.2808
+Helsinki,Finland,1121945.0,Europe,60.1756,24.9342
+Hengyang,China,1099223.0,Asia,26.8881,112.615
+Hermosillo,Mexico,788598.0,North America,29.0667,-110.9667
+Hiroshima,Japan,2103497.0,Asia,34.3963,132.4594
+Ho Chi Minh City,Viet Nam,6189423.0,Asia,10.8142,106.6438
+Hohhot,China,1446291.0,Asia,40.8106,111.6522
+Hong Kong,China,7053189.0,Asia,22.2833,114.15
+Honolulu,USA,847516.0,North America,21.3267,-157.8167
+Houston,USA,4784745.0,North America,33.9242,-88.9476
+Houston,USA,4784745.0,North America,37.3149,-91.975
+Houston,USA,4784745.0,North America,29.7987,-95.4192
+Houston,USA,4784745.0,North America,54.4,-126.65
+Houston,USA,4784745.0,Europe,55.8667,-4.55
+Houston,USA,4784745.0,North America,38.8888,-75.546
+Houston,USA,4784745.0,North America,34.1849,-87.3023
+Houston,USA,4784745.0,North America,35.0006,-92.6801
+Houston,USA,4784745.0,North America,43.8491,-91.575
+Houston,USA,4784745.0,North America,40.2511,-80.213
+Huai'an,China,1262097.0,Asia,33.5039,119.1442
+Huai'an,China,1262097.0,Asia,33.5886,119.0192
+Huaibei,China,962570.0,Asia,33.9744,116.7917
+Huainan,China,1396078.0,Asia,32.6264,116.9969
+Huambo,Angola,1038581.0,Africa,-12.7761,15.7392
+Huizhou,China,1760447.0,Asia,23.0833,114.4
+Huludao,China,795431.0,Asia,40.7524,120.8355
+Huzhou,China,789776.0,Asia,30.8703,120.0933
+Hyderabad,Pakistan,1648032.0,Asia,17.3753,78.4744
+Hyderabad,Pakistan,1648032.0,Asia,25.3924,68.3737
+Hyderabad,India,7577527.0,Asia,25.3924,68.3737
+Hyderabad,India,7577527.0,Asia,17.3753,78.4744
+Ibadan,Nigeria,2854984.0,Africa,7.3878,3.8964
+Ilorin,Nigeria,788187.0,Africa,8.5,4.55
+Incheon,"Korea, South",2600542.0,Asia,37.4536,126.7317
+Indianapolis,USA,1552364.0,North America,39.793,-86.2853
+Indore,India,2127497.0,Asia,22.7167,75.8333
+Islamabad,Pakistan,889011.0,Asia,33.69,73.0551
+Istanbul,Turkey,10952950.0,Asia,41.0186,28.9647
+Izmir,Turkey,2841907.0,Asia,38.4127,27.1384
+Jabalpur,India,1256953.0,Asia,23.1667,79.95
+Jaipur,India,3016722.0,Asia,26.9167,75.8167
+Jakarta,Indonesia,9629953.0,Asia,-6.1744,106.8294
+Jalandhar,India,861678.0,Asia,31.3256,75.5792
+Jamshedpur,India,1320009.0,Asia,22.7667,86.1833
+Jerusalem,Israel,778226.0,Asia,31.78,35.23
+Jerusalem,Israel,778226.0,North America,39.8561,-81.1409
+Jiamusi,China,817067.0,Asia,46.8333,130.35
+Jiangmen,China,1103252.0,Asia,22.5833,113.0833
+Jiangyin,China,747289.0,Asia,31.9051,120.2685
+Jiaozuo,China,782546.0,Asia,35.2397,113.2331
+Jiaxing,China,749343.0,Asia,30.7522,120.75
+Jinan,China,3581356.0,Asia,36.6683,116.9972
+Jingzhou,China,1039645.0,Asia,37.6906,116.2608
+Jining,China,1206703.0,Asia,35.405,116.5814
+Jinjiang,China,859491.0,Asia,24.8198,118.5741
+Jinzhou,China,856430.0,Asia,41.1078,121.1417
+Jinzhou,China,856430.0,Asia,22.8061,113.5454
+Jodhpur,India,1116463.0,Asia,26.2867,73.03
+Johannesburg,South Africa,3763095.0,Africa,-26.2052,28.0498
+Johannesburg,South Africa,3763095.0,North America,44.9894,-84.4221
+Jos,Nigeria,747767.0,Africa,9.9167,8.9
+João Pessoa,Brazil,1066628.0,South America,-7.1167,-34.8667
+Kabul,Afghanistan,3052000.0,Asia,34.5167,69.1833
+Kaduna,Nigeria,1476285.0,Africa,10.5222,7.4383
+Kampala,Uganda,1593698.0,Africa,0.3156,32.5656
+Kano,Nigeria,3270799.0,Africa,11.9944,8.5138
+Kano,Nigeria,3270799.0,Asia,35.3089,139.1019
+Kanpur,India,2904192.0,Asia,26.4667,80.35
+Kansas City,USA,1576595.0,North America,39.0997,-94.5786
+Kansas City,USA,1576595.0,North America,39.0716,-94.6289
+Karachi,Pakistan,13499702.0,Asia,24.9056,67.0822
+Kathmandu,Nepal,973972.0,Asia,27.7167,85.3167
+Kazan,Russia,1142202.0,Europe,55.7887,49.1221
+Kermanshah,Iran,837674.0,Asia,34.3142,47.065
+Kharkiv,Ukraine,1452699.0,Europe,49.9808,36.2527
+Khartoum,Sudan,4515679.0,Africa,15.5881,32.5342
+Kigali,Rwanda,960803.0,Africa,-1.9536,30.0606
+Kinshasa,"Congo, DR.",8415198.0,Africa,-4.3,15.3
+Klang,Malaysia,1131505.0,Asia,3.0333,101.45
+Kochi,India,1592263.0,Asia,9.9667,76.2333
+Konya,Turkey,1022820.0,Asia,37.8714,32.4846
+Kota,India,978217.0,Asia,25.1833,75.8333
+Kota,India,978217.0,Asia,-0.4377,100.6137
+Kota,India,978217.0,Asia,2.519,102.156
+Kozhikode,India,960898.0,Asia,11.25,75.7667
+Krasnodar,Russia,741051.0,Europe,45.0448,38.976
+Krasnodar,Russia,741051.0,Europe,49.8958,40.2438
+Krasnoyarsk,Russia,971595.0,Europe,56.0184,92.8672
+Kuala Lumpur,Malaysia,1523744.0,Asia,3.1667,101.7
+Kumasi,Ghana,1935252.0,Africa,6.6833,-1.6167
+Kunming,China,3388025.0,Asia,25.0389,102.7183
+Kuwait City,Kuwait,2317585.0,Asia,29.3697,47.9783
+Kyoto,Japan,1804361.0,Asia,35.0,135.75
+La Paz,Bolivia,1677859.0,South America,-16.5,-68.15
+La Paz,Bolivia,1677859.0,South America,-35.3812,-59.3864
+La Paz,Bolivia,1677859.0,South America,-27.0167,-55.85
+La Paz,Bolivia,1677859.0,North America,21.0778,-99.7722
+La Paz,Bolivia,1677859.0,North America,24.1667,-110.3
+La Paz,Bolivia,1677859.0,Europe,37.207,-3.802
+La Plata,Argentina,746755.0,North America,40.0242,-92.5275
+La Plata,Argentina,746755.0,North America,38.5163,-77.0154
+La Plata,Argentina,746755.0,South America,-34.9215,-57.9545
+Lagos,Nigeria,10788300.0,Europe,43.2167,-0.2167
+Lagos,Nigeria,10788300.0,Europe,37.1018,-8.6742
+Lagos,Nigeria,10788300.0,Africa,6.4531,3.3958
+Lahore,Pakistan,7351911.0,Asia,31.5497,74.3436
+Lanzhou,China,2487187.0,Asia,36.0564,103.7922
+Las Vegas,USA,1995492.0,North America,36.1687,-115.2841
+Las Vegas,USA,1995492.0,Europe,28.1433,-16.5476
+Las Vegas,USA,1995492.0,North America,35.4988,-104.937
+Lianyungang,China,964535.0,Asia,34.5997,119.1594
+Liaocheng,China,727441.0,Asia,36.4439,115.9647
+Lille,France,1033942.0,Europe,51.2333,4.8333
+Lille,France,1033942.0,Europe,50.633,3.0586
+Lilongwe,Malawi,738171.0,Africa,-13.9833,33.7833
+Lima,Peru,8950481.0,South America,-12.05,-77.05
+Lima,Peru,8950481.0,Europe,60.75,15.0
+Lima,Peru,8950481.0,North America,40.7426,-84.1052
+Lima,Peru,8950481.0,South America,-34.0443,-59.1971
+Lima,Peru,8950481.0,North America,42.8836,-77.604
+Linyi,China,1426466.0,Asia,37.1908,116.8667
+Lisbon,Portugal,2824770.0,North America,44.0271,-70.1175
+Lisbon,Portugal,2824770.0,North America,44.7499,-75.2842
+Lisbon,Portugal,2824770.0,North America,39.3362,-77.0711
+Lisbon,Portugal,2824770.0,North America,46.4202,-97.6137
+Lisbon,Portugal,2824770.0,North America,44.2079,-71.8839
+Lisbon,Portugal,2824770.0,North America,41.8942,-91.3489
+Lisbon,Portugal,2824770.0,North America,40.7442,-80.7546
+Lisbon,Portugal,2824770.0,Europe,38.7167,-9.1333
+Liuzhou,China,1352699.0,Asia,24.3126,109.3892
+Liverpool,UK,796801.0,Europe,53.4167,-3.0
+Liverpool,UK,796801.0,North America,40.596,-77.0018
+Liverpool,UK,796801.0,North America,29.285,-95.2681
+Liverpool,UK,796801.0,North America,44.0384,-64.7184
+Liverpool,UK,796801.0,Oceania,-33.9,150.9333
+Liverpool,UK,796801.0,North America,43.1098,-76.1995
+Lomé,Togo,1453256.0,Africa,6.1319,1.2228
+London,UK,8923000.0,North America,38.1945,-81.3687
+London,UK,8923000.0,North America,30.6898,-99.5553
+London,UK,8923000.0,Africa,-24.7667,30.8667
+London,UK,8923000.0,North America,39.8979,-83.3866
+London,UK,8923000.0,North America,37.129,-84.0833
+London,UK,8923000.0,North America,42.9793,-81.2556
+London,UK,8923000.0,Europe,51.5,-0.0393
+Los Angeles,USA,13223023.0,North America,27.4819,-113.2839
+Los Angeles,USA,13223023.0,Europe,28.4667,-16.4167
+Los Angeles,USA,13223023.0,Europe,39.5167,2.7667
+Los Angeles,USA,13223023.0,North America,19.5333,-102.45
+Los Angeles,USA,13223023.0,North America,20.4333,-104.8167
+Los Angeles,USA,13223023.0,North America,19.9833,-98.45
+Los Angeles,USA,13223023.0,North America,24.35,-99.9
+Los Angeles,USA,13223023.0,South America,-37.4667,-72.35
+Los Angeles,USA,13223023.0,North America,25.1167,-101.0167
+Los Angeles,USA,13223023.0,North America,7.8833,-80.35
+Los Angeles,USA,13223023.0,Asia,10.8691,121.0381
+Los Angeles,USA,13223023.0,North America,22.65,-105.8167
+Los Angeles,USA,13223023.0,North America,33.9216,-118.2453
+Louisville,USA,1021140.0,North America,40.9929,-96.1444
+Louisville,USA,1021140.0,North America,33.0077,-82.3836
+Louisville,USA,1021140.0,North America,40.8742,-81.2326
+Louisville,USA,1021140.0,North America,38.8146,-88.5192
+Louisville,USA,1021140.0,North America,33.1028,-89.0519
+Louisville,USA,1021140.0,North America,39.9778,-105.1319
+Louisville,USA,1021140.0,North America,38.2603,-85.7032
+Louisville,USA,1021140.0,North America,35.8134,-84.0855
+Luanda,Angola,4790142.0,Africa,-8.8368,13.2332
+Lubumbashi,"Congo, DR.",1485650.0,Africa,-11.6667,27.4667
+Lucknow,India,2854192.0,Asia,26.85,80.9167
+Lucknow,India,2854192.0,North America,43.96,-81.5125
+Ludhiana,India,1598298.0,Asia,30.9,75.85
+Luoyang,China,1539403.0,Asia,34.6836,112.4536
+Lusaka,Zambia,1718885.0,Africa,-15.4167,28.2833
+Luzhou,China,850182.0,Asia,28.8724,105.4405
+Luzhou,China,850182.0,Asia,32.9207,119.9103
+Lyon,France,1471115.0,North America,34.2325,-90.4639
+Lyon,France,1471115.0,Europe,45.7485,4.8467
+Maceió,Brazil,1154403.0,South America,-9.6667,-35.7167
+Madrid,Spain,6404626.0,North America,40.8434,-101.5505
+Madrid,Spain,6404626.0,South America,4.7324,-74.2642
+Madrid,Spain,6404626.0,Europe,40.4139,-3.7006
+Madurai,India,1442863.0,Asia,9.9333,78.1167
+Maiduguri,Nigeria,826615.0,Africa,11.8464,13.1603
+Malang,Indonesia,822046.0,Asia,-7.9797,112.6304
+Managua,Nicaragua,953523.0,North America,12.1508,-86.2683
+Manaus,Brazil,1798376.0,South America,-3.1133,-60.0253
+Manchester,UK,2215719.0,North America,43.1637,-73.0723
+Manchester,UK,2215719.0,North America,32.8814,-84.6037
+Manchester,UK,2215719.0,North America,40.0602,-76.7286
+Manchester,UK,2215719.0,North America,44.3296,-69.8647
+Manchester,UK,2215719.0,North America,42.9694,-77.2304
+Manchester,UK,2215719.0,North America,47.5559,-122.5449
+Manchester,UK,2215719.0,North America,41.7759,-72.5215
+Manchester,UK,2215719.0,North America,39.6786,-76.839
+Manchester,UK,2215719.0,North America,35.5206,-86.0703
+Manchester,UK,2215719.0,North America,43.0079,-71.495
+Manchester,UK,2215719.0,Europe,53.5115,-2.2096
+Manchester,UK,2215719.0,North America,42.5719,-70.765
+Manchester,UK,2215719.0,North America,42.1616,-84.0238
+Manchester,UK,2215719.0,North America,37.141,-83.7372
+Manchester,UK,2215719.0,North America,42.4893,-91.4549
+Manila,Philippines,11653810.0,North America,35.819,-90.175
+Manila,Philippines,11653810.0,Asia,14.6042,120.9822
+Manila,Philippines,11653810.0,North America,40.9488,-109.7957
+Maoming,China,1004330.0,Asia,21.65,110.9
+Maputo,Mozambique,1131942.0,Africa,-25.9653,32.5892
+Maracaibo,Venezuela,2254931.0,South America,10.6317,-71.6406
+Maracay,Venezuela,1088795.0,South America,10.2469,-67.5958
+Marseille,France,1472190.0,Europe,43.2854,5.3761
+Mashhad,Iran,2653347.0,Asia,36.297,59.6062
+Matola,Mozambique,758654.0,Africa,-25.9622,32.4589
+McAllen,USA,823583.0,North America,26.2034,-98.23
+Mecca,Saudi Arabia,1542923.0,North America,33.5524,-115.9741
+Mecca,Saudi Arabia,1542923.0,Asia,21.4267,39.8261
+Medan,Indonesia,2100172.0,Asia,3.5833,98.6667
+Medan,Indonesia,2100172.0,Europe,48.9554,1.9949
+Medellín,Colombia,3594977.0,South America,6.2518,-75.5636
+Medina,Saudi Arabia,1106293.0,North America,43.2176,-78.3604
+Medina,Saudi Arabia,1106293.0,Asia,24.4686,39.6142
+Medina,Saudi Arabia,1106293.0,North America,41.1384,-81.8637
+Medina,Saudi Arabia,1106293.0,North America,46.8781,-99.3626
+Medina,Saudi Arabia,1106293.0,North America,29.8188,-99.3632
+Medina,Saudi Arabia,1106293.0,North America,35.7861,-88.7486
+Medina,Saudi Arabia,1106293.0,Oceania,-32.2333,115.7833
+Medina,Saudi Arabia,1106293.0,North America,47.6269,-122.2318
+Meerut,India,1406124.0,Asia,28.9833,77.7
+Melbourne,Australia,3896074.0,Europe,52.8167,-1.4333
+Melbourne,Australia,3896074.0,North America,28.0718,-80.624
+Melbourne,Australia,3896074.0,North America,41.9354,-93.0579
+Melbourne,Australia,3896074.0,North America,39.0033,-84.3468
+Melbourne,Australia,3896074.0,Oceania,-37.8139,144.9634
+Melbourne,Australia,3896074.0,North America,36.0264,-91.9449
+Memphis,USA,1165391.0,North America,35.1133,-89.9021
+Memphis,USA,1165391.0,North America,38.4854,-85.7589
+Memphis,USA,1165391.0,North America,43.0824,-76.3942
+Memphis,USA,1165391.0,North America,40.4772,-92.1963
+Memphis,USA,1165391.0,North America,42.9321,-82.8028
+Memphis,USA,1165391.0,North America,34.7417,-100.5488
+Mendoza,Argentina,942142.0,North America,18.3833,-95.35
+Mendoza,Argentina,942142.0,South America,-32.8908,-68.8272
+Mexicali,Mexico,938382.0,North America,32.6519,-115.4683
+Mexico City,Mexico,20142334.0,North America,19.4342,-99.1386
+Miami,USA,5970527.0,North America,36.8745,-94.8775
+Miami,USA,5970527.0,North America,25.8588,-80.3839
+Miami,USA,5970527.0,North America,35.7485,-100.7349
+Miami,USA,5970527.0,North America,33.4096,-110.9775
+Miami,USA,5970527.0,South America,10.6226,-74.278
+Mianyang,China,1005791.0,Asia,31.4593,104.7542
+Milan,Italy,2915979.0,Europe,45.4667,9.2
+Milan,Italy,2915979.0,North America,42.0838,-83.6585
+Milan,Italy,2915979.0,North America,35.9251,-88.7858
+Milan,Italy,2915979.0,North America,41.3163,-82.6044
+Milan,Italy,2915979.0,North America,39.1184,-85.1795
+Milan,Italy,2915979.0,North America,41.3974,-90.5901
+Milan,Italy,2915979.0,North America,45.1046,-95.8863
+Milan,Italy,2915979.0,North America,44.6166,-71.2599
+Milan,Italy,2915979.0,North America,40.1952,-93.1076
+Milan,Italy,2915979.0,North America,31.9739,-83.0538
+Milwaukee,USA,1487929.0,North America,43.0389,-87.9065
+Minsk,Belarus,1846994.0,Europe,53.9,27.5667
+Mombasa,Kenya,940333.0,Africa,-4.05,39.6667
+Monrovia,Liberia,811709.0,North America,39.5507,-86.5358
+Monrovia,Liberia,811709.0,North America,39.3462,-77.2607
+Monrovia,Liberia,811709.0,Africa,6.3106,-10.8047
+Monrovia,Liberia,811709.0,North America,34.1481,-117.9989
+Monterrey,Mexico,4099598.0,North America,25.6667,-100.3167
+Monterrey,Mexico,4099598.0,North America,26.0333,-98.0833
+Montevideo,Uruguay,1659414.0,North America,45.0062,-95.7366
+Montevideo,Uruguay,1659414.0,South America,-34.8581,-56.1708
+Moradabad,India,870613.0,Asia,28.8333,78.7833
+Morelia,Mexico,810376.0,North America,19.7,-101.1167
+Moscow,Russia,11471637.0,Europe,55.7522,37.6156
+Moscow,Russia,11471637.0,North America,46.7172,-116.9179
+Moscow,Russia,11471637.0,North America,38.873,-84.1823
+Moscow,Russia,11471637.0,North America,37.2791,-101.1854
+Moscow,Russia,11471637.0,North America,41.312,-75.5395
+Mosul,Iraq,1446940.0,Asia,36.335,43.1189
+Mudanjiang,China,782988.0,Asia,44.5833,129.6
+Multan,Pakistan,1719694.0,Asia,30.1956,71.4753
+Munich,Germany,1349635.0,North America,48.696,-98.8447
+Munich,Germany,1349635.0,Europe,48.15,11.5833
+Munich,Germany,1349635.0,Europe,48.15,11.5833
+Mysore,India,969277.0,Asia,12.3072,76.6497
+Mérida,Mexico,1020974.0,North America,20.9667,-89.6167
+Mérida,Mexico,1020974.0,Europe,38.9167,-6.3333
+Nagoya,Japan,3300082.0,Asia,35.1802,136.9067
+Nagpur,India,2470886.0,Asia,21.15,79.1
+Nairobi,Kenya,3236589.0,Africa,-1.2833,36.8167
+Nanchang,China,2331101.0,Asia,28.55,115.9333
+Nanchong,China,807848.0,Asia,30.7758,106.1029
+Nanjing,China,5664951.0,Asia,32.0617,118.7778
+Nanning,China,2095797.0,Asia,22.8167,108.3167
+Nantong,China,1549884.0,Asia,32.0303,120.8747
+Nanyang,China,1163980.0,Asia,32.9947,112.5328
+Naples,Italy,2348100.0,North America,33.191,-94.5799
+Naples,Italy,2348100.0,North America,42.6548,-77.3833
+Naples,Italy,2348100.0,North America,48.5951,-116.4093
+Naples,Italy,2348100.0,North America,26.142,-81.7948
+Naples,Italy,2348100.0,North America,43.9695,-70.6168
+Naples,Italy,2348100.0,Europe,40.8417,14.25
+Nashik,India,1531365.0,Asia,19.9833,73.8
+Natal,Brazil,1252443.0,South America,-5.7833,-35.2167
+Neijiang,China,883219.0,Asia,29.5835,105.0622
+New Orleans,USA,857576.0,North America,29.9393,-90.0738
+New York,USA,20104369.0,North America,40.7553,-73.9924
+New York,USA,20104369.0,Europe,53.0833,-0.15
+Newcastle upon Tyne,UK,874556.0,Europe,54.9881,-1.6194
+Niamey,Niger,1222066.0,Africa,13.5167,2.1167
+Ningbo,China,2632375.0,Asia,29.8782,121.5495
+Nouakchott,Mauritania,758813.0,Africa,18.0864,-15.9753
+Novosibirsk,Russia,1471946.0,Europe,55.0415,82.9346
+Oklahoma City,USA,847698.0,North America,35.5184,-97.6167
+Omaha,USA,745766.0,North America,36.4176,-93.1569
+Omaha,USA,745766.0,North America,41.2628,-96.1164
+Omaha,USA,745766.0,North America,37.8638,-88.2604
+Omsk,Russia,1153272.0,Europe,55.0,73.4
+Oran,Algeria,775666.0,North America,37.0718,-89.7206
+Oran,Algeria,775666.0,Africa,35.6911,-0.6417
+Orlando,USA,1459078.0,North America,28.5383,-81.3792
+Oslo,Norway,897916.0,Europe,59.9167,10.75
+Ouagadougou,Burkina Faso,1911188.0,Africa,12.3703,-1.5247
+Padang,Indonesia,835713.0,Asia,-0.9532,100.3677
+Palembang,Indonesia,1455227.0,Asia,-2.9167,104.75
+Palermo,Italy,904354.0,North America,44.396,-69.4244
+Palermo,Italy,904354.0,South America,-34.585,-58.4201
+Palermo,Italy,904354.0,Europe,38.1167,13.3667
+Panama City,Panama,1389474.0,North America,8.9667,-79.5333
+Panama City,Panama,1389474.0,North America,30.2316,-85.502
+Paris,France,10516374.0,North America,33.6201,-95.6003
+Paris,France,10516374.0,North America,38.2098,-84.253
+Paris,France,10516374.0,North America,39.4707,-91.9971
+Paris,France,10516374.0,Europe,48.8667,2.3333
+Paris,France,10516374.0,North America,39.6045,-87.7237
+Paris,France,10516374.0,North America,36.3081,-88.3825
+Paris,France,10516374.0,North America,40.7996,-81.1598
+Paris,France,10516374.0,North America,44.2598,-70.5006
+Paris,France,10516374.0,North America,43.2,-80.3833
+Paris,France,10516374.0,North America,35.2838,-93.7246
+Paris,France,10516374.0,North America,34.1897,-89.3741
+Paris,France,10516374.0,North America,43.7482,-85.6216
+Patna,India,2022108.0,Asia,25.6,85.1167
+Patna,India,2022108.0,Europe,55.35,-4.5
+Perth,Australia,1617408.0,North America,44.8983,-76.2449
+Perth,Australia,1617408.0,Oceania,-31.9522,115.8614
+Perth,Australia,1617408.0,Oceania,-41.5715,147.1713
+Perth,Australia,1617408.0,Europe,56.3854,-3.4409
+Perth,Australia,1617408.0,North America,46.6978,-67.6736
+Peshawar,Pakistan,1475050.0,Asia,34.008,71.5785
+Philadelphia,USA,5841396.0,North America,32.8056,-89.1073
+Philadelphia,USA,5841396.0,North America,39.8371,-91.7555
+Philadelphia,USA,5841396.0,North America,35.6929,-84.4658
+Philadelphia,USA,5841396.0,North America,44.1783,-75.7123
+Philadelphia,USA,5841396.0,North America,39.9494,-75.1457
+Pingdingshan,China,1024062.0,Asia,33.7385,113.3012
+Pingxiang,China,732019.0,Asia,27.6167,113.85
+Pittsburgh,USA,1965129.0,North America,40.4406,-79.9959
+Pointe-Noire,Congo,807257.0,North America,16.2333,-61.7833
+Port Elizabeth,South Africa,1097079.0,Africa,-33.9766,25.6324
+Port Harcourt,Nigeria,1806612.0,Africa,4.7774,7.0134
+Port-au-Prince,Haiti,2143458.0,North America,18.5392,-72.335
+Portland,USA,2024822.0,North America,40.4165,-84.9765
+Portland,USA,2024822.0,North America,33.2367,-91.4241
+Portland,USA,2024822.0,North America,38.7746,-91.7203
+Portland,USA,2024822.0,North America,42.3711,-79.4732
+Portland,USA,2024822.0,Oceania,-38.3526,141.6057
+Portland,USA,2024822.0,North America,47.491,-97.4955
+Portland,USA,2024822.0,North America,36.5522,-86.5272
+Portland,USA,2024822.0,North America,27.8923,-97.3187
+Portland,USA,2024822.0,North America,41.5994,-72.5879
+Portland,USA,2024822.0,North America,45.4049,-122.798
+Portland,USA,2024822.0,North America,43.6589,-70.2615
+Portland,USA,2024822.0,North America,42.8627,-84.9955
+Porto,Portugal,1355095.0,Europe,42.0667,-8.5333
+Porto,Portugal,1355095.0,South America,-27.1833,-53.7333
+Porto,Portugal,1355095.0,South America,-10.9333,-42.8333
+Porto,Portugal,1355095.0,Europe,39.8714,-7.9931
+Porto,Portugal,1355095.0,Europe,38.7833,-9.2
+Porto,Portugal,1355095.0,Europe,43.0667,9.8333
+Porto,Portugal,1355095.0,Europe,41.7667,12.2667
+Porto,Portugal,1355095.0,Europe,41.1496,-8.611
+Porto,Portugal,1355095.0,Europe,42.2686,8.7005
+Prague,Czech Rep.,1264835.0,Europe,50.0833,14.4667
+Prague,Czech Rep.,1264835.0,North America,41.3073,-96.8324
+Prague,Czech Rep.,1264835.0,North America,35.5009,-96.7225
+Pretoria,South Africa,1467714.0,Africa,-25.7069,28.2294
+Providence,USA,1372826.0,North America,37.3904,-87.7808
+Providence,USA,1372826.0,North America,41.6929,-111.8147
+Providence,USA,1372826.0,North America,36.4962,-79.3988
+Providence,USA,1372826.0,North America,41.824,-71.4128
+Puebla,Mexico,2295503.0,North America,19.05,-98.2
+Pune,India,4951375.0,Asia,18.5333,73.8667
+Puning,China,911829.0,Asia,26.1732,118.3336
+Putian,China,1030025.0,Asia,24.9878,118.4983
+Qingdao,China,3679853.0,Asia,36.0986,120.3719
+Qinhuangdao,China,893473.0,Asia,39.9317,119.5883
+Quanzhou,China,1062360.0,Asia,25.9446,111.0364
+Quetta,Pakistan,873747.0,Asia,30.199,67.0097
+Quito,Ecuador,1597586.0,South America,-0.2167,-78.5
+Rabat,Morocco,1806721.0,Africa,34.0138,-6.8443
+Rabat,Morocco,1806721.0,Europe,35.8822,14.3981
+Raipur,India,1087732.0,Asia,21.2333,81.6333
+Raipur,India,1087732.0,Asia,22.75,77.7833
+Rajkot,India,1360905.0,Asia,22.3,70.7833
+Rajshahi,Bangladesh,900338.0,Asia,24.3667,88.6
+Raleigh,USA,803406.0,North America,32.0552,-89.498
+Raleigh,USA,803406.0,North America,35.7721,-78.6386
+Raleigh,USA,803406.0,North America,51.55,-55.7333
+Raleigh,USA,803406.0,North America,37.8559,-88.5485
+Ranchi,India,1106901.0,Asia,23.35,85.3333
+Rawalpindi,Pakistan,2098000.0,Asia,33.6007,73.0679
+Recife,Brazil,3684317.0,South America,-8.05,-34.9
+Reynosa,Mexico,728991.0,North America,26.0833,-98.2833
+Richmond,USA,984495.0,North America,45.6655,-72.1337
+Richmond,USA,984495.0,North America,42.4557,-88.3038
+Richmond,USA,984495.0,North America,42.8446,-82.8
+Richmond,USA,984495.0,North America,38.4015,-95.2584
+Richmond,USA,984495.0,Oceania,-42.7354,147.438
+Richmond,USA,984495.0,North America,45.1977,-75.8384
+Richmond,USA,984495.0,North America,45.4526,-94.5321
+Richmond,USA,984495.0,North America,44.1234,-69.8319
+Richmond,USA,984495.0,Oceania,-33.5996,150.7514
+Richmond,USA,984495.0,North America,44.4098,-72.8605
+Richmond,USA,984495.0,North America,40.438,-80.763
+Richmond,USA,984495.0,Europe,51.45,-0.2833
+Richmond,USA,984495.0,North America,37.5522,-77.4582
+Richmond,USA,984495.0,North America,29.5822,-95.7608
+Richmond,USA,984495.0,North America,37.9255,-122.3437
+Richmond,USA,984495.0,North America,39.3442,-93.9489
+Richmond,USA,984495.0,North America,37.7479,-84.2947
+Richmond,USA,984495.0,North America,39.8381,-84.9054
+Richmond,USA,984495.0,Oceania,-37.8333,145.0
+Richmond,USA,984495.0,North America,49.1699,-123.0912
+Richmond,USA,984495.0,North America,41.9062,-111.8139
+Richmond,USA,984495.0,Europe,54.4,-1.7333
+Rio de Janeiro,Brazil,11867236.0,South America,-22.9,-43.2333
+Riyadh,Saudi Arabia,5227076.0,Asia,24.6537,46.7152
+Rizhao,China,816340.0,Asia,35.3903,119.5458
+Rochester,USA,814320.0,North America,46.8045,-123.1412
+Rochester,USA,814320.0,North America,43.3029,-71.046
+Rochester,USA,814320.0,North America,42.7414,-88.2243
+Rochester,USA,814320.0,North America,39.7145,-89.4986
+Rochester,USA,814320.0,North America,40.7322,-80.1862
+Rochester,USA,814320.0,North America,43.9589,-92.4028
+Rochester,USA,814320.0,North America,43.0899,-77.6376
+Rochester,USA,814320.0,North America,42.6599,-83.1237
+Rochester,USA,814320.0,Europe,51.3833,0.5167
+Rochester,USA,814320.0,North America,41.0409,-86.2717
+Rochester,USA,814320.0,North America,43.883,-72.8399
+Rochester,USA,814320.0,North America,41.7534,-70.8481
+Rochester,USA,814320.0,North America,37.1981,-86.8561
+Rome,Italy,3306081.0,North America,41.6071,-80.8789
+Rome,Italy,3306081.0,North America,34.2662,-85.1159
+Rome,Italy,3306081.0,North America,41.9101,-76.2857
+Rome,Italy,3306081.0,Europe,41.9,12.4833
+Rome,Italy,3306081.0,North America,43.2129,-75.4557
+Rosario,Argentina,1264242.0,South America,-32.9468,-60.6393
+Rosario,Argentina,1264242.0,Asia,13.6323,121.2207
+Rostov-on-Don,Russia,1089187.0,Europe,47.2313,39.7233
+Rotterdam,Netherlands,1010294.0,Europe,51.9167,4.5
+Sacramento,USA,1729710.0,North America,8.9897,-79.7158
+Sacramento,USA,1729710.0,North America,37.4082,-87.27
+Sacramento,USA,1729710.0,North America,38.5816,-121.4944
+Sacramento,USA,1729710.0,South America,-19.8833,-47.45
+Saint Petersburg,Russia,4841844.0,North America,27.7709,-82.6793
+Salem,India,906669.0,Europe,53.6667,10.8333
+Salem,India,906669.0,North America,40.0659,-95.7424
+Salem,India,906669.0,North America,42.5195,-70.8967
+Salem,India,906669.0,North America,38.6079,-86.0694
+Salem,India,906669.0,North America,34.9251,-83.0037
+Salem,India,906669.0,North America,37.2906,-80.1014
+Salem,India,906669.0,North America,41.4858,-72.2678
+Salem,India,906669.0,North America,39.291,-80.5703
+Salem,India,906669.0,North America,40.9079,-80.8615
+Salem,India,906669.0,North America,44.9016,-122.9223
+Salem,India,906669.0,North America,42.795,-71.2256
+Salem,India,906669.0,North America,38.6368,-88.9198
+Salem,India,906669.0,North America,42.5802,-88.1374
+Salem,India,906669.0,North America,39.5317,-75.4376
+Salem,India,906669.0,Asia,11.65,78.1667
+Salem,India,906669.0,North America,40.0267,-111.6452
+Salem,India,906669.0,North America,36.3766,-91.8241
+Salem,India,906669.0,North America,43.7538,-97.409
+Salem,India,906669.0,North America,37.5737,-91.5228
+Salem,India,906669.0,North America,37.2918,-88.2793
+Salem,India,906669.0,North America,40.8426,-91.6079
+Salem,India,906669.0,North America,43.2106,-73.3393
+Salem,India,906669.0,North America,32.5682,-85.2108
+Salt Lake City,USA,1040172.0,North America,40.6583,-111.9231
+Saltillo,Mexico,825046.0,North America,34.3681,-88.6742
+Saltillo,Mexico,825046.0,North America,40.2106,-78.0067
+Saltillo,Mexico,825046.0,North America,25.4167,-101.0
+Saltillo,Mexico,825046.0,North America,35.3831,-88.2414
+Salvador,Brazil,3946582.0,South America,-12.9833,-38.5167
+Samara,Russia,1164655.0,Europe,53.1835,50.1182
+Samarinda,Indonesia,731589.0,Asia,-0.5,117.15
+San Antonio,USA,1585001.0,North America,28.32,-82.2609
+San Antonio,USA,1585001.0,South America,-33.5933,-71.6217
+San Antonio,USA,1585001.0,North America,33.9825,-106.5764
+San Antonio,USA,1585001.0,South America,-25.3833,-57.6333
+San Antonio,USA,1585001.0,Europe,38.5167,-0.2333
+San Antonio,USA,1585001.0,North America,18.4925,-67.0976
+San Antonio,USA,1585001.0,North America,22.6167,-99.2667
+San Antonio,USA,1585001.0,North America,29.4241,-98.4936
+San Diego,USA,3119757.0,North America,32.9014,-117.2079
+San Diego,USA,3119757.0,North America,9.899,-84.0029
+San Diego,USA,3119757.0,North America,27.7694,-98.4941
+San Francisco,USA,3681072.0,Asia,15.3557,120.84
+San Francisco,USA,3681072.0,North America,10.0035,-84.0721
+San Francisco,USA,3681072.0,North America,8.0667,-81.3667
+San Francisco,USA,3681072.0,North America,18.45,-70.2
+San Francisco,USA,3681072.0,North America,21.8167,-102.3
+San Francisco,USA,3681072.0,North America,21.95,-102.8833
+San Francisco,USA,3681072.0,North America,23.4,-98.6833
+San Francisco,USA,3681072.0,South America,-31.428,-62.0827
+San Francisco,USA,3681072.0,North America,9.9078,-84.0563
+San Francisco,USA,3681072.0,North America,9.95,-84.0667
+San Francisco,USA,3681072.0,North America,37.7749,-122.4194
+San Jose,USA,1789819.0,Europe,36.7613,-2.1087
+San Jose,USA,1789819.0,North America,35.461,-105.553
+San Jose,USA,1789819.0,Europe,38.9218,1.2936
+San Jose,USA,1789819.0,Asia,14.6461,120.9914
+San Jose,USA,1789819.0,Asia,15.7923,120.9894
+San Jose,USA,1789819.0,South America,-26.7909,-66.0707
+San Jose,USA,1789819.0,North America,37.3874,-121.9024
+San Jose,USA,1789819.0,Asia,14.7933,120.8751
+San José,Costa Rica,1466423.0,North America,9.9333,-84.0833
+San Juan,Puerto Rico,2478159.0,Europe,38.6192,-0.8784
+San Juan,Puerto Rico,2478159.0,North America,26.1664,-98.1518
+San Juan,Puerto Rico,2478159.0,North America,18.4208,-66.0616
+San Juan,Puerto Rico,2478159.0,North America,9.9597,-84.0817
+San Juan,Puerto Rico,2478159.0,North America,14.1333,-89.9
+San Juan,Puerto Rico,2478159.0,Europe,40.5167,-0.4833
+San Juan,Puerto Rico,2478159.0,South America,-31.5375,-68.5364
+San Juan,Puerto Rico,2478159.0,North America,10.65,-61.45
+San Juan,Puerto Rico,2478159.0,North America,9.9051,-84.0081
+San Juan,Puerto Rico,2478159.0,Asia,14.6,121.0333
+San Luis Potosí,Mexico,1042028.0,North America,22.15,-100.9833
+San Salvador,El Salvador,1570451.0,North America,13.7086,-89.2031
+San Salvador,El Salvador,1570451.0,South America,-32.2927,-66.7329
+Santa Cruz,Bolivia,1653073.0,South America,-12.2833,-66.25
+Santa Cruz,Bolivia,1653073.0,South America,-6.5333,-38.05
+Santa Cruz,Bolivia,1653073.0,South America,-6.2167,-36.0167
+Santa Cruz,Bolivia,1653073.0,North America,10.2605,-85.5851
+Santa Cruz,Bolivia,1653073.0,South America,-34.6333,-71.3667
+Santa Cruz,Bolivia,1653073.0,North America,19.8167,-98.3917
+Santa Cruz,Bolivia,1653073.0,North America,10.7167,-61.4667
+Santa Cruz,Bolivia,1653073.0,North America,12.5,-69.9667
+Santa Cruz,Bolivia,1653073.0,South America,10.1828,-67.5094
+Santa Cruz,Bolivia,1653073.0,Asia,14.2814,121.4161
+Santa Cruz,Bolivia,1653073.0,North America,35.993,-106.0134
+Santa Cruz,Bolivia,1653073.0,North America,36.9741,-122.0308
+Santiago,Chile,5958544.0,South America,-29.1833,-54.8833
+Santiago,Chile,5958544.0,Asia,16.6928,121.5486
+Santiago,Chile,5958544.0,Europe,43.1094,-2.5843
+Santiago,Chile,5958544.0,South America,-33.45,-70.6667
+Santiago,Chile,5958544.0,North America,25.4167,-100.15
+Santiago,Chile,5958544.0,South America,1.1484,-77.0045
+Santiago,Chile,5958544.0,South America,-14.1886,-75.7142
+Santo Domingo,Dominican Rep.,2153779.0,North America,18.4667,-69.9
+Santo Domingo,Dominican Rep.,2153779.0,North America,10.0639,-84.155
+Sapporo,Japan,2714289.0,Asia,43.0642,141.3469
+Saratov,Russia,839056.0,Europe,51.5406,46.0086
+Seattle,USA,3297766.0,North America,47.4485,-122.281
+Semarang,Indonesia,1558270.0,Asia,-6.9932,110.4203
+Sendai,Japan,2401087.0,Asia,31.8167,130.3
+Sendai,Japan,2401087.0,Asia,38.2689,140.8719
+Seoul,"Korea, South",9750693.0,Asia,37.5985,126.9783
+Shanghai,China,19554059.0,Asia,29.3295,121.058
+Shanghai,China,19554059.0,Asia,31.0456,121.3997
+Shantou,China,4062449.0,Asia,26.5483,109.8403
+Shantou,China,4062449.0,Asia,23.4522,116.0922
+Shaoguan,China,839663.0,Asia,24.8,113.5833
+Shaoxing,China,873276.0,Asia,30.011,120.5715
+Sharjah,UAE,914366.0,Asia,25.3573,55.4033
+Shenyang,China,5468771.0,Asia,41.7922,123.4328
+Shenzhen,China,10222493.0,Asia,22.5333,114.1333
+Shijiazhuang,China,2740568.0,Asia,38.1672,113.1169
+Shijiazhuang,China,2740568.0,Asia,39.0728,114.8731
+Shiraz,Iran,1299805.0,Asia,29.6036,52.5388
+Shiyan,China,737408.0,Asia,32.6475,110.7781
+Singapore,Singapore,5086418.0,Asia,1.2931,103.8558
+Sofia,Bulgaria,1175262.0,Europe,42.6833,23.3167
+Solapur,India,945709.0,Asia,17.6833,75.9167
+Sorocaba,Brazil,776092.0,South America,-23.4833,-47.45
+Srinagar,India,1250571.0,Asia,34.0922,74.8022
+Stockholm,Sweden,1359972.0,North America,47.0424,-68.2121
+Stockholm,Sweden,1359972.0,North America,45.1069,-96.7925
+Stockholm,Sweden,1359972.0,North America,41.1122,-74.4943
+Stockholm,Sweden,1359972.0,Europe,59.3333,18.05
+Surabaya,Indonesia,2768199.0,Asia,-7.2492,112.7508
+Surat,India,4438444.0,Europe,45.9377,3.2538
+Suzhou,China,3248306.0,Asia,31.3041,120.5954
+Sydney,Australia,4478610.0,North America,46.1337,-60.1939
+Sydney,Australia,4478610.0,North America,46.15,-60.1667
+Sydney,Australia,4478610.0,Oceania,-33.8615,151.2055
+São Paulo,Brazil,19649366.0,South America,-23.4733,-46.6658
+Tabriz,Iran,1483903.0,Asia,38.08,46.2919
+Taichung,China,1139638.0,Asia,24.1433,120.6814
+Tainan,China,784130.0,Asia,22.9933,120.2036
+Taipei,China,2654039.0,Asia,25.0392,121.525
+Taiyuan,China,3392059.0,Asia,37.7269,112.4708
+Tampico,Mexico,762991.0,North America,22.3,-97.85
+Tampico,Mexico,762991.0,North America,41.5957,-89.7942
+Tashkent,Uzbekistan,2212687.0,Asia,41.3167,69.25
+Tbilisi,Georgia,1116824.0,Asia,41.725,44.7908
+Tegucigalpa,Honduras,1051115.0,North America,14.1,-87.2167
+Teresina,Brazil,901645.0,South America,-5.0833,-42.8167
+Thessaloniki,Greece,872355.0,Europe,40.6403,22.9439
+Thiruvananthapuram,India,952288.0,Asia,8.5069,76.9569
+Tianjin,China,8535265.0,Asia,39.1422,117.1767
+Tijuana,Mexico,1756774.0,North America,32.5333,-117.0167
+Tiruppur,India,926919.0,Asia,11.1,77.35
+Tokyo,Japan,36932780.0,Asia,35.685,139.7514
+Toronto,Canada,5484827.0,North America,43.6441,-79.3801
+Toronto,Canada,5484827.0,North America,40.4903,-80.6709
+Toronto,Canada,5484827.0,North America,44.565,-96.6842
+Toronto,Canada,5484827.0,Oceania,-33.0,151.6
+Torreón,Mexico,1217836.0,North America,25.55,-103.4333
+Toulouse,France,916984.0,Europe,43.5995,1.4332
+Tripoli,Libya,1110929.0,North America,42.8184,-92.2751
+Tripoli,Libya,1110929.0,Africa,32.8925,13.18
+Tripoli,Libya,1110929.0,Asia,34.4333,35.85
+Tripoli,Libya,1110929.0,Europe,37.5089,22.3794
+Tucson,USA,890547.0,North America,32.2211,-110.8238
+Tunis,Tunisia,777238.0,Africa,36.8061,10.1711
+Turin,Italy,1620111.0,Europe,45.05,7.6667
+Turin,Italy,1620111.0,North America,43.6491,-75.4431
+Ufa,Russia,1061579.0,Europe,54.7852,56.0456
+Ufa,Russia,1061579.0,Europe,55.75,60.1167
+Ulsan,"Korea, South",1088833.0,Asia,35.5372,129.3167
+Vadodara,India,1793525.0,Asia,22.3,73.2
+Valencia,Spain,798763.0,South America,10.1806,-68.0039
+Valencia,Venezuela,1820967.0,Europe,39.4715,-0.3659
+Valencia,Venezuela,1820967.0,North America,34.418,-118.5662
+Valencia,Venezuela,1820967.0,North America,40.7079,-79.9379
+Valencia,Venezuela,1820967.0,Europe,42.4025,-7.0759
+Valencia,Venezuela,1820967.0,South America,10.1806,-68.0039
+Valencia,Venezuela,1820967.0,Asia,7.9064,125.0942
+Valencia,Spain,798763.0,Europe,39.4715,-0.3659
+Valencia,Spain,798763.0,North America,34.418,-118.5662
+Valencia,Spain,798763.0,North America,40.7079,-79.9379
+Valencia,Spain,798763.0,Europe,42.4025,-7.0759
+Valencia,Spain,798763.0,Asia,7.9064,125.0942
+Valparaíso,Chile,873752.0,South America,-33.0478,-71.6011
+Vancouver,Canada,2235465.0,North America,49.2836,-123.1041
+Vancouver,Canada,2235465.0,North America,45.6023,-122.5167
+Varanasi,India,1419040.0,Asia,25.3333,83.0
+Vereeniging,South Africa,1173941.0,Africa,-26.6667,27.9333
+Vientiane,Laos,766180.0,Asia,17.9667,102.6
+Vijayawada,India,1453128.0,Asia,16.5167,80.6167
+Virginia Beach,USA,1598324.0,North America,36.8463,-76.0979
+Volgograd,Russia,1020897.0,Europe,48.7194,44.5018
+Voronezh,Russia,888483.0,Europe,51.672,39.1843
+Warangal,India,745833.0,Asia,18.0,79.5833
+Warsaw,Poland,1717524.0,North America,38.7944,-84.7797
+Warsaw,Poland,1717524.0,North America,42.7401,-78.1648
+Warsaw,Poland,1717524.0,Europe,52.25,21.0
+Warsaw,Poland,1717524.0,North America,38.1763,-93.3194
+Warsaw,Poland,1717524.0,North America,44.248,-93.3863
+Warsaw,Poland,1717524.0,North America,38.0002,-76.7717
+Warsaw,Poland,1717524.0,North America,34.986,-78.0524
+Warsaw,Poland,1717524.0,North America,40.2605,-91.4509
+Warsaw,Poland,1717524.0,North America,41.2381,-85.853
+Weifang,China,1699081.0,Asia,36.71,119.1019
+Weihai,China,782651.0,Asia,37.5017,122.1136
+Wenzhou,China,2635149.0,Asia,27.9994,120.6668
+Wuhan,China,8904018.0,Asia,30.5801,114.2734
+Wuxi,China,3222086.0,Asia,31.5689,120.2886
+Wuxi,China,3222086.0,Asia,26.5731,111.8418
+Xi'an,China,4845821.0,Asia,34.2583,108.9286
+Xiamen,China,2701535.0,Asia,24.4798,118.0819
+Xiangtan,China,949523.0,Asia,28.6411,111.7789
+Xianyang,China,1019278.0,Asia,34.3378,108.7026
+Xining,China,1184725.0,Asia,36.6167,101.7667
+Xinxiang,China,1016141.0,Asia,35.3089,113.8672
+Xuzhou,China,2143975.0,Asia,34.1805,117.1571
+Yancheng,China,1289682.0,Asia,33.3856,120.1253
+Yangon,Myanmar,4355639.0,Asia,16.7833,96.1667
+Yangzhou,China,1566014.0,Asia,33.2222,107.5392
+Yangzhou,China,1566014.0,Asia,32.3972,119.4358
+Yantai,China,1526266.0,Asia,37.5333,121.4
+Yaoundé,Cameroon,2320055.0,Africa,3.8667,11.5167
+Yekaterinburg,Russia,1348007.0,Europe,56.8519,60.6122
+Yerevan,Armenia,1113014.0,Asia,40.1811,44.5136
+Yichang,China,980184.0,Asia,30.7713,111.3215
+Yinchuan,China,1051836.0,Asia,38.4681,106.2731
+Yiwu,China,734951.0,Asia,29.3151,120.0768
+Yongin,"Korea, South",737813.0,Asia,37.2342,127.2064
+Zaozhuang,China,1175487.0,Asia,34.8647,117.5542
+Zhangjiakou,China,1043485.0,Asia,40.81,114.8794
+Zhanjiang,China,1014437.0,Asia,21.2815,110.3427
+Zhengzhou,China,3796482.0,Asia,34.6836,113.5325
+Zhenjiang,China,1007682.0,Asia,32.2109,119.4551
+Zhongshan,China,2694989.0,Asia,22.315,107.0189
+Zhongshan,China,2694989.0,Asia,21.3226,110.5829
+Zhongshan,China,2694989.0,Asia,22.5206,113.3823
+Zhuhai,China,1359002.0,Asia,22.2769,113.5678
+Zibo,China,2456098.0,Asia,36.7906,118.0633
+Zunyi,China,843656.0,Asia,27.5431,106.8231
+Zurich,Switzerland,1182951.0,North America,48.6633,-109.0126
+Zurich,Switzerland,1182951.0,Europe,47.3667,8.55
