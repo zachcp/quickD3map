@@ -161,12 +161,14 @@ class MultiColumnMap(object):
         self.samplecolumn = check_samplecolumn(samplecolumn)
         self.center= check_center(center)
         self.projection = check_projection(projection)
+        self.columns = columns
         
         
         #Templates
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
         self.template_vars = {'width': width, 'height': height, 'scale': scale, 
-                              'center': self.center, 'projection':self.projection}
+                              'center': self.center, 'projection':self.projection,
+                              'columns': self.columns}
 
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
@@ -178,7 +180,9 @@ class MultiColumnMap(object):
         ################################################################################
         def feature_from_row(row):
             if pd.notnull(row[lat]) and pd.notnull(row[lon]):
-                return Feature(geometry=Point(( row[lon], row[lat] )))
+                properties = { k:v for k,v in row.iterkv() if k in self.columns}
+                return Feature(geometry=Point(( row[lon], row[lat] )),
+                               properties=properties)
 
         def line_feature_from_distance_df():
             """

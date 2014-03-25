@@ -15,6 +15,7 @@ df = pd.merge(stations, station_data, left_on="USAF", right_on="STN---")
 #PointMap(df).display_map() \
 #PointMap(df, scale = 1000000).display_map()
 
-MultiColumnMap(df, scale = 1000000).display_map()
+columns = ['TEMP', 'DEWP', 'SLP', 'STP', 'VISIB', 'WDSP', 'MXSPD']
+MultiColumnMap(df, columns = columns,scale = 1000000).display_map()
 
 #too many points. and too big. more on that later
