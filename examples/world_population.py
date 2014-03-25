@@ -1,3 +1,7 @@
+#datasources for city data
+#http://www.geohive.com/earth/cy_aggmillion2.aspx
+#http://dev.maxmind.com/geoip/geoip2/geolite2/
+
 import pandas as pd
 from quickD3map import MultiColumnMap
 
