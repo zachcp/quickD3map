@@ -9,6 +9,21 @@ the pandas/ipython ecosystem by converting Latitude/Longitude Data in to points
 ####Note: this is an experimental repo and not ready for use.
 With that said, basic maps can be generated and below are a few examples of how they are made.
 
+
+#### To make the following interactive map:
+![Examplemap](https://dl.dropboxusercontent.com/u/1803062/quickD3map/map1.png)
+
+#### Install and Use form the Examples Directory
+
+```python
+import pandas as pd
+from quickD3map import PointMap, MultiColumnMap
+ 
+#load data and plot 
+stations = pd.read_csv('data/weatherstations.csv')
+MultiColumnMap(stations, columns = ['LAT','LON','ELEV']).display_map()
+````
+ 
 quickD3map creates a template file and then runs Flask App to display it.
 ```python
 from quickD3map import PointMap
