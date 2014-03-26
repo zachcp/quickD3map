@@ -1,3 +1,4 @@
+import pandas as pd
 from .utilities import projections
 
 def check_column(df, namelist, name):
@@ -15,12 +16,15 @@ def check_center(center):
         return None
     
 def check_samplecolumn(df, samplecolumn):
-    if samplecolumn in df.columns:
+    unique = len(df.samplecolumn) - len(pd.unique(df.samplecolumn)) # check for unique values
+    if samplecolumn in df.columns and unique == 0:
         return samplecolumn
     else:
-        ### To do check this only when using distance df
-        print('In the absence of an explicit sample column we are setting Samplecolumn to "None"')
-        return None
+        if samplecolumn not in df.columns:
+            ### To do check this only when using distance df
+            raise ValueError('Sample column  not in dataframe')
+        elif unique != 0:
+            raise ValueError('Sample column is not unique and therfore non-indexable')
         
 def check_projection(projection):
     if projection in projections:
@@ -29,6 +33,13 @@ def check_projection(projection):
         print('This is not a valid projection, using default=mercator')
         return "mercator"
 
+        
+def check_for_NA(df, lat, lon):
+    for col in [lat,lon]:
+        for item in df[col].iteritems():
+            if pd.isnull(item):
+                raise ValueError('DataFrame has NUll values which must be removed')
+    return df
 
 def verify_dfs_forLineMap(df, samplecolumn, distance_df):
     """
@@ -49,7 +60,7 @@ def verify_dfs_forLineMap(df, samplecolumn, distance_df):
     
     #check agreement between df and distance_df
     samplecolumn_values = list(df[samplecolumn])
-    distance_vales = list( distance_df[columns[0]]] ) + list( distance_df[columns[1]]] )  
+    distance_values = list( distance_df[ columns[0] ] ) + list( distance_df[columns[1]] )  
     
     correct = True
     for d in distance_values:

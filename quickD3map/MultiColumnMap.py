@@ -15,7 +15,7 @@ import geojson
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
 from .utilities import build_map, create_map, display_map, projections, latitude,longitude
-from .check_data import  check_column, check_center, check_samplecolumn, check_projection, load_distance_df
+from .check_data import  check_column, check_center, check_samplecolumn, check_projection
 
 
 class MultiColumnMap(object): 

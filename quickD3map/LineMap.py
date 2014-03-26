@@ -7,15 +7,14 @@ import pandas as pd
 import geojson
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
-from .utilities import create_map, display_map, projections, latitude,longitude
-from .check_data import  check_column, check_center, check_samplecolumn, check_projection, verify_dfs_forLineMap,check_for_NA
+from .utilities import build_map,create_map, display_map, projections, latitude, longitude
+from .check_data import  check_column, check_center, check_samplecolumn, check_projection, verify_dfs_forLineMap, check_for_NA
 
 
 class LineMap(object): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, samplecolumn, distance_df,  width=960, height=500, scale=100000, 
-                 geojson="", attr=None, map="world_map", distance_df=None, 
-                 samplecolumn= None, center=None, projection="mercator"):
+                 geojson="", attr=None, map="world_map", center=None, projection="mercator"):
                     
         '''
         PointMap is a class that takes a dataframe and returns an html webpage that
@@ -32,7 +31,7 @@ class LineMap(object):
            is a numeric weight.
         samplecolumn: str,  required
            samplecolumn is the name of a column in df. This columns must have the names 
-           of all of the samples in the first two columns of distance_df
+           of all of the samples in the first two columns of distance_df and it must be unique
 
         width: int, default 960
             Width of the map.
@@ -74,14 +73,16 @@ class LineMap(object):
         # Check Inputs and make assignments of data
         assert isinstance(df, pd.core.frame.DataFrame)
         assert isinstance(distance_df, pd.core.frame.DataFrame)
+        
         if verify_dfs_forLineMap(df, samplecolumn, distance_df):
             self.distdf = distance_df
         self.lat = check_column(df, latitude,  'latitude')
         self.lon = check_column(df, longitude, 'longitude')
-        self.df  = check_for_NA(df [latitude,longitude])
+        self.df  = check_for_NA(df, self.lat, self.lon)
         self.map = map
         self.center= check_center(center)
         self.projection = check_projection(projection)
+        self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         
         
         #Templates
@@ -107,7 +108,7 @@ class LineMap(object):
             if pd.notnull(row[lat]) and pd.notnull(row[lon]):
                 return Feature(geometry=Point(( row[lon], row[lat] )))
 
-        def line_feature_from_distance_df(self.df,):
+        def line_feature_from_distance_df():
             """
             create a geojson feature collection of lines from a dataframe with three columns: source/dest/weight
             """
@@ -115,7 +116,7 @@ class LineMap(object):
             #Create the lookup for lat/long
             ref_df = self.df.set_index( self.samplecolumn )
             
-            def create_line_feature(source, target, weight, ref_df, lat,lon):
+            def create_line_feature(source, target, weight, ref_df=ref_df):
                 lat = self.lat
                 lon = self.lon
                 
@@ -125,7 +126,7 @@ class LineMap(object):
                 lon2 = ref_df.loc[target][lon]
                 return Feature(geometry=LineString([(lon1, lat1), (lon2, lat2)]))
                     
-            line_featurelist =  [ create_line_feature( row[0],row[1],row[2], ref_df) for idx,row in self.distdf.iterrows() ]
+            line_featurelist =  [ create_line_feature( row[0],row[1],row[2] ) for idx,row in self.distdf.iterrows() ]
             return line_featurelist
         
         featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
@@ -133,6 +134,6 @@ class LineMap(object):
         line_featurelist = line_feature_from_distance_df() 
         self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
 
-PointMap.build_map = build_map
-PointMap.create_map = create_map
-PointMap.display_map = display_map
+LineMap.build_map = build_map
+LineMap.create_map = create_map
+LineMap.display_map = display_map
