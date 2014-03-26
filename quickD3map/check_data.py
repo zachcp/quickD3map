@@ -28,40 +28,35 @@ def check_projection(projection):
     else:
         print('This is not a valid projection, using default=mercator')
         return "mercator"
-        
-def load_distance_df(distance_df, df, samplecolumn=None):
+
+
+def verify_dfs_forLineMap(df, samplecolumn, distance_df):
     """
-    check that the distance dataframe has indices that match the data dataframe
+    check 3 things:
+      1: the dimensions of the distance_frame
+      2: that samplecolumn is a column of df
+      3: that all members of the first two columns of of distance_df are in df[samplecolumn]
     """
-    if distance_df is None:
-        return None
+    
+    #check shape of distance_df
+    dtypes  = distance_df.dtypes
+    columns = distance_df.columns
+    assert len(dtypes)==3 #there should be three columns a source, destination and target
+    assert dtypes[2] in ['float64','int64'] # the weight column needs to be numeric
+    
+    #check_samplecolumn
+    check_samplecolumn(df, samplecolumn)
+    
+    #check agreement between df and distance_df
+    samplecolumn_values = list(df[samplecolumn])
+    distance_vales = list( distance_df[columns[0]]] ) + list( distance_df[columns[1]]] )  
+    
+    correct = True
+    for d in distance_values:
+        if not d in samplecolumn_values:
+            correct = False
+    
+    if not correct:
+        raise ValueError("Value mismatch between yout to dataframes.")
     else:
-        # check that the third column is a number and that the
-        # first two columns of the distance dataframes have member belonging
-        # to the main dataframe
-        assert isinstance(distance_df, pd.core.frame.DataFrame)
-        dtypes  = distance_df.dtypes
-        columns = distance_df.columns
-        assert len(dtypes)==3 #there should be three columns a source, destination and target
-        assert dtypes[2] in ['float64','int64'] # the weight column needs to be numeric
-        
-        if samplecolumn:
-            samplecolumn_values = list(df[samplecolumn])
-        else:
-            print("Using First Column as Sample Label Columns")
-            samplecolumn_values = list(df[ df.columns[0] ])
-            
-        def inlist(c,ls): 
-            if c in ls:
-                return True
-            else:
-                return False
-        
-        col1  = [ inlist(c, samplecolumn_values) for c in distance_df[columns[0]]]
-        col2  = [ inlist(c, samplecolumn_values) for c in distance_df[columns[1]]]
-        
-        if False in col1 or False in col2:
-            raise ValueError("Distance Dataframe contains sample codes not found in Data dataframe. \
-                              Check indices of both dataframes. ")
-        
-        return distance_df
+        return correct
