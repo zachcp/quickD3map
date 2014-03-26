@@ -77,7 +77,7 @@
 
 	//this is where the update size code goes
 	function updateSize(value) {
-     p.data(samples.features)
+     points.data(samples.features)
 	     .attr("class", "symbol")
 	     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
 	 };

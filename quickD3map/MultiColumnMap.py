@@ -10,19 +10,18 @@ Created on Sun Mar 23 19:40:24 2014
 
 from __future__ import (absolute_import, division, print_function )
 
-#import json
 import pandas as pd
 import geojson
 import codecs
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
-from flask import Flask, Response, render_template, render_template_string
-from .projections import projections
+
+from .utilities import create_map, display_map, projections, latitude,longitude
 
 
 
 class MultiColumnMap(object): 
-    ''' Create a PointMap with quickD3map '''
+    ''' Create a PointMap of multiple columns with d3.js'''
     def __init__(self, df, columns = None,width=900, height=500, scale_exp=3, 
                  geojson="", attr=None, map="world_map_multiple_samples", distance_df=None, 
                  samplecolumn= None, center=None, projection="mercator"):
@@ -82,11 +81,8 @@ class MultiColumnMap(object):
         
         ##  Support Functions to Verify Data
         ################################################################################
-        
-        latitude =  ['lat', 'lattitude', 'latitude']
-        longitude = ['lon','long', 'longitude']
-        
-        def check_column(df, namelist, name):
+ 
+         def check_column(df, namelist, name):
             for col in df.columns:
                 if col.strip().lower() in namelist:
                     return col
@@ -179,8 +175,6 @@ class MultiColumnMap(object):
         self.template_vars['style'] =  self.env.get_template('style.css').render()
         
         
-
-
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
         ''' Dataconversion happens here. Process Dataframes and get 
             necessary information into geojson which is put into the template 
@@ -263,30 +257,5 @@ class MultiColumnMap(object):
         else:
             raise ValueError("Currently Supported Maps are: {}".format(','.join(map_types.keys())))
 
-    def create_map(self, path='map.html', lines=False):
-        '''Write Map output to HTML and data output to JSON if available
-
-        Parameters:
-        -----------
-        path: string, default 'map.html'
-            Path for HTML output for map
-        
-        #not implemented yet
-        line: default=False
-            whether to plot lines on the plot
-        '''
-        self._build_map()
-        with codecs.open(path, 'w', 'utf-8') as f:
-            f.write(self.HTML)
-            
-    def display_map(self, path='map.html'):
-        """
-        Create A Flask App to Serve the HTML file created from create_map()
-        """
-        app = Flask(__name__)
-        
-        self.create_map(path=path)
-        @app.route('/', methods=['GET'])
-        def index():
-            return Response( open(path,'r').read() , mimetype="text/html")
-        app.run()
+MultiColumnMap.create_map = create_map
+MultiColumnMap.display_map = display_map
