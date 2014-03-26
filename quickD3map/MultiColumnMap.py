@@ -12,7 +12,6 @@ from __future__ import (absolute_import, division, print_function )
 
 import pandas as pd
 import geojson
-import codecs
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
 from .utilities import build_map, create_map, display_map, projections, latitude,longitude
