@@ -3,14 +3,11 @@
 
 from __future__ import (absolute_import, division, print_function )
 
-#import json
 import pandas as pd
 import geojson
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
-from flask import Flask, Response
-from .projections import projections
-
+from .utilities import create_map, display_map, projections, latitude,longitude
 
 
 class PointMap(object): 
@@ -71,10 +68,7 @@ class PointMap(object):
         
         ##  Support Functions to Verify Data
         ################################################################################
-        
-        latitude =  ['lat', 'lattitude', 'latitude']
-        longitude = ['lon','long', 'longitude']
-        
+
         def check_column(df, namelist, name):
             for col in df.columns:
                 if col.strip().lower() in namelist:
@@ -159,6 +153,12 @@ class PointMap(object):
                               'center': self.center, 'projection':self.projection}
 
 
+        self.map_templates = {'us_states': {'json': 'us_states.json',
+                                       'template':'us_map.html'},
+                                'world_map': {'json': 'world-50m.json',
+                                       'template':'world_map.html'}}
+        
+
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
         ''' Dataconversion happens here. Process Dataframes and get 
             necessary information into geojson which is put into the template 
@@ -215,52 +215,6 @@ class PointMap(object):
             line_featurelist = line_feature_from_distance_df() 
             self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
 
-    def _build_map(self):
-        '''Build HTML/JS/CSS from Templates given current map type'''
-
-        map_types = {'us_states': {'json': 'us_states.json',
-                                   'template':'us_map.html'},
-                     'world_map': {'json': 'world-50m.json',
-                                   'template':'world_map.html'}}
-
-        self._convert_to_geojson( self.df, self.lat, self.lon)
-
-        #set html and map data
-        if self.map in map_types.keys():
-            #map background
-            map =  self.env.get_template(map_types[self.map]['json'])
-            self.template_vars['map_data'] = map.render()
-            #generate html
-            html_templ = self.env.get_template(map_types[self.map]['template'])
-            self.HTML = html_templ.render(self.template_vars)
-            print(self.template_vars.keys())
-        else:
-            raise ValueError("Currently Supported Maps are: {}".format(','.join(map_types.keys())))
-
-    def create_map(self, path='map.html', lines=False):
-        '''Write Map output to HTML and data output to JSON if available
-
-        Parameters:
-        -----------
-        path: string, default 'map.html'
-            Path for HTML output for map
-        
-        #not implemented yet
-        line: default=False
-            whether to plot lines on the plot
-        '''
-        self._build_map()
-        with open(path, 'w') as f:
-            f.write(self.HTML)
-            
-    def display_map(self, path='map.html'):
-        """
-        Create A Flask App to Serve the HTML file created from create_map()
-        """
-        app = Flask(__name__)
-        
-        self.create_map(path=path)
-        @app.route('/', methods=['GET'])
-        def index():
-            return Response( open(path,'r').read() , mimetype="text/html")
-        app.run()
+PointMap.build_map = build_map
+PointMap.create_map = create_map
+PointMap.display_map = display_map

@@ -30,6 +30,16 @@ projections = [ 'airy', 'aitoff', 'albers', 'albersUsa', 'armadillo', 'august', 
 
 ## Display Funcitons
 #####################################################
+
+def build_map(self):
+    '''Build HTML/JS/CSS from Templates given current map type'''
+    self._convert_to_geojson( self.df, self.lat, self.lon)
+    map =  self.env.get_template( self.map_templates[self.map]['json'] )
+    self.template_vars['map_data'] = map.render()
+    #generate html
+    html_templ = self.env.get_template(self.map_templates[self.map]['template'])
+    self.HTML = html_templ.render(self.template_vars)
+        
 def create_map(self, path='map.html'):
     ''' utility function used by all map classes 
         to write Map to file
@@ -39,7 +49,7 @@ def create_map(self, path='map.html'):
     path: string, default 'map.html'
         Path for HTML output for map
     '''
-    self._build_map()
+    self.build_map()
     with codecs.open(path, 'w') as f:
         f.write(self.HTML)
         
@@ -49,7 +59,7 @@ def display_map(self):
         Down the line maybe an Ipyhon Widget as well?
     '''
     app = Flask(__name__)
-    self._build_map()
+    self.build_map()
     @app.route('/')
     def index():
         return render_template_string(self.HTML)

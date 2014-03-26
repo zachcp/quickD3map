@@ -15,8 +15,7 @@ import geojson
 import codecs
 from geojson import Point, Feature, FeatureCollection, LineString
 from jinja2 import Environment, PackageLoader
-
-from .utilities import create_map, display_map, projections, latitude,longitude
+from .utilities import build_map, create_map, display_map, projections, latitude,longitude
 
 
 
@@ -82,7 +81,7 @@ class MultiColumnMap(object):
         ##  Support Functions to Verify Data
         ################################################################################
  
-         def check_column(df, namelist, name):
+        def check_column(df, namelist, name):
             for col in df.columns:
                 if col.strip().lower() in namelist:
                     return col
@@ -148,6 +147,13 @@ class MultiColumnMap(object):
                 print('This is not a valid projection, using default=mercator')
                 return "mercator"
         
+        def check_map(map):
+            if map in self.map_templates.keys():
+                return map
+            else:
+                raise ValueError("map must be one of: {}".format(map_templates_keys()))    
+            
+            
         # Check Inputs and make assignemtns of data
         assert isinstance(df, pd.core.frame.DataFrame)
         self.df  = df
@@ -162,17 +168,25 @@ class MultiColumnMap(object):
         self.scale_exp = scale_exp 
         
         
-        #Templates
+        #Template Information
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
         self.template_vars = {'width': width, 'height': height, 
                               'center': self.center, 'projection':self.projection,
                               'columns': self.columns, 'scale_exp': self.scale_exp}
+        
+        self.map_templates =  {'us_states': {'json': 'us_states.json',
+                                           'template':'us_map.html'},
+                               'world_map': {'json': 'world-50m.json',
+                                               'template':'world_map.html'},
+                               'world_map_multiple_samples': {'json': 'world-50m.json',
+                                               'template':'world_map_multiplesamples.html'}}
         
         #JS Libraries and CSS Styling
         self.template_vars['d3_projection'] =  self.env.get_template('d3.geo.projection.v0.min.js').render()
         self.template_vars['topojson'] =  self.env.get_template('topojson.v1.min.js').render()
         self.template_vars['d3js'] =  self.env.get_template('d3.v3.min.js').render()
         self.template_vars['style'] =  self.env.get_template('style.css').render()
+        
         
         
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
@@ -233,29 +247,15 @@ class MultiColumnMap(object):
             line_featurelist = line_feature_from_distance_df() 
             self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
 
-    def _build_map(self):
-        '''Build HTML/JS/CSS from Templates given current map type'''
-
-        map_types = {'us_states': {'json': 'us_states.json',
-                                   'template':'us_map.html'},
-                     'world_map': {'json': 'world-50m.json',
-                                   'template':'world_map.html'},
-                     'world_map_multiple_samples': {'json': 'world-50m.json',
-                                   'template':'world_map_multiplesamples.html'}}
-
-        self._convert_to_geojson( self.df, self.lat, self.lon)
-
-        #set html and map data
-        if self.map in map_types.keys():
-            #map background
-            map =  self.env.get_template(map_types[self.map]['json'])
-            self.template_vars['map_data'] = map.render()
-            #generate html
-            html_templ = self.env.get_template(map_types[self.map]['template'])
-            self.HTML = html_templ.render(self.template_vars)
-            print(self.template_vars.keys())
-        else:
-            raise ValueError("Currently Supported Maps are: {}".format(','.join(map_types.keys())))
-
-MultiColumnMap.create_map = create_map
+    # def _build_map(self):
+    #     '''Build HTML/JS/CSS from Templates given current map type'''
+    #     self._convert_to_geojson( self.df, self.lat, self.lon)
+    #     map =  self.env.get_template( self.map_types[self.map]['json'] )
+    #     self.template_vars['map_data'] = map.render()
+    #     #generate html
+    #     html_templ = self.env.get_template(map_types[self.map]['template'])
+    #     self.HTML = html_templ.render(self.template_vars)
+    #  
+MultiColumnMap.build_map   = build_map   
+MultiColumnMap.create_map  = create_map
 MultiColumnMap.display_map = display_map
