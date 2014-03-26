@@ -17,7 +17,7 @@ class LineMap(object):
                  geojson="", attr=None, map="world_map", center=None, projection="mercator"):
                     
         '''
-        PointMap is a class that takes a dataframe and returns an html webpage that
+        LineMap is a class that takes a dataframe and returns an html webpage that
         can optionally be viewed as a Flask Webapp. Pointmap requires a pandas dataframe
         with latitude and longitude options.
         
@@ -94,7 +94,7 @@ class LineMap(object):
         self.map_templates = {'us_states': {'json': 'us_states.json',
                                        'template':'us_map.html'},
                               'world_map': {'json': 'world-50m.json',
-                                       'template':'world_map.html'}}
+                                       'template':'world_map_Line.html'}}
         
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):

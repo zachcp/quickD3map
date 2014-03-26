@@ -16,7 +16,7 @@ def check_center(center):
         return None
     
 def check_samplecolumn(df, samplecolumn):
-    unique = len(df.samplecolumn) - len(pd.unique(df.samplecolumn)) # check for unique values
+    unique = len(df[samplecolumn]) - len(pd.unique(df[samplecolumn])) # check for unique values
     if samplecolumn in df.columns and unique == 0:
         return samplecolumn
     else:
