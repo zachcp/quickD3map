@@ -8,60 +8,35 @@
    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
    <script src="http://d3js.org/topojson.v1.min.js"></script>
-
-    <style>
-
-        svg {
-          margin: 30px;
-          padding: 5px;
-          border-style:solid;
-          border-width:1px;  
-        }
-        
-        
-        .country {
-          fill: #ccc;
-          stroke: #fff;
-         }
-
-        .symbol {
-          fill: steelblue;
-          fill-opacity: .8;
-          stroke: #fff;
-        }
-
-        .graticule {
-          fill: none;
-          stroke: #000;
-          stroke-opacity: .3;
-          stroke-width: .5px;
-        }
-
-        .graticule.outline {
-          stroke: #333;
-          stroke-opacity: 1;
-          stroke-width: 1.5px;
-        }
-		
-        .lines {
-		  fill: none;
-          stroke: #333;
-          stroke-opacity: 1;
-          stroke-width: 1.5px;
-        }
-    </style>
-
+    <style> {{ style }}    </style>
+   
 </head>
 
-<body>
-	<div id="map">	</div>
+<div class="outer">
+	 <div id="map">
+		 </div>
+	 
+		 <div class="draggable" id="controls"> 
+		 	 <h2> {{ title }} </h2> 
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 
+		 </div>
+	</div>
+</body>
+
+<script>$(".draggable").draggable(); </script> 
 
     <script>
     
     // Basic Map Settings and Data
     /////////////////////////////////////////////
-        var width   = {{ width }};
-        var height  = {{ height }};
+		var width = Math.max({{ width }}, window.innerWidth);
+		var height = Math.max({{ height }}, window.innerHeight);
         var scale   = {{scale}};
         var samples = {{geojson|string|safe}};
         var geojson = {{map_data|string|safe}};
@@ -187,5 +162,4 @@
      
     </script>
 
-</body>
 </html>

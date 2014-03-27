@@ -95,17 +95,17 @@ class MultiColumnMap(object):
                               'center': self.center, 'projection':self.projection,
                               'columns': self.columns, 'scale_exp': self.scale_exp}
         
-        self.map_templates =  {'us_states': {'json': 'json/us_states.json',
+        self.map_templates =  {'us_states': {'json': 'us_states.json',
                                            'template':'us_map.html'},
-                               'world_map': {'json': 'json/world-50m.json',
+                               'world_map': {'json': 'world-50m.json',
                                                'template':'world_map.html'},
-                               'world_map_multiple_samples': {'json': 'json/world-50m.json',
+                               'world_map_multiple_samples': {'json': 'world-50m.json',
                                                'template':'world_map_multiplesamples.html'}}
         
         #JS Libraries and CSS Styling
-        self.template_vars['d3_projection'] =  self.env.get_template('js/d3.geo.projection.v0.min.js').render()
-        self.template_vars['topojson'] =  self.env.get_template('js/topojson.v1.min.js').render()
-        self.template_vars['d3js'] =  self.env.get_template('js/d3.v3.min.js').render()
+        self.template_vars['d3_projection'] =  self.env.get_template('d3.geo.projection.v0.min.js').render()
+        self.template_vars['topojson'] =  self.env.get_template('topojson.v1.min.js').render()
+        self.template_vars['d3js'] =  self.env.get_template('d3.v3.min.js').render()
         self.template_vars['style'] =  self.env.get_template('style.css').render()
         
         

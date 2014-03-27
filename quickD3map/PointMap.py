@@ -15,7 +15,7 @@ class PointMap(object):
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, width=960, height=500, scale=100000, 
                  geojson="", attr=None, map="world_map", 
-                 center=None, projection="mercator"):
+                 center=None, projection="mercator", title="quickD3Map"):
                     
         '''
         PointMap is a class that takes a dataframe and returns an html webpage that
@@ -87,6 +87,8 @@ class PointMap(object):
                                        'template':'us_map.html'},
                                 'world_map': {'json': 'world-50m.json',
                                        'template':'world_map.html'}}
+                                       
+        self.template_vars['style'] =  self.env.get_template('style.css').render()
         
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):

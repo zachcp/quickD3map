@@ -14,14 +14,6 @@
 
     <style>
 
-        svg {
-          margin: 30px;
-          padding: 5px;
-          border-style:solid;
-          border-width:1px;  
-        }
-        
-        
         .country {
           fill: #ccc;
           stroke: #fff;
@@ -78,10 +70,13 @@
 	 
 		 <div class="draggable" id="controls"> 
 		 	 <h2> {{ title }} </h2> 
-			 asfskdflsdjf sdfsdf sdf sdfs df
-			 sdfsdfs
-			 df sdfsdf   lkhlid wliefh lwfe wlieuf lwie liuweuf lwh l
-			 w;efhh h
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 
 		 </div>
 	</div>
 </body>
@@ -95,8 +90,8 @@
     
     // Basic Map Settings and Data
     /////////////////////////////////////////////
-        var width   = {{ width }};
-        var height  = {{ height }};
+		var width = Math.max({{ width }}, window.innerWidth);
+		var height = Math.max({{ height }}, window.innerHeight);
         var scale   = {{scale}};
         var samples = {{geojson|string|safe}};
         var geojson = {{map_data|string|safe}};

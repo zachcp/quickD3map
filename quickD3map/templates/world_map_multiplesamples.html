@@ -12,26 +12,46 @@
 </head>
 <body>
 	
-<h1> {{ title }}</h1>
 
-<aside style="margin-top:80px;">
-    <div><select> 
-        {% for col in columns %}
-            <option value="{{col}}">{{col}}</option>
-        {% endfor%}
-    </select></div>
-</aside>
+<body>
+	<div class="outer">
+		 <div id="map">
+		 </div>
+	 
+		 <div class="draggable" id="controls"> 
+		 	 <h2> {{ title }} </h2> 
+			 
+			 
+		     <div><select> 
+		         {% for col in columns %}
+		             <option value="{{col}}">{{col}}</option>
+		         {% endfor%}
+		     </select></div>
+			 
+			 
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 Temporary Text . Something could go here..
+			 
+		 </div>
+	</div>
+</body>
 
-<div id="map"></div>
+<script>$(".draggable").draggable(); </script> 
+
+
 
     <script>
     
     // Basic Map Settings and Data
     /////////////////////////////////////////////
-         var width = {{ width }};
-         var height = {{ height }};
-		 var samples = {{geojson|string|safe}};
-		 var geojson = {{map_data|string|safe}};
+		var width = Math.max({{ width }}, window.innerWidth);
+		var height = Math.max({{ height }}, window.innerHeight);
+		var samples = {{geojson|string|safe}};
+		var geojson = {{map_data|string|safe}};
         {%- if lines_geojson -%}
             var lines = {{lines_geojson|string|safe}};
         {%- endif -%}
