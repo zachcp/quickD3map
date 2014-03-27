@@ -3,6 +3,9 @@ build
 *.py[cod]
 *.pyc
 
+*.ipynb
+*.ipynb_checkpoints/
+
 # C extensions
 *.so
 
