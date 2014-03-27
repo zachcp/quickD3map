@@ -94,7 +94,8 @@ class LineMap(object):
         self.map_templates = {'us_states': {'json': 'us_states.json',
                                        'template':'us_map.html'},
                               'world_map': {'json': 'world-50m.json',
-                                       'template':'world_map_Line.html'}}
+                                       #'template':'world_map_Line.html'}}
+                                       'template':'world_map.html'}}
         
 
     def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):

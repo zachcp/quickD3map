@@ -73,7 +73,6 @@ class PointMap(object):
         self.lat = check_column(self.df, latitude,  'latitude')
         self.lon = check_column(self.df, longitude, 'longitude')
         self.map = map
-        self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.center= check_center(center)
         self.projection = check_projection(projection)
         
@@ -101,50 +100,9 @@ class PointMap(object):
             if pd.notnull(row[lat]) and pd.notnull(row[lon]):
                 return Feature(geometry=Point(( row[lon], row[lat] )))
 
-        def line_feature_from_distance_df():
-            """
-            create a geojson feature collection of lines from a dataframe with three columns: source/dest/weight
-            """
-            
-            #Create the lookup for lat/long
-            if self.samplecolumn is None:
-                try:
-                    cols = self.df.columns 
-                    ref_df = self.df.set_index( self.df[ cols[0] ] )
-                    print("Without Explicit Sample Column, I will attempt to use the first column")
-                except:
-                    raise ValueError('First Column cannot be used as the Sample Index')
-            else:
-                try:
-                    ref_df = self.df.set_index( self.samplecolumn )
-                except:
-                    raise ValueError("Issue with Index/Sample Column")
-            
-
-            def create_line_feature(source, target, weight, ref_df):
-                lat = self.lat
-                lon = self.lon
-                
-                lat1 = ref_df.loc[source][lat]
-                lon1 = ref_df.loc[source][lon]
-                lat2 = ref_df.loc[target][lat]
-                lon2 = ref_df.loc[target][lon]
-                
-                nullcheck = [ pd.notnull( l ) for l in [lat1,lon1,lat2,lon2] ]
-                
-                if False not in nullcheck:
-                    return Feature(geometry=LineString([(lon1, lat1), (lon2, lat2)]))
-        
-            line_featurelist =  [ create_line_feature( row[0],row[1],row[2], ref_df) for idx,row in self.distdf.iterrows() ]
-            return line_featurelist
-        
-        
+         
         featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
-        
-        if self.distdf is not None:
-            line_featurelist = line_feature_from_distance_df() 
-            self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
 
 PointMap.build_map = build_map
 PointMap.create_map = create_map

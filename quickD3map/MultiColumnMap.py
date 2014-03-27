@@ -22,7 +22,7 @@ class MultiColumnMap(object):
     ''' Create a PointMap of multiple columns with d3.js'''
     def __init__(self, df, columns = None,width=900, height=500, scale_exp=3, 
                  geojson="", attr=None, map="world_map_multiple_samples", distance_df=None, 
-                 samplecolumn= None, center=None, projection="mercator"):
+                 center=None, projection="mercator"):
                     
         '''
         PointMap is a class that takes a dataframe and returns an html webpage that
@@ -83,7 +83,6 @@ class MultiColumnMap(object):
         self.lat = check_column(self.df, latitude,  'latitude')
         self.lon = check_column(self.df, longitude, 'longitude')
         self.map = map
-        self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.center= check_center(center)
         self.projection = check_projection(projection)
         self.columns = columns
@@ -96,17 +95,17 @@ class MultiColumnMap(object):
                               'center': self.center, 'projection':self.projection,
                               'columns': self.columns, 'scale_exp': self.scale_exp}
         
-        self.map_templates =  {'us_states': {'json': 'us_states.json',
+        self.map_templates =  {'us_states': {'json': 'json/us_states.json',
                                            'template':'us_map.html'},
-                               'world_map': {'json': 'world-50m.json',
+                               'world_map': {'json': 'json/world-50m.json',
                                                'template':'world_map.html'},
-                               'world_map_multiple_samples': {'json': 'world-50m.json',
+                               'world_map_multiple_samples': {'json': 'json/world-50m.json',
                                                'template':'world_map_multiplesamples.html'}}
         
         #JS Libraries and CSS Styling
-        self.template_vars['d3_projection'] =  self.env.get_template('d3.geo.projection.v0.min.js').render()
-        self.template_vars['topojson'] =  self.env.get_template('topojson.v1.min.js').render()
-        self.template_vars['d3js'] =  self.env.get_template('d3.v3.min.js').render()
+        self.template_vars['d3_projection'] =  self.env.get_template('js/d3.geo.projection.v0.min.js').render()
+        self.template_vars['topojson'] =  self.env.get_template('js/topojson.v1.min.js').render()
+        self.template_vars['d3js'] =  self.env.get_template('js/d3.v3.min.js').render()
         self.template_vars['style'] =  self.env.get_template('style.css').render()
         
         
@@ -124,51 +123,9 @@ class MultiColumnMap(object):
                 return Feature(geometry=Point(( row[lon], row[lat] )),
                                properties=properties)
 
-        def line_feature_from_distance_df():
-            """
-            create a geojson feature collection of lines from a dataframe with three columns: source/dest/weight
-            """
-            
-            #Create the lookup for lat/long
-            if self.samplecolumn is None:
-                try:
-                    cols = self.df.columns 
-                    ref_df = self.df.set_index( self.df[ cols[0] ] )
-                    print("Without Explicit Sample Column, I will attempt to use the first column")
-                except:
-                    raise ValueError('First Column cannot be used as the Sample Index')
-            else:
-                try:
-                    ref_df = self.df.set_index( self.samplecolumn )
-                except:
-                    raise ValueError("Issue with Index/Sample Column")
-            
-
-            def create_line_feature(source, target, weight, ref_df):
-                lat = self.lat
-                lon = self.lon
-                
-                lat1 = ref_df.loc[source][lat]
-                lon1 = ref_df.loc[source][lon]
-                lat2 = ref_df.loc[target][lat]
-                lon2 = ref_df.loc[target][lon]
-                
-                nullcheck = [ pd.notnull( l ) for l in [lat1,lon1,lat2,lon2] ]
-                
-                if False not in nullcheck:
-                    return Feature(geometry=LineString([(lon1, lat1), (lon2, lat2)]))
-        
-            line_featurelist =  [ create_line_feature( row[0],row[1],row[2], ref_df) for idx,row in self.distdf.iterrows() ]
-            return line_featurelist
-        
-        
         featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
         
-        if self.distdf is not None:
-            line_featurelist = line_feature_from_distance_df() 
-            self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
-
 MultiColumnMap.build_map   = build_map   
 MultiColumnMap.create_map  = create_map
 MultiColumnMap.display_map = display_map
