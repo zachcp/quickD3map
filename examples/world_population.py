@@ -23,4 +23,4 @@ top_comb = combinations( list(smalldf.city) ,2)
 comb = [ [c[0],c[1],1 ] for c in top_comb ]
 distance_df = pd.DataFrame(comb)
 
-LineMap( smalldf, "city", distance_df).display_map()
+LineMap( smalldf, "city", distance_df, width=1200,height=700).display_map()

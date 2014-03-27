@@ -5,6 +5,9 @@
 <head>
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
    <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -29,19 +32,6 @@
           fill-opacity: .8;
           stroke: #fff;
         }
-
-        .graticule {
-          fill: none;
-          stroke: #000;
-          stroke-opacity: .3;
-          stroke-width: .5px;
-        }
-
-        .graticule.outline {
-          stroke: #333;
-          stroke-opacity: 1;
-          stroke-width: 1.5px;
-        }
 		
         .lines {
 		  fill: none;
@@ -49,12 +39,57 @@
           stroke-opacity: 1;
           stroke-width: 1.5px;
         }
+
+		#controls {
+		  /* Appearance */
+		  background-color: white;
+		  padding: 0 20px 20px 20px;
+		  cursor: move;
+		  /* Fade out while not hovering */
+		  opacity: 0.6;
+		  zoom: 0.9;
+		  transition: opacity 500ms 1s;
+		  top:60px;
+		  left:auto;
+		  right:20px;
+		  bottom:auto;
+		  width:330px;
+		  height:auto;
+		  position:fixed;
+		  cursor:move;
+		  border:2px solid;
+		  border-radius:10px;
+		}
+		#controls:hover {
+		  /* Fade in while hovering */
+		  opacity: 0.95;
+		  transition-delay: 0;
+		}
+
+
     </style>
 
 </head>
 
 <body>
-	<div id="map">	</div>
+	<div class="outer">
+		 <div id="map">
+		 </div>
+	 
+		 <div class="draggable" id="controls"> 
+		 	 <h2> {{ title }} </h2> 
+			 asfskdflsdjf sdfsdf sdf sdfs df
+			 sdfsdfs
+			 df sdfsdf   lkhlid wliefh lwfe wlieuf lwie liuweuf lwh l
+			 w;efhh h
+		 </div>
+	</div>
+</body>
+
+<script>$(".draggable").draggable(); </script> 
+
+
+
 
     <script>
     
@@ -132,5 +167,4 @@
      
     </script>
 
-</body>
 </html>
