@@ -83,7 +83,6 @@ class MultiColumnMap(object):
         self.lat = check_column(self.df, latitude,  'latitude')
         self.lon = check_column(self.df, longitude, 'longitude')
         self.map = map
-        self.distdf = load_distance_df(distance_df, df) 
         self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.center= check_center(center)
         self.projection = check_projection(projection)
