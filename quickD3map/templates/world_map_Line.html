@@ -11,56 +11,9 @@
    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
    <script src="http://d3js.org/topojson.v1.min.js"></script>
+	<style> {{ style }}    </style>
 
-    <style>
-
-        .country {
-          fill: #ccc;
-          stroke: #fff;
-         }
-
-        .symbol {
-          fill: steelblue;
-          fill-opacity: .8;
-          stroke: #fff;
-        }
-		
-        .lines {
-		  fill: none;
-          stroke: #333;
-          stroke-opacity: 1;
-          stroke-width: 1.5px;
-        }
-
-		#controls {
-		  /* Appearance */
-		  background-color: white;
-		  padding: 0 20px 20px 20px;
-		  cursor: move;
-		  /* Fade out while not hovering */
-		  opacity: 0.6;
-		  zoom: 0.9;
-		  transition: opacity 500ms 1s;
-		  top:60px;
-		  left:auto;
-		  right:20px;
-		  bottom:auto;
-		  width:330px;
-		  height:auto;
-		  position:fixed;
-		  cursor:move;
-		  border:2px solid;
-		  border-radius:10px;
-		}
-		#controls:hover {
-		  /* Fade in while hovering */
-		  opacity: 0.95;
-		  transition-delay: 0;
-		}
-
-
-    </style>
-
+ 
 </head>
 
 <body>
@@ -146,7 +99,7 @@
 		    .attr("y1",function(d){return d[0][1]})
 		    .attr("x2",function(d){return d[1][0]})
 		    .attr("y2",function(d){return d[1][1]})
-		    .attr("class", "lines");
+		    .attr("class", "line");
 	
 	var points  = svg.selectAll(".symbol")
 	                  .data(samples.features)

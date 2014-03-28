@@ -33,6 +33,12 @@
           stroke-opacity: 1;
           stroke-width: 1.5px;
         }
+        .line {
+		  fill: none;
+          stroke: #333;
+          stroke-opacity: 1;
+          stroke-width: 1.5px;
+        }
         
 		#controls {
 		  /* Appearance */
