@@ -6,12 +6,10 @@ from __future__ import (absolute_import, division, print_function )
 import pandas as pd
 import geojson
 from geojson import Point, Feature, FeatureCollection, LineString
-from jinja2 import Environment, PackageLoader
-from .utilities import build_map,create_map, display_map, projections, latitude, longitude
-from .check_data import  check_column, check_center, check_samplecolumn, check_projection, verify_dfs_forLineMap, check_for_NA
+from .check_data import check_samplecolumn, verify_dfs_forLineMap 
+from .BaseMap import BaseMap
 
-
-class LineMap(object): 
+class LineMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, samplecolumn, distance_df,  width=960, height=500, scale=100000, 
                  geojson="", attr=None, map="world_map", center=None, projection="mercator", title="quickD3Map"):
@@ -66,6 +64,8 @@ class LineMap(object):
         >>>PointMap(qdf).display_map()
 
         '''
+        # Basic Data Check Using the BaseClass        
+        super(LineMap, self).__init__(df=df,center=center, projection=projection)
         
         ##  Support Functions to Verify Data
         ################################################################################
@@ -76,37 +76,30 @@ class LineMap(object):
         
         if verify_dfs_forLineMap(df, samplecolumn, distance_df):
             self.distdf = distance_df
-        self.lat = check_column(df, latitude,  'latitude')
-        self.lon = check_column(df, longitude, 'longitude')
-        self.df  = check_for_NA(df, self.lat, self.lon)
-        self.map = map
-        self.center= check_center(center)
-        self.projection = check_projection(projection)
         self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.title= title
         
         #Templates
-        self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
-                              'center': self.center, 'projection':self.projection, 
-                              'title': self.title}
+#        self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
+#        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
+#                              'center': self.center, 'projection':self.projection, 
+#                              'title': self.title}
+#
+#
+##        self.map_templates = {'us_states': {'json': 'us_states.json',
+#                                       'template':'us_map.html'},
+#                              'world_map': {'json': 'world-110m.json',
+#                                       #'template':'world_map_Line.html'}}
+#                                       'template':'world_map_Line.html'},
+#                            'world_map_zoom': {'json': 'world-110m.json',
+#                                            #'template':'world_map_Line.html'}}
+#                                            'template':'world_map_Line_zoom.html'},
+#                            'world_map_ocean': {'json': 'world-110m.json',
+#                                            'template':'world_map_Line_zoom.html'}}
+#                                       
 
 
-        self.map_templates = {'us_states': {'json': 'us_states.json',
-                                       'template':'us_map.html'},
-                              'world_map': {'json': 'world-110m.json',
-                                       #'template':'world_map_Line.html'}}
-                                       'template':'world_map_Line.html'},
-                            'world_map_zoom': {'json': 'world-110m.json',
-                                            #'template':'world_map_Line.html'}}
-                                            'template':'world_map_Line_zoom.html'},
-                            'world_map_ocean': {'json': 'world-110m.json',
-                                            'template':'world_map_Line_zoom.html'}}
-                                       
-        self.template_vars['style'] =  self.env.get_template('style.css').render()
-        
-
-    def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
+    def convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
         ''' Dataconversion happens here. Process Dataframes and get 
             necessary information into geojson which is put into the template 
             var dictionary for later'''
@@ -142,7 +135,3 @@ class LineMap(object):
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
         line_featurelist = line_feature_from_distance_df() 
         self.template_vars['lines_geojson'] = geojson.dumps( FeatureCollection(line_featurelist) )
-
-LineMap.build_map = build_map
-LineMap.create_map = create_map
-LineMap.display_map = display_map

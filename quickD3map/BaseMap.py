@@ -199,11 +199,3 @@ class PointMap(BaseMap):
         featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
     
-#    # Display Fucntions from the BaseMap Class    
-#    ###################################################################################
-#    def build_map(self): 
-#        super(PointMap, self).build_map(self)
-#    def create_map(self, path='map.html'): 
-#        super(PointMap, self).create_map(self, path=path)
-#    def display_map(self): 
-#        super(PointMap, self).display_map(self)
