@@ -5,7 +5,9 @@ from __future__ import (absolute_import, division, print_function )
 
 import pandas as pd
 import geojson
+
 from geojson import Point, Feature, FeatureCollection, LineString
+
 from .check_data import check_samplecolumn, verify_dfs_forLineMap 
 from .BaseMap import BaseMap
 

@@ -12,8 +12,9 @@ from __future__ import (absolute_import, division, print_function )
 
 import pandas as pd
 import geojson
+
 from geojson import Point, Feature, FeatureCollection
-from .check_data import  check_column, check_center, check_samplecolumn, check_projection
+
 from .BaseMap import BaseMap
 
 class MultiColumnMap(BaseMap): 

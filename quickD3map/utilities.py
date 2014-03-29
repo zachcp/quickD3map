@@ -5,8 +5,6 @@ Created on Wed Mar 26 11:52:51 2014
 @author: zachpowers
 """
 
-import codecs
-from flask import Flask, render_template_string
 
 ## Global Variables
 #####################################################
@@ -26,10 +24,7 @@ map_templates = {'us_states':
                          'template':  'world_map.html'},                              
                  'world_map_zoom': 
                         {'json': 'world-50m.json',
-                         'template': 'world_map_Line_zoom.html'},
-                 'world_map_ocean': 
-                         {'json': 'world-110m.json',
-                          'template':'world_map_Line_zoom.html'}}
+                         'template': 'world_map_Line_zoom.html'}}
         
 projections = [ 'airy', 'aitoff', 'albers', 'albersUsa', 'armadillo', 'august', 'azimuthalEqualArea',
  'azimuthalEquidistant', 'baker', 'berghaus', 'boggs', 'bonne', 'bromley', 'chamberlin', 'collignon',

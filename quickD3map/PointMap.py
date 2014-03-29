@@ -5,13 +5,12 @@ from __future__ import (absolute_import, division, print_function )
 
 import pandas as pd
 import geojson
-from geojson import Point, Feature, FeatureCollection, LineString
-from jinja2 import Environment, PackageLoader
-from .utilities import build_map, create_map, display_map, projections, latitude,longitude
-from .check_data import  check_column, check_center, check_samplecolumn, check_projection
 
+from geojson import Point, Feature, FeatureCollection
 
-class PointMap(object): 
+from .BaseMap import BaseMap
+
+class PointMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, width=960, height=500, scale=100000, 
                  geojson="", attr=None, map="world_map", 
@@ -66,46 +65,18 @@ class PointMap(object):
         >>>PointMap(qdf).display_map()
 
         '''
-        
-        # Check Inputs For Bad or Inconsistent Data
-        assert isinstance(df, pd.core.frame.DataFrame)
-        self.df  = df
-        self.lat = check_column(self.df, latitude,  'latitude')
-        self.lon = check_column(self.df, longitude, 'longitude')
-        self.map = map
-        self.center= check_center(center)
-        self.projection = check_projection(projection)
-        
-        
-        #Template Information Here
-        self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
-                              'center': self.center, 'projection':self.projection}
-
-
-        self.map_templates = {'us_states': {'json': 'us_states.json',
-                                       'template':'us_map.html'},
-                                'world_map': {'json': 'world-50m.json',
-                                       'template':'world_map.html'}}
-                                       
-        self.template_vars['style'] =  self.env.get_template('style.css').render()
+        super(PointMap, self).__init__(df=df,center=center, projection=projection)
         
 
-    def _convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
+    def convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
         ''' Dataconversion happens here. Process Dataframes and get 
             necessary information into geojson which is put into the template 
             var dictionary for later'''
-        
         ## Support Functions For processing to geojson
-        ################################################################################
+        ##############################################
         def feature_from_row(row):
-            if pd.notnull(row[lat]) and pd.notnull(row[lon]):
-                return Feature(geometry=Point(( row[lon], row[lat] )))
-
-         
+         if pd.notnull(row[lat]) and pd.notnull(row[lon]):
+            return Feature(geometry=Point(( row[lon], row[lat] )))
+                
         featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
-
-PointMap.build_map = build_map
-PointMap.create_map = create_map
-PointMap.display_map = display_map
