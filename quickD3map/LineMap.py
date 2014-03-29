@@ -94,11 +94,13 @@ class LineMap(object):
 
         self.map_templates = {'us_states': {'json': 'us_states.json',
                                        'template':'us_map.html'},
-                              'world_map': {'json': 'world-50m.json',
+                              'world_map': {'json': 'world-110m.json',
                                        #'template':'world_map_Line.html'}}
                                        'template':'world_map_Line.html'},
-                            'world_map_zoom': {'json': 'world-50m.json',
+                            'world_map_zoom': {'json': 'world-110m.json',
                                             #'template':'world_map_Line.html'}}
+                                            'template':'world_map_Line_zoom.html'},
+                            'world_map_ocean': {'json': 'world-110m.json',
                                             'template':'world_map_Line_zoom.html'}}
                                        
         self.template_vars['style'] =  self.env.get_template('style.css').render()

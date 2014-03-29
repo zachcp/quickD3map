@@ -6,14 +6,11 @@
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
    <script src="http://d3js.org/topojson.v1.min.js"></script>
 	<style> {{ style }}    </style>
-
- 
 </head>
 
 <body>
@@ -33,13 +30,9 @@
 		 </div>
 	</div>
 </body>
-
 <script>$(".draggable").draggable(); </script> 
 
-
-
-
-    <script>
+<script>
     
     // Basic Map Settings and Data
     /////////////////////////////////////////////
@@ -99,7 +92,7 @@
 		    .attr("y1",function(d){return d[0][1]})
 		    .attr("x2",function(d){return d[1][0]})
 		    .attr("y2",function(d){return d[1][1]})
-		    .attr("class", "line");
+		    .attr("class", "lines");
 	
 	var points  = svg.selectAll(".symbol")
 	                  .data(samples.features)
@@ -113,6 +106,6 @@
 	   .attr("class", "symbol")
 	   .attr("d", path.pointRadius( function(d){return radius( 100000 ) } ));
      
-    </script>
+</script>
 
 </html>

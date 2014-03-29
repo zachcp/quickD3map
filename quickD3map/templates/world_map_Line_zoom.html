@@ -103,17 +103,18 @@
 
 
 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
 	   
   	 points.data(samples.features)
   	   .attr("class", "symbol")
   	   .attr("d", path.pointRadius( function(d){return radius( 100000 ) } ));
  
 	// Convert linedata (projected) to Point Data
-	function convert_to_points(line_data) {
-		ld_proj = line_data.features.map(function(d){return d.geometry.coordinates});
-		ld_svgarrays = ld_proj.map( function(l) { return l.map( function(d){return projection(d) }) });
-		return ld_svgarrays;}
-
+	// function convert_to_points(line_data) {
+	// 	ld_proj = line_data.features.map(function(d){return d.geometry.coordinates});
+	// 	ld_svgarrays = ld_proj.map( function(l) { return l.map( function(d){return projection(d) }) });
+	// 	return ld_svgarrays;}
+	// 
 	
 	// lines
 	//     .selectAll(".lines")
@@ -134,6 +135,8 @@
 		  .translate(zoom.translate());
 
 	 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
+		 
 		 points.attr("d", path);
 		 
 		 //below are lines as line-features which update on zoom
