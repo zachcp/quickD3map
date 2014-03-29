@@ -12,7 +12,25 @@ from flask import Flask, render_template_string
 #####################################################
 latitude =  ['lat', 'lattitude', 'latitude']
 longitude = ['lon','long', 'longitude']
- 
+
+
+#set global json/html combinations here. In the class specify allowable subsets.
+map_templates = {'us_states': 
+                        {'json':      'us_states.json',
+                         'template':  'us_map.html'},
+                 'world_map': 
+                        {'json':      'world-110m.json',
+                         'template':   'world_map.html'},
+                 'world_map_50m': 
+                        {'json':  'world-50m.json',
+                         'template':  'world_map.html'},                              
+                 'world_map_zoom': 
+                        {'json': 'world-50m.json',
+                         'template': 'world_map_Line_zoom.html'},
+                 'world_map_ocean': 
+                         {'json': 'world-110m.json',
+                          'template':'world_map_Line_zoom.html'}}
+        
 projections = [ 'airy', 'aitoff', 'albers', 'albersUsa', 'armadillo', 'august', 'azimuthalEqualArea',
  'azimuthalEquidistant', 'baker', 'berghaus', 'boggs', 'bonne', 'bromley', 'chamberlin', 'collignon',
  'conicEqualArea', 'conicConformal', 'conicEquidistant', 'equirectangular', 'craig', 'craster',
@@ -28,39 +46,3 @@ projections = [ 'airy', 'aitoff', 'albers', 'albersUsa', 'armadillo', 'august', 
  'two-point-equidistant', 'van-der-grinten', 'van-der-grinten2', 'van-der-grinten3', 'van-der-grinten4', 'wagner4', 'wagner6',
  'wagner7', 'wiechel', 'winkel3']
 
-## Display Funcitons
-#####################################################
-
-def build_map(self):
-    '''Build HTML/JS/CSS from Templates given current map type'''
-    self._convert_to_geojson( self.df, self.lat, self.lon)
-    map =  self.env.get_template( self.map_templates[self.map]['json'] )
-    self.template_vars['map_data'] = map.render()
-    #generate html
-    html_templ = self.env.get_template(self.map_templates[self.map]['template'])
-    self.HTML = html_templ.render(self.template_vars)
-        
-def create_map(self, path='map.html'):
-    ''' utility function used by all map classes 
-        to write Map to file
-    
-    Parameters:
-    -----------
-    path: string, default 'map.html'
-        Path for HTML output for map
-    '''
-    self.build_map()
-    with codecs.open(path, 'w') as f:
-        f.write(self.HTML)
-        
-def display_map(self):
-    ''' utility function used by all map classes 
-        to display map. Creates a Flask App.
-        Down the line maybe an Ipyhon Widget as well?
-    '''
-    app = Flask(__name__)
-    self.build_map()
-    @app.route('/')
-    def index():
-        return render_template_string(self.HTML)
-    app.run()
