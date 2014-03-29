@@ -48,7 +48,7 @@ def test_for_NAs1():
 class testcheck_center():
     nt.assert_equals((100,0), check_center( (100,0)) )
     nt.assert_equals([100,0], check_center( [100,0] )
-    nt.assert_equals( None, check_center([100,0,10) )
+    nt.assert_equals( None,   check_center([100,0,10) )
     
     
 #def test_for_NAs2():

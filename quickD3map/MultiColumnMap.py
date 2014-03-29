@@ -20,8 +20,8 @@ from .BaseMap import BaseMap
 class MultiColumnMap(BaseMap): 
     ''' Create a PointMap of multiple columns with d3.js'''
     def __init__(self, df, columns = None,width=900, height=500, scale_exp=3, 
-                 geojson="", attr=None, map="world_map_multiple_samples", distance_df=None, 
-                 center=None, projection="mercator"):
+                 geojson="", map="world_map_multiple", distance_df=None, 
+                 center=None, projection="mercator", legend=True, title = 'quickD3Map'):
                     
         '''
         PointMap is a class that takes a dataframe and returns an html webpage that
@@ -79,20 +79,19 @@ class MultiColumnMap(BaseMap):
 
         #Elements Unique to this template        
         self.columns = columns
-        self.scale_exp = scale_exp 
+        self.scale_exp = scale_exp
+        self.legend = legend
+        self.map = map
+         
         
+        self.template_vars['legend'] = self.legend
+        self.template_vars['columns'] = self.columns
+        self.template_vars['title'] = title
+        self.template_vars['scale_exp'] = scale_exp
         
-#        self.map_templates =  {'us_states': {'json': 'us_states.json',
-#                                           'template':'us_map.html'},
-#                               'world_map': {'json': 'world-110m.json',
-#                                               'template':'world_map.html'},
-#                               'world_map_multiple_samples': {'json': 'world-110m.json',
-#                                               'template':'world_map_multiplesamples.html'},
-#                                'world_map_ocean': {'json': 'world-110m.json',
-#                                                'template':'world_map_multiplesamples.html'}   
-#                                       }
-#        
-   
+        #TODO
+        #check that the column values do not have have NAs in them.
+        
         
     #unique geojson conversion
     def convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):

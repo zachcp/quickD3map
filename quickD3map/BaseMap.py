@@ -77,6 +77,9 @@ class BaseMap(object):
         #generate html
         html_templ = self.env.get_template(self.map_templates[self.map]['template'])
         self.HTML = html_templ.render(self.template_vars)
+        print(self.template_vars)
+        print(self.template_vars.keys())
+        
 
     def create_map(self, path='map.html'):
         ''' utility function used by all map classes 

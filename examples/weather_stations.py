@@ -16,6 +16,6 @@ stations = pd.read_csv('data/weatherstations.csv')
 #PointMap(df, scale = 1000000).display_map()
 
 #columns = ['TEMP', 'DEWP', 'SLP', 'STP', 'VISIB', 'WDSP', 'MXSPD']
-MultiColumnMap(stations, columns = ['LAT','LON','ELEV'] ,scale_exp = 3).display_map()
+MultiColumnMap(stations, columns = ['LAT','LON','ELEV'], scale_exp = 3).display_map()
 
 #too many points. and too big. more on that later
