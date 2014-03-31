@@ -81,25 +81,6 @@ class LineMap(BaseMap):
         self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.title= title
         
-        #Templates
-#        self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-#        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
-#                              'center': self.center, 'projection':self.projection, 
-#                              'title': self.title}
-#
-#
-##        self.map_templates = {'us_states': {'json': 'us_states.json',
-#                                       'template':'us_map.html'},
-#                              'world_map': {'json': 'world-110m.json',
-#                                       #'template':'world_map_Line.html'}}
-#                                       'template':'world_map_Line.html'},
-#                            'world_map_zoom': {'json': 'world-110m.json',
-#                                            #'template':'world_map_Line.html'}}
-#                                            'template':'world_map_Line_zoom.html'},
-#                            'world_map_ocean': {'json': 'world-110m.json',
-#                                            'template':'world_map_Line_zoom.html'}}
-#                                       
-
 
     def convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
         ''' Dataconversion happens here. Process Dataframes and get 

@@ -13,11 +13,11 @@ from nose.tools import raises
 import pandas as pd
 import numpy as np
 from itertools import combinations
-
+import geojson
 from quickD3map import MultiColumnMap, PointMap, LineMap
 
 from quickD3map.utilities import latitude, longitude, projections
-from quickD3map.check_data import check_column, check_for_NA
+from quickD3map.check_data import check_column, check_center, check_for_NA
 
 
 #To add: 
@@ -42,20 +42,36 @@ def test_for_Lat_Lon2():
 def test_for_NAs1():
     df = pd.DataFrame( np.random.randn(3,2), columns=["Latitude","Longitude"])
     df.ix[3,'Latitude'] = np.nan
+    print(df)
     check_for_NA(df, "Latitude","Longitude")
-
-
+        
 class testcheck_center():
     nt.assert_equals((100,0), check_center( (100,0)) )
-    nt.assert_equals([100,0], check_center( [100,0] )
-    nt.assert_equals( None,   check_center([100,0,10) )
-    
-    
-#def test_for_NAs2():
-#    df = pd.DataFrame( np.random.randn(3,2), columns=["Latitude","Longitude"])
-#    nt.assert_equal(df, check_for_NA(df, "Latitude","Longitude"))
-    
-    
+    nt.assert_equals([100,0], check_center( [100,0] ) )
+    nt.assert_equals( None,   check_center([100,0,10] ))
+
+
+## Tests That Check GeoJsonConversion
+#######################################################
+def test_PointMap_to_geojson():
+    df = pd.DataFrame( {"Latitude": [82.85,87.65,-83.03], "Longitude": [41.68,41.62, -41.12]})
+    pm = PointMap(df)
+    expected_output ="""{"type": "FeatureCollection", "features": [
+              {"geometry": {"type": "Point", "coordinates": [82.85, 41.68]}, "type": "Feature", "id": null, "properties": {}}, 
+              {"geometry": {"type": "Point", "coordinates": [87.67, 41.62]}, "type": "Feature", "id": null, "properties": {}}, 
+              {"geometry": {"type": "Point", "coordinates": [-83.03, -41.12]}, "type": "Feature", "id": null, "properties": {}}] }  
+              """
+    geojson_out = pm.convert_to_geojson()
+#    print( geojson.loads(geojson_out) ) 
+#    print("okay")
+#    print(geojson_out)
+#    print(geojson.loads(geojson_out))
+#    print("okay")
+#    print(geojson.loads(expected_output))
+    nt.assert_equal(geojson.loads(expected_output), geojson.loads(geojson_out))
+    ### Fails becoase of differences in the lenght of the numbers. native pyhton has lon number
+    #but the typed answer has only two digits. SHould I add rounding/decimal to the progrma
+    # or use a different test
 
 ## Test That Check BaseMap Object Funcitonality
 #######################################################

@@ -36,7 +36,7 @@ def check_projection(projection):
         
 def check_for_NA(df, lat, lon):
     for col in [lat,lon]:
-        for item in df[col].iteritems():
+        for index, item in df[col].iteritems():
             if pd.isnull(item):
                 raise ValueError('DataFrame has NUll values which must be removed')
     return df
