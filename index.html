@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="quickD3map : Generate d3 maps from pandas dataframes" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>quickD3map</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/zachcp/quickD3map">View on GitHub</a>
+
+          <h1 id="project_title">quickD3map</h1>
+          <h2 id="project_tagline">Generate d3 maps from pandas dataframes</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/zachcp/quickD3map/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/zachcp/quickD3map/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="quickd3map" class="anchor" href="#quickd3map"><span class="octicon octicon-link"></span></a>quickD3map</h1>
+
+<h3>
+<a name="d3-point-maps-from-pandas-dataframes" class="anchor" href="#d3-point-maps-from-pandas-dataframes"><span class="octicon octicon-link"></span></a>D3 Point Maps from Pandas DataFrames</h3>
+
+<p>quickD3map allows you to rapidly generate D3.js maps from data from within 
+the pandas/ipython ecosystem by converting Latitude/Longitude Data into points <strong>Note: this is an experimental repo and not ready for use.</strong>
+With that said, basic maps can be generated and below are a few examples of how they are made.</p>
+
+<h4>
+<a name="to-make-the-following-interactive-map" class="anchor" href="#to-make-the-following-interactive-map"><span class="octicon octicon-link"></span></a>To make the following interactive map:</h4>
+
+<p><img src="https://dl.dropboxusercontent.com/u/1803062/quickD3map/map1.png" alt="Examplemap"></p>
+
+<h4>
+<a name="install-and-use-from-the-examples-directory" class="anchor" href="#install-and-use-from-the-examples-directory"><span class="octicon octicon-link"></span></a>Install and Use from the Examples Directory</h4>
+
+<div class="highlight highlight-python"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">quickD3map</span> <span class="kn">import</span> <span class="n">PointMap</span>
+
+<span class="c">#load data</span>
+<span class="n">stations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/weatherstations.csv'</span><span class="p">)</span>
+<span class="c">#create a map instance</span>
+<span class="n">pm</span> <span class="o">=</span> <span class="n">PointMap</span><span class="p">(</span><span class="n">stations</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">'LAT'</span><span class="p">,</span><span class="s">'LON'</span><span class="p">,</span><span class="s">'ELEV'</span><span class="p">])</span>
+<span class="c">#plot or save your map</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">display_map</span><span class="p">()</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">create_map</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s">"map.html"</span><span class="p">)</span>
+</pre></div>
+
+<h3>
+<a name="project-goals" class="anchor" href="#project-goals"><span class="octicon octicon-link"></span></a>Project Goals</h3>
+
+<p>The goal of this project is rather limited in scope: </p>
+
+<ul>
+<li>be able to rapidly plot location data from Pandas dataframes</li>
+<li>be able to color by another column</li>
+<li>be able to scale by another column</li>
+<li>be able to plot connections between plots</li>
+</ul><p>I intend to include several map templates (geojson files) and will try to 
+figure out a template style that can provide the ability to include maps of many types.
+Just thinking aloud here but the best way to do this would be to standardize the 
+geojson input types for features so that loading of data (as JSOn strings) can be seperated
+from everything else (transformation,scaling, etc.)</p>
+
+<h3>
+<a name="thanks" class="anchor" href="#thanks"><span class="octicon octicon-link"></span></a>Thanks.</h3>
+
+<p>Mike Bostocks (D3), Rob Story (Folium), Mitsujko (Flask/Jinja)</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">quickD3map maintained by <a href="https://github.com/zachcp">zachcp</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
