@@ -3,7 +3,7 @@
 
 __author__ = 'zach powers'
 __email__ = 'zcharlop@rockefeller.edu'
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 
 from .LineMap  import LineMap
