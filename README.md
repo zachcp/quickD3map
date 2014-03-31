@@ -10,15 +10,19 @@ With that said, basic maps can be generated and below are a few examples of how 
 #### To make the following interactive map:
 ![Examplemap](https://dl.dropboxusercontent.com/u/1803062/quickD3map/map1.png)
 
-#### Install and Use form the Examples Directory
+#### Install and Use from the Examples Directory
 
 ```python
 import pandas as pd
-from quickD3map import PointMap, MultiColumnMap
+from quickD3map import PointMap
  
 #load data and plot 
 stations = pd.read_csv('data/weatherstations.csv')
-MultiColumnMap(stations, columns = ['LAT','LON','ELEV']).display_map()
+#make a PointMap object
+pm = PointMap(stations, columns = ['LAT','LON','ELEV'])
+#display or write your map to file
+pm.display_map()
+pm.create_map(path="map.html")
 ````
  
 
