@@ -71,7 +71,7 @@ class BaseMap(object):
     ########################################################################################   
     def build_map(self):
         '''Build HTML/JS/CSS from Templates given current map type'''
-        self.convert_to_geojson( self.df, self.lat, self.lon)
+        self.convert_to_geojson()
         map =  self.env.get_template( self.map_templates[self.map]['json'] )
         self.template_vars['map_data'] = map.render()
         #generate html

@@ -12,9 +12,8 @@ from .BaseMap import BaseMap
 
 class PointMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
-    def __init__(self, df, width=960, height=500, scale=100000, 
-                 geojson="", attr=None, map="world_map", 
-                 center=None, projection="mercator", title="quickD3Map"):
+    def __init__(self, df, columns = None, legend=False, scale_exp=4, width=960, height=500, scale=100000, 
+                 geojson="", attr=None, map="world_map_multiple", center=None, projection="mercator", title="quickD3Map"):
                     
         '''
         PointMap is a class that takes a dataframe and returns an html webpage that
@@ -66,17 +65,60 @@ class PointMap(BaseMap):
 
         '''
         super(PointMap, self).__init__(df=df,center=center, projection=projection)
+        self.columns = columns
+        self.scale_exp = scale_exp
+        self.legend = legend
+        self.map = map
+         
         
+        self.template_vars['legend'] = self.legend
+        self.template_vars['columns'] = self.columns
+        self.template_vars['title'] = title
+        self.template_vars['scale_exp'] = scale_exp
+        
+        #TODO
+        #check that the column values do not have have NAs in them.
 
-    def convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
+
+#    def convert_to_geojson(self ):
+#        ''' Dataconversion happens here. Process Dataframes and get 
+#            necessary information into geojson which is put into the template 
+#            var dictionary for later'''
+#        lat = self.lat
+#        lon = self.lon
+#        df  = self.df
+#        ## Support Functions For processing to geojson
+#        ##############################################
+#        def feature_from_row(row):
+#         if pd.notnull(row[lat]) and pd.notnull(row[lon]):
+#            return Feature(geometry=Point(( row[lon], row[lat] )))
+#                
+#        featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
+#        geojson_out = geojson.dumps( FeatureCollection(featurelist) )
+#        self.template_vars['geojson'] = geojson_out
+    
+    def convert_to_geojson(self):
         ''' Dataconversion happens here. Process Dataframes and get 
             necessary information into geojson which is put into the template 
             var dictionary for later'''
+        lat, lon, df, columns = self.lat, self.lon, self.df, self.columns
+        
         ## Support Functions For processing to geojson
-        ##############################################
+        ################################################################################
         def feature_from_row(row):
-         if pd.notnull(row[lat]) and pd.notnull(row[lon]):
-            return Feature(geometry=Point(( row[lon], row[lat] )))
-                
+            """ Check for NA in Lat and Lon.
+                Check for Columns. Return GeoJson for inclusion as points.
+            """
+            if pd.notnull( row[lat]) and pd.notnull(row[lon]):
+                if columns:                
+                    properties = { k:v for k,v in row.iterkv() if k in columns}
+                    return Feature(geometry=Point(( row[lon], row[lat] )),
+                                   properties=properties)
+                else:
+                    return Feature(geometry=Point(( row[lon], row[lat] )))
+                    
+
         featurelist= [ feature_from_row(row) for idx, row in df.iterrows() ]
         self.template_vars['geojson'] = geojson.dumps( FeatureCollection(featurelist) )
+
+        
