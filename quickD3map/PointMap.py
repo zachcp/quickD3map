@@ -13,7 +13,7 @@ from .BaseMap import BaseMap
 class PointMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, columns = None, legend=False, scale_exp=4, width=960, height=500, scale=100000, 
-                 geojson="", attr=None, map="world_map_multiple", center=None, projection="mercator", title="quickD3Map"):
+                 geojson="", attr=None, map="world_map", center=None, projection="mercator", title="quickD3Map"):
                     
         '''
         PointMap is a class that takes a dataframe and returns an html webpage that
