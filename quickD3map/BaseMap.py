@@ -15,14 +15,15 @@ from .check_data import  check_column, check_center, check_projection
 
 class BaseMap(object): 
     ''' Check DataFrame Accuracy And Setup Maps '''
-    def __init__(self, df, width=960, height=500, scale=100000, 
-             geojson="", attr=None, map="world_map", 
-             center=None, projection="mercator", title="quickD3Map"):       
+    def __init__(self, df, width=960, height=500, map="world_map", 
+                 center=None, projection="mercator", title= None):       
         '''
-        The BaseMap class is here to handle all of the generic aspects of setting
-        up a Latitude and Longitude based map. These aspects are:
+        The BaseMap class is here to handle all of the generic aspects of
+        setting up a Latitude and Longitude based map. These aspects are:
             1. Verifying the Pandas Dataframe (lat/long columns, NAs)
-            2. Setting up and holdign template information
+            2. Setting up and holding template information.
+            
+        This is a private class used by other classes but not the User.
     
          Parameters
         ----------
@@ -32,12 +33,11 @@ class BaseMap(object):
             Width of the map.
         height: int, default 500
             Height of the map.
-        scale: int, default 100000.
-            scale factor for the size plotted points
         map: str, default "world_map".
            template to be used for mapping.
-    
         projection: str, default="mercator"
+           a projection that is one of the projecions recognized by d3.js
+        center: tuple or list of two. default=None
            a projection that is one of the projecions recognized by d3.js
     
         '''
@@ -53,9 +53,9 @@ class BaseMap(object):
     
         #Template Information Here
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
-        self.template_vars = {'width': width, 'height': height, 'scale': scale, 
-                              'center': self.center, 'projection':self.projection}
-        
+        self.template_vars = {'width': width, 'height': height, 'center': self.center,
+                              'projection':self.projection}
+                              
         #add all template combinations. Specify Template Subsets in map classes
         self.map_templates = map_templates
                                    
@@ -77,8 +77,6 @@ class BaseMap(object):
         #generate html
         html_templ = self.env.get_template(self.map_templates[self.map]['template'])
         self.HTML = html_templ.render(self.template_vars)
-        #print(self.template_vars)
-        #print(self.template_vars.keys())
         
 
     def create_map(self, path='map.html'):
@@ -97,7 +95,7 @@ class BaseMap(object):
     def display_map(self):
         ''' utility function used by all map classes 
             to display map. Creates a Flask App.
-            Down the line maybe an Ipyhon Widget as well?
+            Down the line maybe an IPython Widget as well?
         '''
         app = Flask(__name__)
         self.build_map()

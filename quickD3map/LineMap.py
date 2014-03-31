@@ -13,8 +13,8 @@ from .BaseMap import BaseMap
 
 class LineMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
-    def __init__(self, df, samplecolumn, distance_df,  width=960, height=500, scale=100000, 
-                 geojson="", attr=None, map="world_map", center=None, projection="mercator", title="quickD3Map"):
+    def __init__(self, df, samplecolumn, distance_df,  scale=100000, 
+                 map="world_map_zoom", center=None, projection="mercator", title=None):
                     
         '''
         LineMap is a class that takes a dataframe and returns an html webpage that
@@ -33,10 +33,6 @@ class LineMap(BaseMap):
            samplecolumn is the name of a column in df. This columns must have the names 
            of all of the samples in the first two columns of distance_df and it must be unique
 
-        width: int, default 960
-            Width of the map.
-        height: int, default 500
-            Height of the map.
         scale: int, default 100000.
             scale factor for the size plotted points
         map: str, default "world_map".
@@ -80,12 +76,13 @@ class LineMap(BaseMap):
             self.distdf = distance_df
         self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.title= title
-        
+        self.map = map
 
-    def convert_to_geojson(self, df, lat, lon, distance_df=None, index_col=None):
+    def convert_to_geojson(self):
         ''' Dataconversion happens here. Process Dataframes and get 
             necessary information into geojson which is put into the template 
             var dictionary for later'''
+        lat, lon, df = self.lat, self.lon, self.df
         
         ## Support Functions For processing to geojson
         ################################################################################

@@ -18,18 +18,14 @@
 
 <body>
 	<div class="outer">
-		 <div id="map">
-		 </div>
-	 
+		 <div id="map"></div>
+
+            {% if controls %}	 
 		 <div class="draggable" id="controls"> 
-		 	 <h2> {{ title }} </h2> 
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 
+                      {% if title %}		 	 
+                          <h2> {{ title }} </h2> 
+                      {% endif %}
+			 {% endif %}	 
 		 </div>
 	</div>
 </body>
@@ -45,7 +41,6 @@
 	/////////////////////////////////////////////
 	var width = Math.max({{ width }}, window.innerWidth);
 	var height = Math.max({{ height }}, window.innerHeight);
-    var scale   = {{scale}};
     var samples = {{geojson|string|safe}};
     var geojson = {{map_data|string|safe}};
 
