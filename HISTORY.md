@@ -1,6 +1,14 @@
 #History
 
 
+0.1.3.1 (2014-04-07)
+++++++++++++++++++
+* Bugfix of imports
+
+0.1.3 (2014-03-28)
+++++++++++++++++++
+* roll MultiColumn into PointMap Class
+
 0.1.2 (2014-03-21)
 ++++++++++++++++++
 * Updated README with some rudimentary Documentation
