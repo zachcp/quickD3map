@@ -7,21 +7,26 @@
 		 <div id="map">
 		</div>
 		 
+		 {% if columns%}
 		 <div class="draggable" id="controls"> 
-		 	 <h2> {{ title }} </h2> 
-			 <div><select> 
-				 {% if columns%}
-		         {% for col in columns %}
-		             <option value="{{col}}">{{col}}</option>
+			 <h2> {{ title }} </h2> 
+			 <label for="columns">Columns:</label>
+			 <select id="columns" class="demo-default" placeholder="Select a column value...">
+				 {% for col in columns %}
+		             <option value="{{col}}"> {{col}} </option>
 		         {% endfor %}
-				 {% endif %}
-		     </select></div>
-			 Multicolum. What is going on?
+		     </select>
 		 </div>
-	 
+		 {% endif %}		 
+
 	</div>
 </body>
 <script>$(".draggable").draggable(); </script> 
+
+<script>
+$('#columns').selectize();
+</script>
+	
 {% endblock %}
 
 
