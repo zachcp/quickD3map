@@ -8,6 +8,3 @@ __version__ = '0.1.4'
 
 from .LineMap  import LineMap
 from .PointMap  import PointMap
-from .MultiColumnMap import MultiColumnMap
-
-
