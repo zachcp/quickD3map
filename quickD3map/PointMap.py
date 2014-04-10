@@ -7,6 +7,8 @@ import pandas as pd
 import geojson
 from geojson import Point, Feature, FeatureCollection
 from .BaseMap import BaseMap
+from .utilities import map_templates
+
 
 class PointMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
@@ -66,8 +68,11 @@ class PointMap(BaseMap):
         self.columns = columns
         self.scale_exp = scale_exp
         self.legend = legend
-        self.map = map
-         
+        
+        if map in map_templates.keys():
+            self.map = map
+        else:
+            raise ValueError("Map type must be one of the ofllowing:{}".format(map_templates.keys()))
         
         self.template_vars['legend'] = self.legend
         self.template_vars['columns'] = self.columns

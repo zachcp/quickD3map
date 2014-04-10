@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="utf-8">
+{% extends "layout.html" %}
 
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-   <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-   <script src="http://d3js.org/topojson.v1.min.js"></script>
-   
-   <!-- // <script> {{ d3js              |string|safe }} </script>
-//    <script> {{ d3_projection     |string|safe }} </script>
-//    <script> {{ topojson          |string|safe }} </script> -->
-   <script> {{ colorbrewer_js    |string|safe }} </script>
-   <style> {{ style              |string|safe }} </style>
-   <style> {{ colorbrewer_css    |string|safe }} </style>
-</head>
+{% block body %}
 <body>
 	<div class="outer">
 		 <div id="map">
@@ -26,9 +9,11 @@
 		 <div class="draggable" id="controls"> 
 		 	 <h2> {{ title }} </h2> 
 			 <div><select> 
+				 {% if columns%}
 		         {% for col in columns %}
 		             <option value="{{col}}">{{col}}</option>
 		         {% endfor %}
+				 {% endif %}
 		     </select></div>
 			 Multicolum. What is going on?
 		 </div>
@@ -37,95 +22,92 @@
 </body>
 
 <script>$(".draggable").draggable(); </script> 
+{% endblock %}
 
+{% block script %}
+<script>
 
-
-    <script>
+// Basic Map Settings and Data
+/////////////////////////////////////////////
+	var width = Math.max({{ width }}, window.innerWidth);
+	var height = Math.max({{ height }}, window.innerHeight);
+	var samples = {{geojson  |string|safe}};
+	var geojson = {{map_data  |string|safe}};
     
-    // Basic Map Settings and Data
-    /////////////////////////////////////////////
-		var width = Math.max({{ width }}, window.innerWidth);
-		var height = Math.max({{ height }}, window.innerHeight);
-		var samples = {{geojson  |string|safe}};
-		var geojson = {{map_data  |string|safe}};
-        
-		 {% if lines_geojson %}
-              var lines = {{lines_geojson |string|safe}};
-         {% endif %}
+	 {% if lines_geojson %}
+          var lines = {{lines_geojson |string|safe}};
+     {% endif %}
+	
+    var radius = d3.scale.sqrt()
+        .domain([0, 1e{{scale_exp|string|safe}}])
+        .range([0, 20]);
+
+   // Projection-Related Settings
+   /////////////////////////////////////////////
+    var projection = d3.geo.{{ projection  |string|safe}}()
+        .scale((1 << 10) / 2 / Math.PI)
+        .translate([width / 2, height / 2]);
+
+  	  {% if center  %}
+  	  	 var center = projection( {{ center }});
+  	  {% else %}
+  	       var center = projection([ 0, 20]);
+  	  {%  endif %}
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    var svg = d3.select("#map")
+                  .append("svg")
+                  .attr("width", width)
+                  .attr("height", height);
+
+// Selection Shorthands
+var map       = svg.append("path").attr("class", "country");
+var points = svg.selectAll(".symbol")
+          .data(samples.features)
+		  .enter().append("path")
+      		.attr("class", "symbol");
+
+ map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+ points.data(samples.features)
+   .attr("class", "symbol")
+   .attr("d", path.pointRadius( function(d){return radius( 100 ) } ));
+
+ // Update By-Column Code
+ ///////////////////////////////////////////////////////////////////////////////////////
+ d3.selectAll("select").on("change", function () {updateSize(this.value) });
+
+//this is where the update size code goes
+function updateSize(value) {
+ points.data(samples.features)
+     .attr("class", "symbol")
+     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
+ };
+ 
+// function updateColor(value) {
+// 	  // get array of value types
+// 	  var array = points.data(samples.features).map(d.properties[value]);
+// 	  // determine color scale by chekcing if categorical, integer, or number.
+// 	 
+// 	    // ...
+// 	  }
+  //
+  
+  points.data(samples.features)
+     .attr("class", "symbol")
+     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
+ 
+ // function generate_colorscale(values){
+ // 		 //helper function
+ // 		 function onlyUnique(value, index, self) { 
+ // 		     return self.indexOf(value) === index;
+ // 		 };
+ // 		 
+ // 	 if (typeof values[0] == 'string') {
+ // 			 number_uniques = values.filter( onlyUnique ).length
+ // 			 
+ // 			}}
 		
-        var radius = d3.scale.sqrt()
-            .domain([0, 1e{{scale_exp|string|safe}}])
-            .range([0, 20]);
-
-       // Projection-Related Settings
-       /////////////////////////////////////////////
-        var projection = d3.geo.{{ projection  |string|safe}}()
-            .scale((1 << 10) / 2 / Math.PI)
-            .translate([width / 2, height / 2]);
-
-      	  {% if center  %}
-      	  	 var center = projection( {{ center }});
-      	  {% else %}
-      	       var center = projection([ 0, 20]);
-      	  {%  endif %}
-
-        var path = d3.geo.path()
-            .projection(projection);
-
-        var svg = d3.select("#map")
-                      .append("svg")
-                      .attr("width", width)
-                      .attr("height", height);
-
-    // Selection Shorthands
-    var map       = svg.append("path").attr("class", "country");
-    var points = svg.selectAll(".symbol")
-	          .data(samples.features)
-			  .enter().append("path")
-	      		.attr("class", "symbol");
-
-     map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
-     points.data(samples.features)
-	   .attr("class", "symbol")
-	   .attr("d", path.pointRadius( function(d){return radius( 100 ) } ));
-
-     // Update By-Column Code
-     ///////////////////////////////////////////////////////////////////////////////////////
-     d3.selectAll("select").on("change", function () {updateSize(this.value) });
-
-	//this is where the update size code goes
-	function updateSize(value) {
-     points.data(samples.features)
-	     .attr("class", "symbol")
-	     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
-	 };
-	 
- 	// function updateColor(value) {
- 	// 	  // get array of value types
- 	// 	  var array = points.data(samples.features).map(d.properties[value]);
- 	// 	  // determine color scale by chekcing if categorical, integer, or number.
- 	// 	 
- 	// 	    // ...
- 	// 	  }
-	  //
-	  
-      points.data(samples.features)
- 	     .attr("class", "symbol")
- 	     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
-	 
-	 // function generate_colorscale(values){
-	 // 		 //helper function
-	 // 		 function onlyUnique(value, index, self) { 
-	 // 		     return self.indexOf(value) === index;
-	 // 		 };
-	 // 		 
-	 // 	 if (typeof values[0] == 'string') {
-	 // 			 number_uniques = values.filter( onlyUnique ).length
-	 // 			 
-	 // 			}}
-			
-    </script>
-
-
-</body>
-</html>
+</script>
+{% endblock %}

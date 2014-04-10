@@ -8,6 +8,10 @@
           stroke: #fff;
         }
 
+        .states {
+          fill: #ccc;
+          stroke: #fff;
+        }
         .symbol {
           fill: steelblue;
           fill-opacity: .8;
