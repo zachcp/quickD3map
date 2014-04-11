@@ -67,9 +67,7 @@ class BaseMap(object):
         self.template_vars['style'] =  self.env.get_template('style.css').render()
         self.template_vars['colorbrewer_css'] =  self.env.get_template('colorbrewer.css').render()
         self.template_vars['colorbrewer_js'] =  self.env.get_template('colorbrewer.js').render()
-        self.template_vars['selectize_css'] =  self.env.get_template('selectize.css').render()
-        self.template_vars['selectize_js'] =  self.env.get_template('selectize.js').render()
-
+       
 
     ## Display Methods
     ########################################################################################   
