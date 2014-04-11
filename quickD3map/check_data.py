@@ -24,7 +24,7 @@ def check_samplecolumn(df, samplecolumn):
             ### To do check this only when using distance df
             raise ValueError('Sample column  not in dataframe')
         elif unique != 0:
-            raise ValueError('Sample column is not unique and therfore non-indexable')
+            raise ValueError('Sample column is not unique and therefore non-indexable')
         
 def check_projection(projection):
     if projection in projections:
@@ -68,6 +68,8 @@ def verify_dfs_forLineMap(df, samplecolumn, distance_df):
             correct = False
     
     if not correct:
-        raise ValueError("Value mismatch between yout to dataframes.")
+        raise ValueError("Value mismatch between your two dataframes. \
+                          Check your distance dataframe for members that are not \
+                          found in your primary dataframe")
     else:
         return correct
