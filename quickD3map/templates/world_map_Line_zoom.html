@@ -54,13 +54,17 @@
 	//var lines  = svg.append("g").attr("class","lines");
 
 	//below are lines as line-features which update on zoom
-	var lines  = svg.append("g").selectAll(".line")
-								.data(line_data.features)
-								.enter()
-								.append("path")
-								.attr("class","line")
-								.attr("d",path);
-  	var points = svg.selectAll(".symbol")
+	{% if straight_lines %}
+		var lines = svg.append("g").attr("class","lines");
+	{% else %}
+		var lines  = svg.append("g").selectAll(".line")
+									.data(line_data.features)
+									.enter()
+									.append("path")
+									.attr("class","line")
+									.attr("d",path);
+	{% endif %}
+	var points = svg.selectAll(".symbol")
   	                  .data(samples.features)
   			          .enter().append("path")
   	      		      .attr("class", "symbol");
@@ -116,7 +120,7 @@
 				    .attr("y1",function(d){return d[0][1]})
 				    .attr("x2",function(d){return d[1][0]})
 				    .attr("y2",function(d){return d[1][1]})
-			// 	    .attr("class", "lines");
+				    .attr("class", "lines");
 		{% else %}
 			 //below are lines as line-features which update on zoom
 			 lines.attr("d",path);
