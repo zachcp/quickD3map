@@ -50,12 +50,12 @@ class BaseMap(object):
         self.map = map
         self.center= check_center(center)
         self.projection = check_projection(projection)
-    
+        self.title=title
     
         #Template Information Here
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
         self.template_vars = {'width': width, 'height': height, 'center': self.center,
-                              'projection':self.projection}
+                              'projection':self.projection, "title":self.title}
                               
         #add all template combinations. Specify Template Subsets in map classes
         self.map_templates = map_templates
@@ -69,6 +69,7 @@ class BaseMap(object):
         self.template_vars['colorbrewer_js'] =  self.env.get_template('colorbrewer.js').render()
         self.template_vars['selectize_css'] =  self.env.get_template('selectize.css').render()
         self.template_vars['selectize_js'] =  self.env.get_template('selectize.js').render()
+
 
     ## Display Methods
     ########################################################################################   

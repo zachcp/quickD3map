@@ -69,3 +69,13 @@
 		  opacity: 0.95;
 		  transition-delay: 0;
 		}
+        #map {
+            border: 1px solid black;
+            margin: 10px; 
+            padding: 10px; 
+        }
+        .container {
+            width:1000px;
+            height: 520px; 
+            margin-left: 80px;
+        }

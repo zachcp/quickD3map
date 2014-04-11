@@ -1,46 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="utf-8">
+{% extends "layout.html" %}
 
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-   <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-   <script src="http://d3js.org/topojson.v1.min.js"></script>
-	<style> {{ style }}    </style>
-
- 
-</head>
-
-<body>
-	<div class="outer">
-		 <div id="map"></div>
-
-            {% if controls %}	 
-		 <div class="draggable" id="controls"> 
-                      {% if title %}		 	 
-                          <h2> {{ title }} </h2> 
-                      {% endif %}
-			 {% endif %}	 
-		 </div>
-	</div>
-</body>
-
-<script>$(".draggable").draggable(); </script> 
-
-
-
-
+{% block script %}
 <script>
 
 	// Basic Map Settings and Data
 	/////////////////////////////////////////////
-	var width = Math.max({{ width }}, window.innerWidth);
-	var height = Math.max({{ height }}, window.innerHeight);
+	var width = {{ width }};
+	var height ={{ height }};
+    
+	// var width = Math.max({{ width }}, window.innerWidth);
+// 	var height = Math.max({{ height }}, window.innerHeight);
     var samples = {{geojson|string|safe}};
     var geojson = {{map_data|string|safe}};
 
@@ -152,5 +121,4 @@
 	
     svg.call(zoom)
     </script>
-
-</html>
+{% endblock %}
