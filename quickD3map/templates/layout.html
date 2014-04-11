@@ -36,9 +36,19 @@
 	 	<h2> quickD3map</h2> 
 		<h4> default behavior is pan and zoom</h4> 
 	 {% endif %}
+	 {% if columns%}
+	 	 <p>Scale by colum values: 
+		 <select id="select" >
+			 {% for col in columns %}
+	            <option value="{{col}}"> {{col}} </option>
+	         {% endfor %}
+	     </select>
+		 </p>
+	 {% endif %}
 	
-	 <div id="map"></div>
+
 	  {% block body%}
+	  	 <div id="map"></div>
 	  {% endblock %}
 	
 

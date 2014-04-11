@@ -2,31 +2,18 @@
 
 
 {% block body %}
-<body>
-	<div class="outer">
-		 <div id="map">
-		</div>
+
 		 
 		 {% if columns%}
-		 <div class="draggable" id="controls"> 
-			 <h2> {{ title }} </h2> 
-			 <label for="columns">Columns:</label>
-			 <select id="columns" class="demo-default" placeholder="Select a column value...">
+			 <select id="select" >
 				 {% for col in columns %}
 		             <option value="{{col}}"> {{col}} </option>
 		         {% endfor %}
 		     </select>
-		 </div>
-		 {% endif %}		 
-
-	</div>
-</body>
-<script>$(".draggable").draggable(); </script> 
-
-<script>
-$('#columns').selectize();
-</script>
-	
+		 {% endif %}
+		 
+ 		 <div id="map">
+ 		</div>
 {% endblock %}
 
 
@@ -84,5 +71,49 @@ $('#columns').selectize();
         symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]); }))
 
       }
+	  
+  	function zoomed() {
+  		//update project and then the map the points and the lines
+  		projection
+  		  .scale(zoom.scale() / 2 / Math.PI)
+  		  .translate(zoom.translate());
+
+  	 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+  	 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
+		 
+  		 points.attr("d", path);
+		 
+  		 //below are lines as line-features which update on zoom
+  		 lines.attr("d",path);
+		  
+  		// lines
+  		//     .selectAll(".lines")
+  		// 	.data( convert_to_points(line_data)  )
+  		// 	.enter()
+  		// 	.append("svg:line")
+  		// 	    .attr("x1",function(d){return d[0][0]})
+  		// 	    .attr("y1",function(d){return d[0][1]})
+  		// 	    .attr("x2",function(d){return d[1][0]})
+  		// 	    .attr("y2",function(d){return d[1][1]})
+  		// 	    .attr("class", "lines");
+
+  	}
+	
+
+	  {%- if center is not none -%}
+	  	 var center = projection( {{ center }});
+	  {% else %}
+	       var center = projection([ 0, 20]);
+	  {%- endif -%}
+
+		var zoom = d3.behavior.zoom()
+		    .scale(projection.scale() * 2 * Math.PI)
+		    .scaleExtent([1 << 11, 1 << 14])
+		    .translate([width - center[0], height - center[1]])
+		    .on("zoom", zoomed);
+
+      svg.call(zoom)
+	  
+	  
 </script>
 {% endblock %}

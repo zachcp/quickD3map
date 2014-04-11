@@ -1,36 +1,15 @@
 {% extends "layout.html" %}
 
-{% block body %}
-<body>
-	<div class="outer">
-		 <div id="map">
-		</div>
-		 
-		 <div class="draggable" id="controls"> 
-		 	 <h2> {{ title }} </h2> 
-			 <div><select> 
-				 {% if columns%}
-		         {% for col in columns %}
-		             <option value="{{col}}">{{col}}</option>
-		         {% endfor %}
-				 {% endif %}
-		     </select></div>
-			 Multicolum. What is going on?
-		 </div>
-	 
-	</div>
-</body>
-
-<script>$(".draggable").draggable(); </script> 
-{% endblock %}
 
 {% block script %}
 <script>
 
 // Basic Map Settings and Data
 /////////////////////////////////////////////
-	var width = Math.max({{ width }}, window.innerWidth);
-	var height = Math.max({{ height }}, window.innerHeight);
+	var width = {{ width }};
+	var height ={{ height }};
+	// var width = Math.max({{ width }}, window.innerWidth);
+// 	var height = Math.max({{ height }}, window.innerHeight);
 	var samples = {{geojson  |string|safe}};
 	var geojson = {{map_data  |string|safe}};
     
@@ -72,7 +51,7 @@ var points = svg.selectAll(".symbol")
  map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
  points.data(samples.features)
    .attr("class", "symbol")
-   .attr("d", path.pointRadius( function(d){return radius( 100 ) } ));
+   .attr("d", path.pointRadius( function(d){return radius( 1000 ) } ));
 
  // Update By-Column Code
  ///////////////////////////////////////////////////////////////////////////////////////
@@ -85,6 +64,42 @@ function updateSize(value) {
      .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
  };
  
+var zoom = d3.behavior.zoom()
+    .scale(projection.scale() * 2 * Math.PI)
+    .scaleExtent([1 << 11, 1 << 14])
+    .translate([width - center[0], height - center[1]])
+    .on("zoom", zoomed);
+ 
+	//Zoom Function
+	function zoomed() {
+		//update project and then the map the points and the lines
+		projection
+		  .scale(zoom.scale() / 2 / Math.PI)
+		  .translate(zoom.translate());
+
+	 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
+		 
+		 points.attr("d", path);
+		 
+		 //below are lines as line-features which update on zoom
+		 lines.attr("d",path);
+		  
+		// lines
+		//     .selectAll(".lines")
+		// 	.data( convert_to_points(line_data)  )
+		// 	.enter()
+		// 	.append("svg:line")
+		// 	    .attr("x1",function(d){return d[0][0]})
+		// 	    .attr("y1",function(d){return d[0][1]})
+		// 	    .attr("x2",function(d){return d[1][0]})
+		// 	    .attr("y2",function(d){return d[1][1]})
+		// 	    .attr("class", "lines");
+
+	}
+	
+    svg.call(zoom)
+ 
 // function updateColor(value) {
 // 	  // get array of value types
 // 	  var array = points.data(samples.features).map(d.properties[value]);
@@ -94,9 +109,9 @@ function updateSize(value) {
 // 	  }
   //
   
-  points.data(samples.features)
-     .attr("class", "symbol")
-     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
+  // points.data(samples.features)
+ //     .attr("class", "symbol")
+ //     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
  
  // function generate_colorscale(values){
  // 		 //helper function
