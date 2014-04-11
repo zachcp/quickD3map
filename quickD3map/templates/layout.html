@@ -4,10 +4,7 @@
 
 <head>
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <!-- // <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
-   <!-- // <script src="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/js/selectize.min.js"></script> -->
    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
    <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -18,42 +15,37 @@
 //    <script> {{ topojson          |string|safe }} </script> -->
   
    <script> {{ colorbrewer_js    |string|safe }} </script>
-   <!-- // <script> {{ selectize_js      |string|safe }} </script> -->
    <style>  {{ colorbrewer_css   |string|safe }} </style>
    <style>  {{ style             |string|safe }} </style>
-
-   <!-- // <script> {{ selectize_css     |string|safe }} </script> -->
-   
 </head>
 
  <body>
 	<div class="container">
-	 <!--Layouts Have Title/ Controls/Map  -->
+	 <!--Layouts Have Title/ Controls/ Map  -->
  	
-     {% if title %}		 	 
-         <h2> {{ title }} </h2> 
-     {% else %}
-	 	<h2> quickD3map</h2> 
+	{% if title %}		 	 
+		 <h2> {{ title }} </h2> 
+	{% else %}
+		<h2> quickD3map</h2> 
 		<h4> default behavior is pan and zoom</h4> 
-	 {% endif %}
-	 {% if columns%}
-	 	 <p>Scale by colum values: 
+	{% endif %}
+	
+	{% if columns%}
+		 <p>Scale by colum values: 
 		 <select id="select" >
 			 {% for col in columns %}
-	            <option value="{{col}}"> {{col}} </option>
-	         {% endfor %}
-	     </select>
+		        <option value="{{col}}"> {{col}} </option>
+		     {% endfor %}
+		 </select>
+		 if the circles are too small or big try changing the scale_exp value.
 		 </p>
-	 {% endif %}
-	
+	{% endif %}
 
-	  {% block body%}
-	  	 <div id="map"></div>
-	  {% endblock %}
-	
+	{% block body%}
+		 <div id="map"></div>
+	{% endblock %}
 
 	<footer> built with D3JS, pandas and quickD3maps </footer>
-	
 	</div>
 </body>
 
