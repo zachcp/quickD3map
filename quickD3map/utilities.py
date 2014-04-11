@@ -24,10 +24,7 @@ map_templates = {'us_states':
                          'template':  'world_map.html'},                              
                  'world_map_zoom': 
                         {'json': 'world-50m.json',
-                         'template': 'world_map_Line_zoom.html'},
-                 'world_map_multiple': 
-                        {'json': 'world-110m.json',
-                         'template': 'world_map_multiplesamples.html'}}
+                         'template': 'world_map_Line.html'}}
         
 projections = [ 'airy', 'aitoff', 'albers', 'albersUsa', 'armadillo', 'august', 'azimuthalEqualArea',
  'azimuthalEquidistant', 'baker', 'berghaus', 'boggs', 'bonne', 'bromley', 'chamberlin', 'collignon',

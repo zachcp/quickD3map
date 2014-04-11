@@ -1,87 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="utf-8">
+{% extends "layout.html" %}
 
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-   <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-   <script src="http://d3js.org/topojson.v1.min.js"></script>
-	<style> {{ style }}    </style>
-</head>
-
-<body>
-	<div class="outer">
-		 <div id="map">
-		 </div>
-	 
-		 <div class="draggable" id="controls"> 
-		 	 <h2> {{ title }} </h2> 
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 Temporary Text . Something could go here..
-			 
-		 </div>
-	</div>
-</body>
-<script>$(".draggable").draggable(); </script> 
-
+{% block script %}
 <script>
+
+	// Basic Map Settings and Data
+	/////////////////////////////////////////////
+	var width = {{ width }};
+	var height ={{ height }};
     
-    // Basic Map Settings and Data
-    /////////////////////////////////////////////
-	  var width = Math.max({{ width }}, window.innerWidth);
-	  var height = Math.max({{ height }}, window.innerHeight);
-        var scale   = {{scale}};
-        var samples = {{geojson|string|safe}};
-        var geojson = {{map_data|string|safe}};
+	// var width = Math.max({{ width }}, window.innerWidth);
+// 	var height = Math.max({{ height }}, window.innerHeight);
+    var samples = {{geojson|string|safe}};
+    var geojson = {{map_data|string|safe}};
 
-        {%- if lines_geojson -%}
-            var line_data = {{lines_geojson|string|safe}};
-        {%- endif -%}
+    {%- if lines_geojson -%}
+        var line_data = {{lines_geojson|string|safe}};
+    {%- endif -%}
 
-        var radius = d3.scale.sqrt()
-            .domain([0, 1e6])
-            .range([0, 10]);
+    var radius = d3.scale.sqrt()
+        .domain([0, 1e6])
+        .range([0, 10]);
 
-       // Projection-Related Settings
-       /////////////////////////////////////////////
-        var projection = d3.geo.{{projection|string|safe}}()
-            .scale((1 << 10) / 2 / Math.PI)
-            .translate([width / 2, height / 2]);
 
-      	  {%- if center is not none -%}
-      	  	 var center = projection( {{ center }});
-      	  {% else %}
-      	       var center = projection([ 0, 20]);
-      	  {%- endif -%}
+   // Projection-Related Settings
+   /////////////////////////////////////////////
+    var projection = d3.geo.{{projection|string|safe}}()
+        .scale((1 << 10) / 2 / Math.PI)
+        .translate([width / 2, height / 2]);
 
-        var path = d3.geo.path()
-            .projection(projection);
+  	  {%- if center is not none -%}
+  	  	 var center = projection( {{ center }});
+  	  {% else %}
+  	       var center = projection([ 0, 20]);
+  	  {%- endif -%}
 
-        var svg = d3.select("#map")
-                      .append("svg")
-                      .attr("width", width)
-                      .attr("height", height);
+    var path = d3.geo.path()
+        .projection(projection);
 
-     
-	// Convert lines to Point Data
+	var zoom = d3.behavior.zoom()
+	    .scale(projection.scale() * 2 * Math.PI)
+	    .scaleExtent([1 << 11, 1 << 14])
+	    .translate([width - center[0], height - center[1]])
+	    .on("zoom", zoomed);
+
+   
+    // D3 Selections
+    var svg = d3.select("#map")
+                  .append("svg")
+                  .attr("width", width)
+                  .attr("height", height);
+	
+	var map    = svg.append("path").attr("class", "country");
+	//var lines  = svg.append("g").attr("class","lines");
+
+	//below are lines as line-features which update on zoom
+	{% if straight_lines %}
+		var lines = svg.append("g").attr("class","lines");
+	{% else %}
+		var lines  = svg.append("g").selectAll(".line")
+									.data(line_data.features)
+									.enter()
+									.append("path")
+									.attr("class","line")
+									.attr("d",path);
+	{% endif %}
+	var points = svg.selectAll(".symbol")
+  	                  .data(samples.features)
+  			          .enter().append("path")
+  	      		      .attr("class", "symbol");
+
+
+	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
+	   
+  	 points.data(samples.features)
+  	   .attr("class", "symbol")
+  	   .attr("d", path.pointRadius( function(d){return radius( 100000 ) } ));
+ 
+	// Convert linedata (projected) to Point Data
+	{% if straight_lines %}
 	function convert_to_points(line_data) {
 		ld_proj = line_data.features.map(function(d){return d.geometry.coordinates});
 		ld_svgarrays = ld_proj.map( function(l) { return l.map( function(d){return projection(d) }) });
 		return ld_svgarrays;}
-	
-		 
-    // Selection Shorthands
-    var map  = svg.append("path").attr("class", "country");
-	var lines = svg.append("g").attr("class","lines");
-	
 	
 	lines
 	    .selectAll(".lines")
@@ -94,18 +95,39 @@
 		    .attr("y2",function(d){return d[1][1]})
 		    .attr("class", "lines");
 	
-	var points  = svg.selectAll(".symbol")
-	                  .data(samples.features)
-			          .enter().append("path")
-	      		      .attr("class", "symbol");
+	{% endif %}
 
 
-     map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	//Zoom Function
+	function zoomed() {
+		//update project and then the map the points and the lines
+		projection
+		  .scale(zoom.scale() / 2 / Math.PI)
+		  .translate(zoom.translate());
 
-	 points.data(samples.features)
-	   .attr("class", "symbol")
-	   .attr("d", path.pointRadius( function(d){return radius( 100000 ) } ));
-     
-</script>
+	 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
+		 
+		 points.attr("d", path);
+		 
+		{% if straight_lines %}
+			lines
+			    .selectAll(".lines")
+				.data( convert_to_points(line_data)  )
+				.enter()
+				.append("svg:line")
+				    .attr("x1",function(d){return d[0][0]})
+				    .attr("y1",function(d){return d[0][1]})
+				    .attr("x2",function(d){return d[1][0]})
+				    .attr("y2",function(d){return d[1][1]})
+				    .attr("class", "lines");
+		{% else %}
+			 //below are lines as line-features which update on zoom
+			 lines.attr("d",path);
+		{% endif %}
 
-</html>
+	}
+	
+    svg.call(zoom)
+    </script>
+{% endblock %}
