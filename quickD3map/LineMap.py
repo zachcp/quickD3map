@@ -14,7 +14,8 @@ from .BaseMap import BaseMap
 class LineMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, samplecolumn, distance_df,  scale=100000, 
-                 map="world_map_zoom", center=None, projection="mercator", title=None):
+                 map="world_map_zoom", center=None, projection="mercator", 
+                 title=None, straight_lines=False):
                     
         '''
         LineMap is a class that takes a dataframe and returns an html webpage that
@@ -37,7 +38,8 @@ class LineMap(BaseMap):
             scale factor for the size plotted points
         map: str, default "world_map".
            template to be used for mapping.
-
+        straight_lines: boolean, defalut False
+            determines whetehr lines will be drawn as arcs of striaght lines
         For Future Implementation:
         center: list of legth two: lat/long (default=[-100, 0])
            provides a new center for the map
@@ -77,6 +79,8 @@ class LineMap(BaseMap):
         self.samplecolumn = check_samplecolumn(self.df, samplecolumn)
         self.title= title
         self.map = map
+        self.straight_lines = straight_lines
+        self.template_vars['straight_lines'] =  self.straight_lines
 
     def convert_to_geojson(self):
         ''' Dataconversion happens here. Process Dataframes and get 

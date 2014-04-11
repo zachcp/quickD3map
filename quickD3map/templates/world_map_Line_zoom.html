@@ -74,22 +74,25 @@
   	   .attr("d", path.pointRadius( function(d){return radius( 100000 ) } ));
  
 	// Convert linedata (projected) to Point Data
-	// function convert_to_points(line_data) {
-	// 	ld_proj = line_data.features.map(function(d){return d.geometry.coordinates});
-	// 	ld_svgarrays = ld_proj.map( function(l) { return l.map( function(d){return projection(d) }) });
-	// 	return ld_svgarrays;}
-	// 
+	{% if straight_lines %}
+	function convert_to_points(line_data) {
+		ld_proj = line_data.features.map(function(d){return d.geometry.coordinates});
+		ld_svgarrays = ld_proj.map( function(l) { return l.map( function(d){return projection(d) }) });
+		return ld_svgarrays;}
 	
-	// lines
-	//     .selectAll(".lines")
-	// 	.data( convert_to_points(line_data)  )
-	// 	.enter()
-	// 	.append("svg:line")
-	// 	    .attr("x1",function(d){return d[0][0]})
-	// 	    .attr("y1",function(d){return d[0][1]})
-	// 	    .attr("x2",function(d){return d[1][0]})
-	// 	    .attr("y2",function(d){return d[1][1]})
-	// 	    .attr("class", "lines");
+	lines
+	    .selectAll(".lines")
+		.data( convert_to_points(line_data)  )
+		.enter()
+		.append("svg:line")
+		    .attr("x1",function(d){return d[0][0]})
+		    .attr("y1",function(d){return d[0][1]})
+		    .attr("x2",function(d){return d[1][0]})
+		    .attr("y2",function(d){return d[1][1]})
+		    .attr("class", "lines");
+	
+	{% endif %}
+
 
 	//Zoom Function
 	function zoomed() {
@@ -103,19 +106,21 @@
 		 
 		 points.attr("d", path);
 		 
-		 //below are lines as line-features which update on zoom
-		 lines.attr("d",path);
-		  
-		// lines
-		//     .selectAll(".lines")
-		// 	.data( convert_to_points(line_data)  )
-		// 	.enter()
-		// 	.append("svg:line")
-		// 	    .attr("x1",function(d){return d[0][0]})
-		// 	    .attr("y1",function(d){return d[0][1]})
-		// 	    .attr("x2",function(d){return d[1][0]})
-		// 	    .attr("y2",function(d){return d[1][1]})
-		// 	    .attr("class", "lines");
+		{% if straight_lines %}
+			lines
+			    .selectAll(".lines")
+				.data( convert_to_points(line_data)  )
+				.enter()
+				.append("svg:line")
+				    .attr("x1",function(d){return d[0][0]})
+				    .attr("y1",function(d){return d[0][1]})
+				    .attr("x2",function(d){return d[1][0]})
+				    .attr("y2",function(d){return d[1][1]})
+			// 	    .attr("class", "lines");
+		{% else %}
+			 //below are lines as line-features which update on zoom
+			 lines.attr("d",path);
+		{% endif %}
 
 	}
 	

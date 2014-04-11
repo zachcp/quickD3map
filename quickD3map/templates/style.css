@@ -79,3 +79,7 @@
             height: 520px; 
             margin-left: 80px;
         }
+        
+        footer {
+            float:right;    
+        }
