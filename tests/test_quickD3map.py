@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 from itertools import combinations
 import geojson
-from quickD3map import MultiColumnMap, PointMap, LineMap
+from quickD3map import PointMap, LineMap
 
 from quickD3map.utilities import latitude, longitude, projections
 from quickD3map.check_data import check_column, check_center, check_for_NA
@@ -86,8 +86,8 @@ def testPointMap():
     
 def testWeather_data():
     df = pd.read_csv('../examples/data/weatherstations.csv')
-    mc = MultiColumnMap(df, columns = ['LAT','LON','ELEV'] ,scale_exp = 3)
-    nt.assert_is_instance(mc, MultiColumnMap)
+    mc = PointMap(df, columns = ['LAT','LON','ELEV'] ,scale_exp = 3)
+    nt.assert_is_instance(mc, PointMap)
     
 def testPopulation_data():
     df = pd.read_csv('../examples/data/city_population.csv')    
