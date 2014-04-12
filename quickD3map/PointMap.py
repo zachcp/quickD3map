@@ -13,7 +13,7 @@ from .utilities import map_templates
 class PointMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, columns = None, title="quickD3Map", legend=False, scale_exp=4,  
-                 map="world_map", projection="mercator"):
+                 map="world_map", projection="mercator", **kwargs):
                     
         '''
         The PointMap class takes a dataframe with Lat/lon columns and maps the point onto a map.
@@ -64,7 +64,7 @@ class PointMap(BaseMap):
         >>>PointMap(qdf).display_map()
 
         '''
-        super(PointMap, self).__init__(df=df, projection=projection)
+        super(PointMap, self).__init__(df=df, projection=projection, **kwargs)
         self.columns = columns
         self.scale_exp = scale_exp
         self.legend = legend
@@ -72,16 +72,13 @@ class PointMap(BaseMap):
         if map in map_templates.keys():
             self.map = map
         else:
-            raise ValueError("Map type must be one of the ofllowing:{}".format(map_templates.keys()))
+            raise ValueError("Map type must be one of the following:{}".format(map_templates.keys()))
         
         self.template_vars['legend'] = self.legend
         self.template_vars['columns'] = self.columns
         self.template_vars['title'] = title
         self.template_vars['scale_exp'] = scale_exp
         
-        #TODO
-        #check that the column values do not have have NAs in them.
-
     
     def convert_to_geojson(self):
         ''' Dataconversion happens here. Process Dataframes and get 

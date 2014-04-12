@@ -1,27 +1,11 @@
-{% extends "layout.html" %}
+{# the ipython keyword determines which parent template will be used#}
+{% if ipython %}
+	{% extends 'latou_ipython.html' %}
+{% else -%}
+	{% extends "layout.html" %}
+{%endif %}
 
 {% block script %}
-<script>
-
-	// Basic Map Settings and Data
-	/////////////////////////////////////////////
-	var width = {{ width }};
-	var height ={{ height }};
-    
-	// var width = Math.max({{ width }}, window.innerWidth);
-// 	var height = Math.max({{ height }}, window.innerHeight);
-    var samples = {{geojson|string|safe}};
-    var geojson = {{map_data|string|safe}};
-
-    {%- if lines_geojson -%}
-        var line_data = {{lines_geojson|string|safe}};
-    {%- endif -%}
-
-    var radius = d3.scale.sqrt()
-        .domain([0, 1e6])
-        .range([0, 10]);
-
-
    // Projection-Related Settings
    /////////////////////////////////////////////
     var projection = d3.geo.{{projection|string|safe}}()
@@ -129,5 +113,4 @@
 	}
 	
     svg.call(zoom)
-    </script>
 {% endblock %}

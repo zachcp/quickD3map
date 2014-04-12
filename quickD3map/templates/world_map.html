@@ -1,26 +1,12 @@
-{% extends "layout.html" %}
+{# the ipython keyword determines which parent template will be used#}
+{% if ipython %}
+	{% extends 'layout_ipython.html' %}
+{% else %}
+	{% extends "layout.html" %}
+{%endif %}
 
 
 {% block script %}
-<script>
-
-// Basic Map Settings and Data
-/////////////////////////////////////////////
-	var width = {{ width }};
-	var height ={{ height }};
-	// var width = Math.max({{ width }}, window.innerWidth);
-// 	var height = Math.max({{ height }}, window.innerHeight);
-	var samples = {{geojson  |string|safe}};
-	var geojson = {{map_data  |string|safe}};
-    
-	 {% if lines_geojson %}
-          var lines = {{lines_geojson |string|safe}};
-     {% endif %}
-	
-    var radius = d3.scale.sqrt()
-        .domain([0, 1e{{scale_exp|string|safe}}])
-        .range([0, 20]);
-
    // Projection-Related Settings
    /////////////////////////////////////////////
     var projection = d3.geo.{{ projection  |string|safe}}()
@@ -53,16 +39,6 @@ var points = svg.selectAll(".symbol")
    .attr("class", "symbol")
    .attr("d", path.pointRadius( function(d){return radius( 1000 ) } ));
 
- // Update By-Column Code
- ///////////////////////////////////////////////////////////////////////////////////////
- d3.selectAll("select").on("change", function () {updateSize(this.value) });
-
-//this is where the update size code goes
-function updateSize(value) {
- points.data(samples.features)
-     .attr("class", "symbol")
-     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
- };
  
 var zoom = d3.behavior.zoom()
     .scale(projection.scale() * 2 * Math.PI)
@@ -124,5 +100,4 @@ var zoom = d3.behavior.zoom()
  // 			 
  // 			}}
 		
-</script>
 {% endblock %}

@@ -17,7 +17,8 @@ from .check_data import  check_column, check_center, check_projection
 class BaseMap(object): 
     ''' Check DataFrame Accuracy And Setup Maps '''
     def __init__(self, df, width=960, height=500, map="world_map", 
-                 center=None, projection="mercator", title= None):       
+                 center=None, projection="mercator", title= None,
+                 scale_exp=2, ipython=False):       
         '''
         The BaseMap class is here to handle all of the generic aspects of
         setting up a Latitude and Longitude based map. These aspects are:
@@ -36,6 +37,8 @@ class BaseMap(object):
             Height of the map.
         map: str, default "world_map".
            template to be used for mapping.
+        scale_exp: int, default 2
+            used to define the size scaling exponent for circles. 3 = 10^3, 6=10^6
         projection: str, default="mercator"
            a projection that is one of the projecions recognized by d3.js
         center: tuple or list of two. default=None
@@ -50,12 +53,15 @@ class BaseMap(object):
         self.map = map
         self.center= check_center(center)
         self.projection = check_projection(projection)
-        self.title=title
+        self.title=  title
+        self.scale_exp = scale_exp
+        self.ipython = ipython
     
         #Template Information Here
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
         self.template_vars = {'width': width, 'height': height, 'center': self.center,
-                              'projection':self.projection, "title":self.title}
+                              'projection':self.projection, "title":self.title, "ipython":self.ipython,
+                               'scale_exp':self.scale_exp}
                               
         #add all template combinations. Specify Template Subsets in map classes
         self.map_templates = map_templates
@@ -99,9 +105,17 @@ class BaseMap(object):
             to display map. Creates a Flask App.
             Down the line maybe an IPython Widget as well?
         '''
-        app = Flask(__name__)
-        self.build_map()
-        @app.route('/')
-        def index():
-            return render_template_string(self.HTML)
-        app.run()
+        
+        try:
+            from IPython.core.getipython import get_ipython
+            return HTML( render_template_string(self.HTML, ipython= self.ipython))
+        except:
+            print("IPython not found: plotting in a webserver")
+            app = Flask(__name__)
+            self.build_map()
+            @app.route('/')
+            def index():
+                return render_template_string(self.HTML)
+            app.run()
+
+

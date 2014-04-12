@@ -15,8 +15,8 @@ class LineMap(BaseMap):
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, samplecolumn, distance_df,  scale=100000, 
                  map="world_map_zoom", center=None, projection="mercator", 
-                 title=None, straight_lines=False):
-                    
+                 title=None, straight_lines=False, **kwargs):
+     
         '''
         LineMap is a class that takes a dataframe and returns an html webpage that
         can optionally be viewed as a Flask Webapp. Pointmap requires a pandas dataframe
@@ -65,7 +65,7 @@ class LineMap(BaseMap):
 
         '''
         # Basic Data Check Using the BaseClass        
-        super(LineMap, self).__init__(df=df,center=center, projection=projection)
+        super(LineMap, self).__init__(df=df,center=center, projection=projection, **kwargs)
         
         ##  Support Functions to Verify Data
         ################################################################################

@@ -1,21 +1,18 @@
-{% extends "layout.html" %}
+{# the ipython keyword determines which parent template will be used#}
+{% if ipython %}
+	{% extends 'latou_ipython.html' %}
+{% else -%}
+	{% extends "layout.html" %}
+{%endif %}
 
 
 {% block script %}
-<script>
-    // Basic Map Setup Goes Here
-	var width = {{ width }};
-	var height ={{ height }};
-	var samples = {{geojson|string|safe}};
-    var geojson = {{map_data|string|safe}};
-    var radius = d3.scale.sqrt()
-        .domain([0, 1e{{scale_exp}}])
-        .range([0, 10]);
     var projection = d3.geo.albers()
 		{% if center %}
 			 .center( {{center}} )
 		{% endif %}
       .scale(800);
+ 
     var path = d3.geo.path()
       .projection(projection);
 	var center = projection([ 0, 20]);  
@@ -41,8 +38,6 @@
 	var points = svg.selectAll(".symbol")
 	          .data(samples.features);
 	
-    // Functions Go Here
-	d3.selectAll("select").on("change", function () {updateSize(this.value) });
 	 
     //this is where the update size code goes
     function updateSize(value) {
@@ -90,5 +85,5 @@
 	//     .on("zoom", zoomed);
 	// 
 	//       svg.call(zoom)	  
-</script>
+
 {% endblock %}

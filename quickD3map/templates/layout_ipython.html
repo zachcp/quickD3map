@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="utf-8">
+<style>
+{{ style             |string|safe }}
+</style>
 
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-   <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-   <script src="http://d3js.org/topojson.v1.min.js"></script>
-    
-   
-<!-- // <script> {{ d3js              |string|safe }} </script>
-//    <script> {{ d3_projection     |string|safe }} </script>
-//    <script> {{ topojson          |string|safe }} </script> -->
-  
-   <script> {{ colorbrewer_js    |string|safe }} </script>
-   <style>  {{ colorbrewer_css   |string|safe }} </style>
-   <style>  {{ style             |string|safe }} </style>
-</head>
 
- <body>
-	<div class="container">
 	 <!--Layouts Have a Number of Options Try to Put All Universal Options Here  -->
 	
 	<!--Title Information  -->
@@ -49,25 +31,28 @@
 	{% endblock %}
 
 	<footer> built with D3JS, pandas and quickD3maps </footer>
-	</div>
-</body>
 
-	<script>
-	// Basic Map Settings and Data
-	/////////////////////////////////////////////
+<script type="text/javascript">
+
+if(typeof(window.d3) === "undefined"){
+  require.config({paths: {d3:    "http://d3js.org/d3.v3.min.js",
+                         topo:   "http://d3js.org/topojson.v1.min.js",
+                         d3proj:"http://d3js.org/d3.geo.projection.v0.min.js"});
+                         
+  require(["d3", "topo", "d3proj"], function(d3, topojson, d3.geo.projection){
+    window.d3 = d3;
 	var width = {{ width }};
-	var height = {{ height }};
+	var height ={{ height }};
 	var samples = {{geojson|string|safe}};  //samples are points
     var geojson = {{map_data|string|safe}}; //geojson is the map
     var radius = d3.scale.sqrt()           
         .domain([0, 1e{{scale_exp}}])
-        .range([0, 10]);  //radius is the scaling function for point size
+        .range([0, 10]);   //radius is the scaling funtion for point size
 
     {%- if lines_geojson -%}
         var line_data = {{lines_geojson|string|safe}}; //line_data is used for lines
     {%- endif -%}
-	
-	
+
 	{% block script %}
 	{% endblock %}
 	
@@ -79,8 +64,9 @@
       }
     // Functions Go Here
   	d3.selectAll("select").on("change", function () {updateSize(this.value) });
-	
-	
-	</script>
+}
+else{
+    !function (){ console.log("ERROR! D3JS no loading")};
+}
+</script>
 
-</html>
