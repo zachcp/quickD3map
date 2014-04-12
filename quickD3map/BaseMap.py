@@ -4,11 +4,13 @@
 from __future__ import (absolute_import, division, print_function )
 
 import codecs
+import warnings
 import pandas as pd
 
 
 from jinja2 import Environment, PackageLoader
 from flask  import Flask, render_template_string
+from IPython.display import HTML
 
 from .utilities import  latitude,longitude, map_templates
 from .check_data import  check_column, check_center, check_projection
@@ -106,9 +108,12 @@ class BaseMap(object):
             Down the line maybe an IPython Widget as well?
         '''
         
+        self.build_map()
+        return HTML( self.HTML )
+        
         try:
-            from IPython.core.getipython import get_ipython
-            return HTML( render_template_string(self.HTML, ipython= self.ipython))
+            warnings.warn("display map sumthi")
+            return HTML( render_template_string(self.HTML ))
         except:
             print("IPython not found: plotting in a webserver")
             app = Flask(__name__)

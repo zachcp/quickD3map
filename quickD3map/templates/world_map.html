@@ -27,77 +27,77 @@
                   .attr("width", width)
                   .attr("height", height);
 
-// Selection Shorthands
-var map       = svg.append("path").attr("class", "country");
-var points = svg.selectAll(".symbol")
-          .data(samples.features)
-		  .enter().append("path")
-      		.attr("class", "symbol");
+	// Selection Shorthands
+	var map       = svg.append("path").attr("class", "country");
+	var points = svg.selectAll(".symbol")
+	          .data(samples.features)
+			  .enter().append("path")
+	      		.attr("class", "symbol");
 
- map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
- points.data(samples.features)
-   .attr("class", "symbol")
-   .attr("d", path.pointRadius( function(d){return radius( 1000 ) } ));
+	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+	 points.data(samples.features)
+	   .attr("class", "symbol")
+	   .attr("d", path.pointRadius( function(d){return radius( 1000 ) } ));
 
  
-var zoom = d3.behavior.zoom()
-    .scale(projection.scale() * 2 * Math.PI)
-    .scaleExtent([1 << 11, 1 << 14])
-    .translate([width - center[0], height - center[1]])
-    .on("zoom", zoomed);
+	var zoom = d3.behavior.zoom()
+	    .scale(projection.scale() * 2 * Math.PI)
+	    .scaleExtent([1 << 11, 1 << 14])
+	    .translate([width - center[0], height - center[1]])
+	    .on("zoom", zoomed);
  
-	//Zoom Function
-	function zoomed() {
-		//update project and then the map the points and the lines
-		projection
-		  .scale(zoom.scale() / 2 / Math.PI)
-		  .translate(zoom.translate());
+		//Zoom Function
+		function zoomed() {
+			//update project and then the map the points and the lines
+			projection
+			  .scale(zoom.scale() / 2 / Math.PI)
+			  .translate(zoom.translate());
 
-	 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
-	 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
+		 	 map.datum( topojson.feature(geojson, geojson.objects.countries)).attr("d", path);
+		 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
 		 
-		 points.attr("d", path);
+			 points.attr("d", path);
 		 
-		 //below are lines as line-features which update on zoom
-		 lines.attr("d",path);
+			 //below are lines as line-features which update on zoom
+			 lines.attr("d",path);
 		  
-		// lines
-		//     .selectAll(".lines")
-		// 	.data( convert_to_points(line_data)  )
-		// 	.enter()
-		// 	.append("svg:line")
-		// 	    .attr("x1",function(d){return d[0][0]})
-		// 	    .attr("y1",function(d){return d[0][1]})
-		// 	    .attr("x2",function(d){return d[1][0]})
-		// 	    .attr("y2",function(d){return d[1][1]})
-		// 	    .attr("class", "lines");
+			// lines
+			//     .selectAll(".lines")
+			// 	.data( convert_to_points(line_data)  )
+			// 	.enter()
+			// 	.append("svg:line")
+			// 	    .attr("x1",function(d){return d[0][0]})
+			// 	    .attr("y1",function(d){return d[0][1]})
+			// 	    .attr("x2",function(d){return d[1][0]})
+			// 	    .attr("y2",function(d){return d[1][1]})
+			// 	    .attr("class", "lines");
 
-	}
+		};
 	
-    svg.call(zoom)
+	 svg.call(zoom)
  
-// function updateColor(value) {
-// 	  // get array of value types
-// 	  var array = points.data(samples.features).map(d.properties[value]);
-// 	  // determine color scale by chekcing if categorical, integer, or number.
-// 	 
-// 	    // ...
-// 	  }
-  //
+	// function updateColor(value) {
+	// 	  // get array of value types
+	// 	  var array = points.data(samples.features).map(d.properties[value]);
+	// 	  // determine color scale by chekcing if categorical, integer, or number.
+	// 	 
+	// 	    // ...
+	// 	  }
+	 //
   
-  // points.data(samples.features)
- //     .attr("class", "symbol")
- //     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
+	  // points.data(samples.features)
+	 //     .attr("class", "symbol")
+	 //     .attr("d", path.pointRadius(function(d) { return radius( d.properties[value] ) }));
  
- // function generate_colorscale(values){
- // 		 //helper function
- // 		 function onlyUnique(value, index, self) { 
- // 		     return self.indexOf(value) === index;
- // 		 };
- // 		 
- // 	 if (typeof values[0] == 'string') {
- // 			 number_uniques = values.filter( onlyUnique ).length
- // 			 
- // 			}}
+	 // function generate_colorscale(values){
+	 // 		 //helper function
+	 // 		 function onlyUnique(value, index, self) { 
+	 // 		     return self.indexOf(value) === index;
+	 // 		 };
+	 // 		 
+	 // 	 if (typeof values[0] == 'string') {
+	 // 			 number_uniques = values.filter( onlyUnique ).length
+	 // 			 
+	 // 			}}
 		
 {% endblock %}

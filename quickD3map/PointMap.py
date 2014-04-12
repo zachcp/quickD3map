@@ -13,7 +13,7 @@ from .utilities import map_templates
 class PointMap(BaseMap): 
     ''' Create a PointMap with quickD3map '''
     def __init__(self, df, columns = None, title="quickD3Map", legend=False, scale_exp=4,  
-                 map="world_map", projection="mercator", **kwargs):
+                  map="world_map", projection="mercator", **kwargs):
                     
         '''
         The PointMap class takes a dataframe with Lat/lon columns and maps the point onto a map.
