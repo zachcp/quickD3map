@@ -1,5 +1,32 @@
 <style>
-{{ style             |string|safe }}
+.country {
+  fill: #ccc;
+  stroke: #fff;
+}
+
+.states {
+  fill: #ccc;
+  stroke: #fff;
+}
+.symbol {
+  fill: steelblue;
+  fill-opacity: .8;
+  stroke: #fff;
+}
+.lines {
+  fill: none;
+  stroke: #333;
+  stroke-opacity: 1;
+  stroke-width: 1.5px;
+}
+.line {
+  fill: none;
+  stroke: #333;
+  stroke-opacity: 1;
+  stroke-width: 1.5px;
+}
+
+
 </style>
 
 
@@ -33,40 +60,41 @@
 	<footer> built with D3JS, pandas and quickD3maps </footer>
 
 <script type="text/javascript">
-
-if(typeof(window.d3) === "undefined"){
-  require.config({paths: {d3:    "http://d3js.org/d3.v3.min.js",
-                         topo:   "http://d3js.org/topojson.v1.min.js",
-                         d3proj:"http://d3js.org/d3.geo.projection.v0.min.js"});
+	 //RequireJS loadin here
+	if(typeof(window.d3) === "undefined"){
+	  require.config({paths: {d3:    "https://d3js.org/d3.v3.min.js",
+	                         topo:   "https://d3js.org/topojson.v1.min.js",
+	                         d3proj: "https://d3js.org/d3.geo.projection.v0.min.js"}});
                          
-  require(["d3", "topo", "d3proj"], function(d3, topojson, d3.geo.projection){
-    window.d3 = d3;
-	var width = {{ width }};
-	var height ={{ height }};
-	var samples = {{geojson|string|safe}};  //samples are points
-    var geojson = {{map_data|string|safe}}; //geojson is the map
-    var radius = d3.scale.sqrt()           
-        .domain([0, 1e{{scale_exp}}])
-        .range([0, 10]);   //radius is the scaling funtion for point size
+	  require(["d3", "topo", "d3proj"], function(d3, topo, d3proj){
+	    window.d3 = d3;
+		var width = {{ width }};
+		var height ={{ height }};
+		var samples = {{geojson|string|safe}};  //samples are points
+		var geojson = {{map_data|string|safe}}; //geojson is the map
+		var radius = d3.scale.sqrt()           
+		    .domain([0, 1e{{scale_exp}}])
+		    .range([0, 10]);   //radius is the scaling funtion for point size
 
-    {%- if lines_geojson -%}
-        var line_data = {{lines_geojson|string|safe}}; //line_data is used for lines
-    {%- endif -%}
+		{%- if lines_geojson -%}
+		    var line_data = {{lines_geojson|string|safe}}; //line_data is used for lines
+		{%- endif -%}
 
-	{% block script %}
-	{% endblock %}
-	
-    //scaling function for points
-    function updateSize(value) {
-        var symbol = svg.selectAll(".symbol")
-              .data(samples.features);
-        symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]); }))
-      }
-    // Functions Go Here
-  	d3.selectAll("select").on("change", function () {updateSize(this.value) });
-}
-else{
-    !function (){ console.log("ERROR! D3JS no loading")};
-}
+
+
+		{% block script %}
+		{% endblock %}
+		
+	    //scaling function for points
+	    function updateSize(value) {
+	        var symbol = svg.selectAll(".symbol")
+	              .data(samples.features);
+	        symbol.attr("d", path.pointRadius(function(d) { return radius(d.properties[value]); }))
+	      };
+	    d3.selectAll("select").on("change", function () {updateSize(this.value) });
+	    });
+	 }
+	 else{ !function (){ console.log("ERROR! D3JS no loading") }; 
+	 }
 </script>
 
