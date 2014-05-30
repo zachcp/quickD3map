@@ -20,7 +20,7 @@ class BaseMap(object):
     ''' Check DataFrame Accuracy And Setup Maps '''
     def __init__(self, df, width=960, height=500, map="world_map", 
                  center=None, projection="mercator", title= None,
-                 scale_exp=2, ipython=False):       
+                 scale_exp=2, graticule=False, ipython=False):       
         '''
         The BaseMap class is here to handle all of the generic aspects of
         setting up a Latitude and Longitude based map. These aspects are:
@@ -58,12 +58,13 @@ class BaseMap(object):
         self.title=  title
         self.scale_exp = scale_exp
         self.ipython = ipython
+        self.graticule = graticule
     
         #Template Information Here
         self.env = Environment(loader=PackageLoader('quickD3map', 'templates'))
         self.template_vars = {'width': width, 'height': height, 'center': self.center,
                               'projection':self.projection, "title":self.title, "ipython":self.ipython,
-                               'scale_exp':self.scale_exp}
+                               'scale_exp':self.scale_exp, 'graticule':self.graticule}
                               
         #add all template combinations. Specify Template Subsets in map classes
         self.map_templates = map_templates
@@ -99,7 +100,7 @@ class BaseMap(object):
             Path for HTML output for map
         '''
         self.build_map()
-        with codecs.open(path, 'w') as f:
+        with codecs.open(path, 'w','utf-8') as f:
             f.write(self.HTML)
 
     def display_map(self):
@@ -108,19 +109,47 @@ class BaseMap(object):
             Down the line maybe an IPython Widget as well?
         '''
         
+        # try:
+#             pass
+#             warnings.warn("display map sumthin")
+#             self.build_map()
+#             #return HTML( self.HTML )
+#         except:
+#             print("IPython not found: plotting in a webserver")
+#             app = Flask(__name__)
+#             self.build_map()
+#             @app.route('/')
+#             def index():
+#                 return render_template_string(self.HTML)
+#             app.run()
+
+        print("IPython not found: plotting in a webserver")
+        app = Flask(__name__)
         self.build_map()
-        return HTML( self.HTML )
+        @app.route('/')
+        def index():
+            return render_template_string(self.HTML)
+        app.run()
         
-        try:
-            warnings.warn("display map sumthi")
-            return HTML( render_template_string(self.HTML ))
-        except:
-            print("IPython not found: plotting in a webserver")
-            app = Flask(__name__)
-            self.build_map()
-            @app.route('/')
-            def index():
-                return render_template_string(self.HTML)
-            app.run()
-
-
+        
+        def _repr_html_(self):
+                """Build the HTML representation for IPython."""
+                vis_id = str(uuid4()).replace("-", "")
+                html = """<div id="vis%s"></div>
+                <script>
+                   ( function() {
+                     var _do_plot = function() {
+                       if (typeof vg === 'undefined') {
+                         window.addEventListener('vincent_libs_loaded', _do_plot)
+                         return;
+                       }
+                       vg.parse.spec(%s, function(chart) {
+                         chart({el: "#vis%s"}).update();
+                       });
+                     };
+                     _do_plot();
+                   })();
+                </script>
+                <style>.vega canvas {width: 100%%;}</style>
+                        """ % (vis_id, self.to_json(pretty_print=False), vis_id)
+            return html
