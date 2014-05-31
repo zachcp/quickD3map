@@ -109,19 +109,19 @@ class BaseMap(object):
             Down the line maybe an IPython Widget as well?
         '''
         
-        # try:
-#             pass
-#             warnings.warn("display map sumthin")
-#             self.build_map()
-#             #return HTML( self.HTML )
-#         except:
-#             print("IPython not found: plotting in a webserver")
-#             app = Flask(__name__)
-#             self.build_map()
-#             @app.route('/')
-#             def index():
-#                 return render_template_string(self.HTML)
-#             app.run()
+        try:
+            #pass
+            warnings.warn("display map sumthin")
+            self.build_map()
+            return HTML( self.HTML )
+        except:
+            print("IPython not found: plotting in a webserver")
+            app = Flask(__name__)
+            self.build_map()
+            @app.route('/')
+            def index():
+                return render_template_string(self.HTML)
+            app.run()
 
         print("IPython not found: plotting in a webserver")
         app = Flask(__name__)
@@ -132,24 +132,24 @@ class BaseMap(object):
         app.run()
         
         
-        def _repr_html_(self):
-                """Build the HTML representation for IPython."""
-                vis_id = str(uuid4()).replace("-", "")
-                html = """<div id="vis%s"></div>
-                <script>
-                   ( function() {
-                     var _do_plot = function() {
-                       if (typeof vg === 'undefined') {
-                         window.addEventListener('vincent_libs_loaded', _do_plot)
-                         return;
-                       }
-                       vg.parse.spec(%s, function(chart) {
-                         chart({el: "#vis%s"}).update();
-                       });
-                     };
-                     _do_plot();
-                   })();
-                </script>
-                <style>.vega canvas {width: 100%%;}</style>
-                        """ % (vis_id, self.to_json(pretty_print=False), vis_id)
+    def _repr_html_(self):
+            """Build the HTML representation for IPython."""
+            vis_id = str(uuid4()).replace("-", "")
+            html = """<div id="vis%s"></div>
+            <script>
+               ( function() {
+                 var _do_plot = function() {
+                   if (typeof vg === 'undefined') {
+                     window.addEventListener('vincent_libs_loaded', _do_plot)
+                     return;
+                   }
+                   vg.parse.spec(%s, function(chart) {
+                     chart({el: "#vis%s"}).update();
+                   });
+                 };
+                 _do_plot();
+               })();
+            </script>
+            <style>.vega canvas {width: 100%%;}</style>
+            """ % (vis_id, self.to_json(pretty_print=False), vis_id)
             return html

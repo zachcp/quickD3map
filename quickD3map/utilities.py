@@ -133,7 +133,7 @@ def initialize_notebook():
     # Thanks to @jakevdp:
     # https://github.com/jakevdp/mpld3/blob/master/mpld3/_display.py#L85
     load_lib = """
-                function vct_load_lib(url, callback){
+                function quickD3_load_lib(url, callback){
                       if(typeof d3 !== 'undefined' &&
                          url === 'http://d3js.org/d3.v3.min.js'){
                         callback()
@@ -155,10 +155,8 @@ def initialize_notebook():
     lib_urls = [
         "'http://d3js.org/d3.v3.min.js'",
         "'http://d3js.org/d3.geo.projection.v0.min.js'",
-        "'http://wrobstory.github.io/d3-cloud/d3.layout.cloud.js'",
-        "'http://wrobstory.github.io/vega/vega.v1.3.3.js'"
     ]
-    get_lib = """vct_load_lib(%s, function(){
+    get_lib = """quickD3_load_lib(%s, function(){
                   %s
                   });"""
     load_js = get_lib
@@ -170,7 +168,7 @@ def initialize_notebook():
            <script>
                %s
                function load_all_libs(){
-                  console.log('Loading Vincent libs...')
+                  console.log('Loading quickD3 libs...')
                   %s
                };
                if(typeof define === "function" && define.amd){
