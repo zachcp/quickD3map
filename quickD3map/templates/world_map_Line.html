@@ -1,6 +1,6 @@
 {# the ipython keyword determines which parent template will be used#}
 {% if ipython %}
-	{% extends 'latou_ipython.html' %}
+	{% extends 'layout_ipython.html' %}
 {% else -%}
 	{% extends "layout.html" %}
 {%endif %}
@@ -23,7 +23,7 @@
 
 	var zoom = d3.behavior.zoom()
 	    .scale(projection.scale() * 2 * Math.PI)
-	    .scaleExtent([1 << 11, 1 << 14])
+		.scaleExtent([1 << 9, 1 << 50])
 	    .translate([width - center[0], height - center[1]])
 	    .on("zoom", zoomed);
 

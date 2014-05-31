@@ -1,9 +1,9 @@
-{# the ipython keyword determines which parent template will be used#}
+{# the ipython keyword determines which parent template will be used #}
 {% if ipython %}
-	{% extends 'layout_ipython.html' %}
+	{% extends "layout_ipython.html" %}
 {% else %}
 	{% extends "layout.html" %}
-{%endif %}
+{% endif %}
 
 
 {% block script %}
@@ -26,7 +26,28 @@
                   .append("svg")
                   .attr("width", width)
                   .attr("height", height);
+	{% if graticule %}			  
+		var graticule = d3.geo.graticule();
+		
+		svg.append("defs").append("path")
+		    .datum({type: "Sphere"})
+		    .attr("id", "sphere")
+		    .attr("d", path);
 
+		svg.append("use")
+		    .attr("class", "stroke")
+		    .attr("xlink:href", "#sphere");
+
+		svg.append("use")
+		    .attr("class", "fill")
+		    .attr("xlink:href", "#sphere");
+
+		svg.append("path")
+		    .datum(graticule)
+		    .attr("class", "graticule")
+		    .attr("d", path);
+	{%  endif %}
+	 
 	// Selection Shorthands
 	var map       = svg.append("path").attr("class", "country");
 	var points = svg.selectAll(".symbol")
@@ -42,7 +63,7 @@
  
 	var zoom = d3.behavior.zoom()
 	    .scale(projection.scale() * 2 * Math.PI)
-	    .scaleExtent([1 << 11, 1 << 14])
+	   	.scaleExtent([1 << 9, 1 << 50])
 	    .translate([width - center[0], height - center[1]])
 	    .on("zoom", zoomed);
  
@@ -57,9 +78,24 @@
 		 	 //map.datum( topojson.feature(geojson, geojson.objects.ocean)).attr("d", path);
 		 
 			 points.attr("d", path);
+
+			{% if graticule %}			  
+		
+				svg.selectAll("#sphere").attr("d", path);
+
+				svg.append("use")
+				    .attr("class", "fill")
+				    .attr("xlink:href", "#sphere");
+
+				svg.append("path")
+				    .datum(graticule)
+				    .attr("class", "graticule")
+				    .attr("d", path);
+			{%  endif %}
+		 
 		 
 			 //below are lines as line-features which update on zoom
-			 lines.attr("d",path);
+			 //lines.attr("d",path);
 		  
 			// lines
 			//     .selectAll(".lines")
