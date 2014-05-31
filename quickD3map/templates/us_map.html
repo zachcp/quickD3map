@@ -1,6 +1,6 @@
 {# the ipython keyword determines which parent template will be used#}
 {% if ipython %}
-	{% extends 'latou_ipython.html' %}
+	{% extends 'layout_ipython.html' %}
 {% else -%}
 	{% extends "layout.html" %}
 {%endif %}
@@ -16,7 +16,7 @@
     var path = d3.geo.path()
       .projection(projection);
 	var center = projection([ 0, 20]);  
-    var svg = d3.select("#map")
+    var svg = d3.select("#{{vis_id}}")
       .append("svg")
       .append("g")
       .attr("width", width)
